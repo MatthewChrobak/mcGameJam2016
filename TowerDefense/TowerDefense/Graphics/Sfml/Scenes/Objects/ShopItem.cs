@@ -12,7 +12,7 @@
 
                 // Draw the title
                 var lblTitle = new Label() {
-                    Caption = this.ItemName,
+                    Caption = this.ItemName + ": " + this.ItemCost,
                     Top = 500,
                     Left = 960,
                     Width = 300,

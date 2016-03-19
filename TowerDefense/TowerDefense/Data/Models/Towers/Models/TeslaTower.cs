@@ -3,6 +3,10 @@
     public class TeslaTower : Tower
     {
         public const int TowerCost = 50;
+        public const string TowerName = "Tesla Tower";
+        public const string TowerDescription = "Fires a single shot in a single bound.";
+        public const string ShopIcon = "icon1";
+        public const string SurfaceName = "tower1";
 
         public TeslaTower()
         {
@@ -14,7 +18,7 @@
             this.VirusType = Viruses.VirusType.GROUND;
             this.Level = 1;
             this.UpgradeCost = 75;
-            this.SurfaceName = "tower1";
+            this.Surface = SurfaceName;
         }
 
         public override void upgrade()

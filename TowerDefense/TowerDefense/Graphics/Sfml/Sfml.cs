@@ -35,6 +35,10 @@ namespace TowerDefense.Graphics.Sfml
             // Create a new renderwindow that we can render graphics onto.
             this.DrawingSurface = new RenderWindow(new VideoMode(1260, 649), "Title", Styles.Close);
 
+            // Center it.
+            var screen = VideoMode.DesktopMode;
+            DrawingSurface.Position = new Vector2i(((int)screen.Width / 2) - 630, ((int)screen.Height / 2) - 355);
+
             // Set the default background color for the drawing surface.
             this._backgroundColor = new Color(25, 25, 25);
 
@@ -285,7 +289,7 @@ namespace TowerDefense.Graphics.Sfml
                         var npt = mapTile as NonPathTile;
 
                         if (npt?.Tower != null) {
-                            var towerSurface = GetSurface(npt.Tower.SurfaceName, SurfaceTypes.Tower);
+                            var towerSurface = GetSurface(npt.Tower.Surface, SurfaceTypes.Tower);
                             towerSurface.Position = new Vector2f(x * 60 - (towerSurface.Texture.Size.X - 60) / 2, y * 59 - (towerSurface.Texture.Size.Y - 59));
                             DrawObject(towerSurface);
                         }
