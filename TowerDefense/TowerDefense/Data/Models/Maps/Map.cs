@@ -24,13 +24,22 @@ namespace TowerDefense.Data.Models.Maps
         public PathFinding path;
         public Directions[] dirs;
 
+<<<<<<< HEAD
+=======
+        //Pat
+        Position pos;
+
+>>>>>>> origin/master
         // Tower radius markers
         int xMin;
         int xMax;
         int yMin;
         int yMax;
 
+<<<<<<< HEAD
         Position pos;
+=======
+>>>>>>> origin/master
 
         public Map(int mapNumber)
         {
@@ -38,7 +47,12 @@ namespace TowerDefense.Data.Models.Maps
             dirs = path.getPath(mapNumber);
             Towers = new List<Tower>();
             Viruses = new List<Virus>();
+<<<<<<< HEAD
             Position pos = new Position();
+=======
+            pos = new Position();
+        }
+>>>>>>> origin/master
 
             
         }
@@ -84,6 +98,35 @@ namespace TowerDefense.Data.Models.Maps
 
 
                 for (int y = yMin; y < yMax; y++)
+<<<<<<< HEAD
+=======
+                {
+                    for (int x = xMin; x < xMax; x++)
+                    {
+
+                    }
+                }
+            }
+        }
+
+        public void populateMap()
+        {
+            simpleMapArray = new int[] {0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,
+                                        0,2,0,0,1,1,1,0,0,0,2,1,1,0,0,0,0,
+                                        0,1,1,0,0,0,1,0,0,0,0,0,1,1,1,1,0,
+                                        0,0,1,0,0,0,1,1,1,0,0,0,0,0,0,1,0, // 2ns last 1 is the diagonal
+                                        0,0,1,1,0,0,0,0,1,0,0,0,0,0,0,1,0,
+                                        0,0,0,1,0,0,0,0,1,1,0,0,0,0,1,1,0,
+                                        0,1,1,1,0,0,0,0,0,1,0,0,0,0,1,0,0,
+                                        0,1,0,0,0,1,1,1,1,1,0,0,0,0,1,1,0,
+                                        0,1,0,0,0,1,0,0,0,0,0,0,2,0,0,1,0,
+                                        0,2,0,0,0,1,1,1,0,0,0,0,1,0,0,1,0,
+                                        0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,1,0,};
+            int index = 0;
+            for (int x = 0; x < 16; x++)
+            {
+                for (int y = 0; y < 11; y++)
+>>>>>>> origin/master
                 {
                     for (int x = xMin; x < xMax; x++)
                     {
