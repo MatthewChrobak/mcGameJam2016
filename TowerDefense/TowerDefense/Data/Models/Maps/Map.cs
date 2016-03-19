@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using TowerDefense.Data.Models.Towers;
 using TowerDefense.Data.Models.Viruses;
 
@@ -17,6 +18,7 @@ namespace TowerDefense.Data.Models.Maps
         public Home Home;
         public List<Tower> Towers;
         public List<Virus> Viruses;
+        public List<Virus> EnemiesInRange;
         public Position SpawnLocation{ get; set;}
         public string SurfaceName;
         public PathFinding path;
@@ -38,6 +40,7 @@ namespace TowerDefense.Data.Models.Maps
             dirs = path.getPath(1);
             Towers = new List<Tower>();
             Viruses = new List<Virus>();
+            EnemiesInRange = new List<Virus>();
             pos = new Position();
             populateMap();
         }
@@ -55,9 +58,10 @@ namespace TowerDefense.Data.Models.Maps
             // Loop through all towers, and try to target enemy
             foreach (var tower in Towers)
             {
-                // Assign tower coordinates
+                // Assign tower coordinates and refresh enemies in range list
                 pos.X = tower.X;
                 pos.Y = tower.Y;
+                EnemiesInRange.Clear();
 
                 // Make sure range check does not exceed upper bound
                 if (pos.Y - tower.Range < 0)
@@ -88,7 +92,14 @@ namespace TowerDefense.Data.Models.Maps
                 {
                     for (int x = xMin; x < xMax; x++)
                     {
+                        if(mapArray[x,y].GetType() == typeof(PathTile))
+                        {
+                            PathTile tempPathTile = (PathTile)mapArray[x, y];
+                            EnemiesInRange.AddRange(tempPathTile.viruses);
 
+                            // Determines highest priority and sets to fire
+                            tower.CurrentTarget = prioritizeVirus(EnemiesInRange);
+                        }
                     }
                 }
             }
@@ -122,6 +133,13 @@ namespace TowerDefense.Data.Models.Maps
                     }
                 }
             }
+        }
+
+        public Virus prioritizeVirus(List<Virus> unsortedList)
+        {
+            List<Virus> sortedList = unsortedList.OrderBy(v => v.Step).ToList();
+
+            return sortedList.LastOrDefault();
         }
     }
 }
