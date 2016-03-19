@@ -1,6 +1,7 @@
 ﻿namespace TowerDefense.Data.Models.Viruses
 {
-    public enum VirusType {
+    public enum VirusType
+    {
         GROUND,
         FLYING
     }

@@ -204,7 +204,7 @@ namespace TowerDefense.Graphics.Sfml
 
 
         private void RenderSample_DO_NOT_USE_THIS() {
-            // Load a surface of a certain type
+            // Load a surface of a certain type.
             var surface = GetSurface("generic", SurfaceTypes.Tower);
 
             // Set the position on the screen.

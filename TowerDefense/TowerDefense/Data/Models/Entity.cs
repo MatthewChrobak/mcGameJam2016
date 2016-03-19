@@ -1,5 +1,14 @@
 ﻿namespace TowerDefense.Data.Models
 {
+    /// <summary>
+    /// Possible state that an object may be in.
+    /// </summary>
+    public enum State
+    {
+        ACTIVE,
+        INACTIVE
+    }
+
     public class Entity: Position
     {
         public int Health { private set; get; }
