@@ -33,10 +33,10 @@ namespace TowerDefense.Data.Models.Maps
         int yMax;
 
 
-        public Map(int mapNumber)
+        public Map()
         {
             path = new PathFinding();
-            dirs = path.getPath(mapNumber);
+            dirs = path.getPath(1);
             Towers = new List<Tower>();
             Viruses = new List<Virus>();
             pos = new Position();

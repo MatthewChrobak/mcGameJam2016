@@ -100,8 +100,8 @@
     <Compile Include="Graphics\Sfml\Scenes\Objects\CheckBox.cs" />
     <Compile Include="Graphics\Sfml\Scenes\Objects\Image.cs" />
     <Compile Include="Graphics\Sfml\Scenes\Objects\Label.cs" />
-    <Compile Include="Graphics\Sfml\Scenes\Objects\Textbox.cs" />
     <Compile Include="Graphics\Sfml\Scenes\Objects\ShopItem.cs" />
+    <Compile Include="Graphics\Sfml\Scenes\Objects\Textbox.cs" />
     <Compile Include="Graphics\Sfml\Scenes\SceneObject.cs" />
     <Compile Include="Graphics\Sfml\Scenes\SceneSystem.cs" />
     <Compile Include="Graphics\Sfml\Scenes\ZOrder.cs" />
