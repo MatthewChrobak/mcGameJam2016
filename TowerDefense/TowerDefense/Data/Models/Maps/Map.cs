@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-<<<<<<< HEAD
 using TowerDefense.Data.Models.Towers;
 using TowerDefense.Data.Models.Viruses;
 
@@ -7,43 +6,19 @@ namespace TowerDefense.Data.Models.Maps
 {
     public class Map
     {
-        //Tile[,] mapArray = new Position[16, 11] { { new NonPathTile(0, 0), new NonPathTile(0, 1), new NonPathTile(0, 2), new NonPathTile(0, 3), new PathTile(0, 4, 0), new NonPathTile(0, 5), new NonPathTile(0, 6), new NonPathTile(0, 2) } }
-        public object[,] mapArray; = new Position[16,11];
+        public object[,] mapArray = new Position[16,10];
         public int[] simpleMapArray;
         // Map constants
         public const int TILE_WIDTH = 64;
         public const int TILE_HEIGHT = 64;
 
         public const int WIDTH = 16;
-        public const int HEIGHT = 11;
-
-        public Home Home;
-        public Tower[] Towers;
-        public List<Virus> Viruses;
-        public Position SpawnLocation;
-=======
-using TowerDefense.Data.Models.Towers;
-using TowerDefense.Data.Models.Viruses;
-
-
-namespace TowerDefense.Data.Models.Maps
-{
-    public class Map
-    {
-        //Position[,] mapArray = new Position [16,11] { {new Tile(0 ,0 ,0), new Tile(0 ,1 ,0), new Tile(0 ,2 ,0), new Tile(0 ,3 ,0), new Tile(0, 4, 1), new Tile(0, 5, 0), new Tile(0, 6, 0), new Tile(0, 2, 0) }   }
-
-        // Map constants
-        public const int TILE_WIDTH = 64;
-        public const int TILE_HEIGHT = 64;
-
-        public const int WIDTH = 16;
-        public const int HEIGHT = 11;
+        public const int HEIGHT = 10;
 
         public Home Home;
         public List<Tower> Towers;
         public List<Virus> Viruses;
         public Position SpawnLocation;
->>>>>>> origin/master
         public string SurfaceName;
         public PathFinding path;
         public Directions[] dirs;
@@ -51,16 +26,25 @@ namespace TowerDefense.Data.Models.Maps
         public Map(int mapNumber)
         {
             path = new PathFinding();
-<<<<<<< HEAD
-            dirs = path.getPath(1);
+            dirs = path.getPath(mapNumber);
+            Towers = new List<Tower>();
+            Viruses = new List<Virus>();
         }
 
-        public void UpdateLogic() {
+        public void UpdateLogic()
+        {
 
             // Loop through all viruses, and try and move them.
-            foreach (var virus in Viruses) {
+            foreach (var virus in Viruses)
+            {
                 virus.Move((Directions)dirs.GetValue(virus.Step));
                 virus.Step++;
+            }
+
+            // Loop through all towers, and try to target enemy
+            foreach (var tower in Towers)
+            {
+                tower.Targeting();
             }
         }
 
@@ -101,26 +85,3 @@ namespace TowerDefense.Data.Models.Maps
         }
     }
 }
-=======
-            dirs = path.getPath(mapNumber);
-            Towers = new List<Tower>();
-            Viruses = new List<Virus>();
-        }
-
-        public void UpdateLogic() {
-
-            // Loop through all viruses, and try and move them.
-            foreach (var virus in Viruses) {
-                virus.Move((Directions)dirs.GetValue(virus.Step));
-                virus.Step++;
-            }
-
-            // Loop through all towers, and try to target enemy
-            foreach (var tower in Towers)
-            {
-                tower.Targeting();
-            }
-        }
-    }
-}
->>>>>>> origin/master
