@@ -16,6 +16,7 @@ namespace TowerDefense.Data.Models.Towers
         public int Level { get; set; } // 1-5 
         public int UpgradeCost { get; set; }
         public Map map;
+        public string SurfaceName { get; set; }
 
         abstract public void upgrade();
 

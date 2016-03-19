@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.IO;
 using SFML.System;
 using TowerDefense.Data;
+using TowerDefense.Data.Models;
+using TowerDefense.Data.Models.Towers.Models;
 
 namespace TowerDefense.Graphics.Sfml
 {
@@ -69,6 +71,42 @@ namespace TowerDefense.Graphics.Sfml
 
             // For mouse related events, just pass off the coords to the scene system.
             this.DrawingSurface.MouseButtonPressed += (sender, e) => {
+
+                // Is it the left mouse button?
+                if (e.Button == Mouse.Button.Left) {
+
+                    // Are we currently trying to place a tower?
+                    if (this.HoverSurfaceName != null) {
+
+                        int x = e.X / 60;
+                        int y = e.Y / 59;
+
+                        // Figure out if it's out of bounds.
+                        if (x < 0 || x > 15) {
+                            return;
+                        }
+
+                        if (y < 0 || y > 10) {
+                            return;
+                        }
+
+                        var pos = DataManager.Map.mapArray[x, y];
+                        var tile = pos as NonPathTile;
+
+                        if (tile != null && tile.Tower == null) {
+                            switch (this.HoverSurfaceName) {
+                                case "tower1":
+                                    tile.Tower = new TeslaTower();
+                                    break;
+                                case "tower2":
+                                    tile.Tower = new WaveTower();
+                                    break;
+                            }
+                        }
+                    }
+                }
+
+                // Pass off the coords to the UI system
                 this.SceneSystem.MouseDown(e.Button.ToString().ToLower(), e.X, e.Y);
             };
             this.DrawingSurface.MouseButtonReleased += (sender, e) => {
@@ -231,18 +269,36 @@ namespace TowerDefense.Graphics.Sfml
                 mapSurface.Scale = new Vector2f((float)960 / mapSurface.Texture.Size.X, (float)649 / mapSurface.Texture.Size.Y);
                 DrawObject(mapSurface);
 
+                // Draw the contents of the map
+                for (int x = 0; x < 16; x++) {
+                    for (int y = 0; y < 11; y++) {
+                        var mapTile = map.mapArray[x, y];
+
+                        var pt = mapTile as PathTile;
+                        var npt = mapTile as NonPathTile;
+
+                        if (npt?.Tower != null) {
+                            var towerSurface = GetSurface(npt.Tower.SurfaceName, SurfaceTypes.Tower);
+                            towerSurface.Position = new Vector2f(x * 60 - (towerSurface.Texture.Size.X - 60) / 2, y * 59 - (towerSurface.Texture.Size.Y - 59));
+                            DrawObject(towerSurface);
+                        }
+                    }
+                }
+
+
+
                 var tile = GetSurface("tile", SurfaceTypes.Map);
 
                 // Draw the placing icon.
-                var towerSurface = GetSurface(this.HoverSurfaceName, SurfaceTypes.Tower);
+                var hoverTowerSurface = GetSurface(this.HoverSurfaceName, SurfaceTypes.Tower);
                 //var tile = GetSurface("tile", SurfaceTypes.Map);
-                if (towerSurface != null) {
+                if (hoverTowerSurface != null) {
                     if (this.MouseX < 960) {
-                        towerSurface.Color = new Color(255, 255, 255, 200);
-                        towerSurface.Position = new Vector2f(this.MouseX - 32, this.MouseY - 41);
+                        hoverTowerSurface.Color = new Color(255, 255, 255, 200);
+                        hoverTowerSurface.Position = new Vector2f(this.MouseX - 32, this.MouseY - 41);
                         tile.Position = new Vector2f((this.MouseX / 60) * 60, (this.MouseY / 59) * 59);
                         DrawObject(tile);
-                        DrawObject(towerSurface);
+                        DrawObject(hoverTowerSurface);
                     }
                 }
             }

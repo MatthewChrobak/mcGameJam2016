@@ -13,6 +13,7 @@
             this.VirusType = Viruses.VirusType.GROUND;
             this.Level = 1;
             this.UpgradeCost = 75;
+            this.SurfaceName = "tower1";
         }
 
         public override void upgrade()

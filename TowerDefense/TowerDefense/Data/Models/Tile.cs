@@ -7,5 +7,7 @@ using System.Threading.Tasks;
 namespace TowerDefense.Data.Models
 {
    public abstract class Tile: Position
-    { }
+    {
+
+    }
 }

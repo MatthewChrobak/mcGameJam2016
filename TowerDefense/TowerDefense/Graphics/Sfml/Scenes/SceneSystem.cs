@@ -137,7 +137,7 @@ namespace TowerDefense.Graphics.Sfml.Scenes
                     break;
             }
 
-            ((Sfml)GraphicsManager.Graphics).HoverSurfaceName = "";
+            ((Sfml)GraphicsManager.Graphics).HoverSurfaceName = null;
 
             // Make sure that the scene system has actually been initialized.
             if (this._UIObject != null) {

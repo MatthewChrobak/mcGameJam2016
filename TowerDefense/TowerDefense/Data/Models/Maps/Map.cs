@@ -7,7 +7,6 @@ namespace TowerDefense.Data.Models.Maps
     public class Map
     {
         public Tile[,] mapArray = new Tile[16, 11];
-        public int[] simpleMapArray;
         // Map constants
         public const int TILE_WIDTH = 64;
         public const int TILE_HEIGHT = 64;
@@ -40,6 +39,7 @@ namespace TowerDefense.Data.Models.Maps
             Towers = new List<Tower>();
             Viruses = new List<Virus>();
             pos = new Position();
+            populateMap();
         }
 
         public void UpdateLogic()
@@ -96,35 +96,30 @@ namespace TowerDefense.Data.Models.Maps
 
         public void populateMap()
         {
-            simpleMapArray = new int[] {0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,
-                                        0,2,0,0,1,1,1,0,0,0,2,1,1,0,0,0,
-                                        0,1,1,0,0,0,1,0,0,0,0,0,1,1,1,1,
-                                        0,0,1,0,0,0,1,1,1,0,0,0,0,0,0,1, // 2nd last 1 is the diagonal
-                                        0,0,1,1,0,0,0,0,1,0,0,0,0,0,0,1,
-                                        0,0,0,1,0,0,0,0,1,1,0,0,0,0,1,1,
-                                        0,1,1,1,0,0,0,0,0,1,0,0,0,0,1,0,
-                                        0,1,0,0,0,1,1,1,1,1,0,0,0,0,1,1,
-                                        0,1,0,0,0,1,0,0,0,0,0,0,2,0,0,1,
-                                        0,2,0,0,0,1,1,1,0,0,0,0,1,0,0,1,
-                                        0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,1,};
+            int[] simpleMapArray = new int[] {0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,
+                                        0,2,0,0,1,1,1,0,0,2,1,1,0,0,0,0,
+                                        0,1,1,0,0,0,1,0,0,0,0,1,1,1,1,0,
+                                        0,0,1,0,0,0,1,1,1,0,0,0,0,0,1,0, // 2nd last 1 is the diagonal
+                                        0,0,1,1,0,0,0,0,1,0,0,0,0,0,1,0,
+                                        0,0,0,1,0,0,0,0,1,1,0,0,0,1,1,0,
+                                        0,1,1,1,0,0,0,0,0,1,0,0,0,1,0,0,
+                                        0,1,0,0,0,1,1,1,1,1,0,0,0,1,1,0,
+                                        0,1,0,0,0,1,0,0,0,0,0,0,2,0,1,0,
+                                        0,2,0,0,0,1,1,1,0,0,0,0,1,0,1,0,
+                                        0,0,0,0,0,0,0,1,1,1,1,1,1,0,1,0
+            };
+
             int index = 0;
-            for (int x = 0; x < 16; x++)
-            {
-                for (int y = 0; y < 11; y++)
-                {
+            for (int x = 0; x < 16; x++) {
+                for (int y = 0; y < 11; y++) {
                     int tile = simpleMapArray[index];
-                    if (tile == 0)
-                    {
+                    if (tile == 0) {
                         mapArray[x, y] = new NonPathTile(x, y);
                         index++;
-                    }
-                    else if (tile == 1)
-                    {
+                    } else if (tile == 1) {
                         mapArray[x, y] = new PathTile(x, y, 1);
                         index++;
-                    }
-                    else if (tile == 2)
-                    {
+                    } else if (tile == 2) {
                         mapArray[x, y] = new PathTile(x, y, 2);
                         index++;
                     }

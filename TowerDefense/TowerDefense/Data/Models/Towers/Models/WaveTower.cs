@@ -15,6 +15,7 @@ namespace TowerDefense.Data.Models.Towers.Models
             this.VirusType = Viruses.VirusType.GROUND;
             this.Level = 1;
             this.UpgradeCost = 95;
+            this.SurfaceName = "tower2";
         }
 
         public override void upgrade() {
