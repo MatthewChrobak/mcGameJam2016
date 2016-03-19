@@ -15,6 +15,11 @@ namespace TowerDefense.Graphics.Sfml
         private Font GameFont;
         private Color _backgroundColor;
 
+        // Mouse coords
+        public string HoverSurfaceName;
+        private int MouseX;
+        private int MouseY;
+
         // The collection of all the graphics.
         private List<GraphicalSurface>[] _surface;
 
@@ -25,7 +30,7 @@ namespace TowerDefense.Graphics.Sfml
             this.LoadFont();
 
             // Create a new renderwindow that we can render graphics onto.
-            this.DrawingSurface = new RenderWindow(new VideoMode(960, 640), "Title", Styles.Close);
+            this.DrawingSurface = new RenderWindow(new VideoMode(1260, 640), "Title", Styles.Close);
 
             // Set the default background color for the drawing surface.
             this._backgroundColor = new Color(25, 25, 25);
@@ -71,6 +76,10 @@ namespace TowerDefense.Graphics.Sfml
             };
             this.DrawingSurface.MouseMoved += (sender, e) => {
                 this.SceneSystem.MouseMove(e.X, e.Y);
+
+                // Save the position of the mouse.
+                this.MouseX = e.X;
+                this.MouseY = e.Y;
             };
 
             // For key related events, pass off the filtered keyname to the scene system.
@@ -184,7 +193,7 @@ namespace TowerDefense.Graphics.Sfml
             // Loop through the collection of the specified type.
             for (int i = 0; i < this._surface[(int)type].Count; i++) {
                 // If the surface tag name is equal to the tag name specified, return the surface.
-                if (this._surface[(int)type][i].Tag == tagName.ToLower()) {
+                if (this._surface[(int)type][i].Tag == tagName?.ToLower()) {
                     return this._surface[(int)type][i].Sprite;
                 }
             }
@@ -239,6 +248,19 @@ namespace TowerDefense.Graphics.Sfml
                 mapSurface.Position = new Vector2f(0, 0);
                 mapSurface.Scale = new Vector2f((float)960 / mapSurface.Texture.Size.X, (float)640 / mapSurface.Texture.Size.Y);
                 DrawObject(mapSurface);
+
+
+
+                // Draw the placing icon.
+                var towerSurface = GetSurface(this.HoverSurfaceName, SurfaceTypes.Tower);
+                var tile = GetSurface("tile", SurfaceTypes.Map);
+                if (towerSurface != null) {
+                    towerSurface.Color = new Color(255, 255, 255, 100);
+                    towerSurface.Position = new Vector2f(this.MouseX - 32, this.MouseY - 41);
+                    tile.Position = new Vector2f((this.MouseX / 58) * 58, (this.MouseY / 60) * 60);
+                    DrawObject(tile);
+                    DrawObject(towerSurface);
+                }
             }
         }
     }
