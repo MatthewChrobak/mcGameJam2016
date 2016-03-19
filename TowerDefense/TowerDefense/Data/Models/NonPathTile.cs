@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TowerDefense.Data.Models
 {
-    public class NonPathTile
+    public class NonPathTile:Tile
     {
         public Position Position { get; set; }
         public Towers.Tower Tower { get; set; }
