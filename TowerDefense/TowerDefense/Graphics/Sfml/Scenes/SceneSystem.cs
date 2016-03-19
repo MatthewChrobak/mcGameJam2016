@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using TowerDefense.Graphics.Sfml.Scenes.Objects;
+using TowerDefense.Data.Models.Towers.Models;
 
 namespace TowerDefense.Graphics.Sfml.Scenes
 {
@@ -394,7 +395,8 @@ namespace TowerDefense.Graphics.Sfml.Scenes
                 Left = 970,
                 Top = 10,
                 Width = 100,
-                Height = 100
+                Height = 100,
+                ItemCost = TeslaTower.TowerCost
             };
             scene.Add(tower1);
 
@@ -406,7 +408,8 @@ namespace TowerDefense.Graphics.Sfml.Scenes
                 Left = 1070,
                 Top = 10,
                 Width = 100,
-                Height = 100
+                Height = 100,
+                ItemCost = WaveTower.TowerCost
             };
             scene.Add(tower2);
         }

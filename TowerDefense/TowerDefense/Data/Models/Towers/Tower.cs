@@ -7,7 +7,6 @@ namespace TowerDefense.Data.Models.Towers
     {
         //variables
         public TowerType Type { get; set; }
-        public int Cost { get; set; }
         public int DamageDealt { get; set; }
         public int AttackSpeed { get; set; }
         public int Range { get; set; }
