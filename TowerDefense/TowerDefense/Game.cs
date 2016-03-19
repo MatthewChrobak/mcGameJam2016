@@ -3,6 +3,7 @@ using TowerDefense.Data;
 using TowerDefense.Graphics;
 using TowerDefense.IO;
 using System;
+using System.Threading;
 
 namespace TowerDefense
 {
@@ -29,6 +30,10 @@ namespace TowerDefense
 
             // Initialize the game graphics.
             GraphicsManager.Initialize();
+
+            DelayInvoke(10000, () => {
+                System.Console.WriteLine("Hello world!");
+            });
 
             // Start the game-loop.
             Game.GameLoop();
@@ -92,6 +97,29 @@ namespace TowerDefense
             // Before closing the game, save all relevant data.
             DataManager.Save();
             Environment.Exit(0);
+        }
+
+        public static void DelayInvoke(int tickDelay, Action method) {
+
+            // Set the delay.
+            methodDelay = tickDelay;
+
+            // Create a new thread, and run it.
+            Thread thread = new Thread(RunMethod);
+            thread.Start(method);   
+        }
+
+        private static int methodDelay;
+        private static void RunMethod(object val) {
+
+            var method = (Action)val;
+
+            int tick = Environment.TickCount + methodDelay;
+            while (tick > Environment.TickCount) {
+                // Waste time.
+            }
+
+            method.Invoke();
         }
     }
 }

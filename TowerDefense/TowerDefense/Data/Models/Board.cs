@@ -4,8 +4,9 @@
     {
         public int Score { private set; get; }
         public int Money { private set; get; }
+        public int Wave { get; set; }
 
-        private const int STARTING_MONEY = 900;
+        private const int STARTING_MONEY = 200;
 
         public Board() {
             // When the game starts, you'll have a certain

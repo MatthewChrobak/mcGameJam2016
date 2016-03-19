@@ -2,10 +2,11 @@
 {
     public class TeslaTower : Tower
     {
+        public const int TowerCost = 50;
+
         public TeslaTower()
         {
             this.Type = TowerType.TESLA;
-            this.Cost = 50;
             this.DamageDealt = 5;
             this.AttackSpeed = 1000;
             this.Range = 10;

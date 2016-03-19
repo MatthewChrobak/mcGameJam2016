@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using TowerDefense.Graphics.Sfml.Scenes.Objects;
+using TowerDefense.Data.Models.Towers.Models;
 
 namespace TowerDefense.Graphics.Sfml.Scenes
 {
@@ -218,8 +219,7 @@ namespace TowerDefense.Graphics.Sfml.Scenes
             }
 
             // Updating logic.
-            UpdateScore();
-            UpdateMoney();
+            UpdateLogic();
         }
 
         private GraphicalSurface GetSurface(string tagName) {
@@ -356,28 +356,9 @@ namespace TowerDefense.Graphics.Sfml.Scenes
             _UIObject[(int)GameState.Game] = new List<SceneObject>();
             var scene = _UIObject[(int)GameState.Game];
 
-            var score = new Label() {
-                Name = "lblScore",
-                FontSize = 36,
-                Width = 200,
-                Left = 960 - 200,
-                Top = 30,
-                TextColor = SFML.Graphics.Color.White
-            };
-            scene.Add(score);
-
-            var money = new Label() {
-                Name = "lblMoney",
-                FontSize = 36,
-                Width = 200,
-                Left = 960 - 200,
-                Top = 70,
-                TextColor = SFML.Graphics.Color.White
-            };
-            scene.Add(money);
-
             // The Store
             var imgStoreBackground = new Image() {
+                Name = "imgStoreBackground",
                 Surface = GetSurface("sidemenu"),
                 Left = 960,
                 Height = 649,
@@ -385,32 +366,73 @@ namespace TowerDefense.Graphics.Sfml.Scenes
             };
             scene.Add(imgStoreBackground);
 
+            var score = new Label() {
+                Name = "lblScore",
+                FontSize = 24,
+                Width = 200,
+                Left = 970,
+                Top = 30,
+                TextColor = SFML.Graphics.Color.White
+            };
+            scene.Add(score);
+
+            var money = new Label() {
+                Name = "lblMoney",
+                FontSize = 24,
+                Width = 200,
+                Left = 970,
+                Top = 60,
+                TextColor = SFML.Graphics.Color.White
+            };
+            scene.Add(money);
+
+            var lblWave = new Label() {
+                Name = "lblWave",
+                FontSize = 24,
+                Width = 200,
+                Left = 970,
+                Top = 90,
+                TextColor = SFML.Graphics.Color.White
+            };
+            scene.Add(lblWave);
+
             // Store items
             var tower1 = new ShopItem() {
+                Name = "twr1",
                 ItemName = "One Shot Tower",
                 Description = "What did you expect?",
                 Surface = GetSurface("icon1"),
                 HoverSurfaceName = "tower1",
                 Left = 970,
-                Top = 10,
+                Top = 150,
                 Width = 100,
-                Height = 100
+                Height = 100,
+                ItemCost = TeslaTower.TowerCost
             };
             scene.Add(tower1);
 
             var tower2 = new ShopItem() {
+                Name = "twr2",
                 ItemName = "Syndra Tower",
                 Description = "Syndra jungle is the current meta",
                 Surface = GetSurface("icon2"),
                 HoverSurfaceName = "tower2",
                 Left = 1070,
-                Top = 10,
+                Top = 150,
                 Width = 100,
-                Height = 100
+                Height = 100,
+                ItemCost = WaveTower.TowerCost
             };
             scene.Add(tower2);
         }
 
+
+
+        private void UpdateLogic() {
+            UpdateScore();
+            UpdateMoney();
+            UpdateWave();
+        }
 
         private void UpdateScore() {
             // Update the UI label if it's not null.
@@ -427,6 +449,15 @@ namespace TowerDefense.Graphics.Sfml.Scenes
             if (label != null) {
                 int money = Data.DataManager.Board.Money;
                 ((Label)label).Caption = "Money: " + money;
+            }
+        }
+
+        private void UpdateWave() {
+            // Update the UI label if it's not null.
+            var label = GetUIObject("lblWave");
+            if (label != null) {
+                int wave = Data.DataManager.Board.Wave;
+                ((Label)label).Caption = "Wave: " + wave;
             }
         }
     }

@@ -96,10 +96,16 @@ namespace TowerDefense.Graphics.Sfml
                         if (tile != null && tile.Tower == null) {
                             switch (this.HoverSurfaceName) {
                                 case "tower1":
-                                    tile.Tower = new TeslaTower();
+                                    if (DataManager.Board.Money >= TeslaTower.TowerCost) {
+                                        tile.Tower = new TeslaTower();
+                                        DataManager.Board.RemoveMoney(TeslaTower.TowerCost);
+                                    }
                                     break;
                                 case "tower2":
-                                    tile.Tower = new WaveTower();
+                                    if (DataManager.Board.Money >= WaveTower.TowerCost) {
+                                        tile.Tower = new WaveTower();
+                                        DataManager.Board.RemoveMoney(WaveTower.TowerCost);
+                                    }
                                     break;
                             }
                         }
@@ -294,9 +300,21 @@ namespace TowerDefense.Graphics.Sfml
                 //var tile = GetSurface("tile", SurfaceTypes.Map);
                 if (hoverTowerSurface != null) {
                     if (this.MouseX < 960) {
+
+                        int x = this.MouseX / 60;
+                        int y = this.MouseY / 59;
+
+                        var mapTile = DataManager.Map.mapArray[x, y] as NonPathTile;
+
+                        if (mapTile == null) {
+                            tile.Color = SFML.Graphics.Color.Red;
+                        } else {
+                            tile.Color = SFML.Graphics.Color.Green;
+                        }
+
                         hoverTowerSurface.Color = new Color(255, 255, 255, 200);
                         hoverTowerSurface.Position = new Vector2f(this.MouseX - 32, this.MouseY - 41);
-                        tile.Position = new Vector2f((this.MouseX / 60) * 60, (this.MouseY / 59) * 59);
+                        tile.Position = new Vector2f(x * 60, y * 59);
                         DrawObject(tile);
                         DrawObject(hoverTowerSurface);
                     }

@@ -9,7 +9,6 @@ namespace TowerDefense.Data.Models.Towers
     {
         //variables
         public TowerType Type { get; set; }
-        public int Cost { get; set; }
         public int DamageDealt { get; set; }
         public int AttackSpeed { get; set; }
         public int Range { get; set; }
@@ -27,8 +26,7 @@ namespace TowerDefense.Data.Models.Towers
         {
             map = DataManager.Map;
         }
-
-        public Virus Targeting() {
+        
         public void shootATtTarget() {
 
             for (int y = 0; y < this.Range; y++) {
@@ -40,6 +38,10 @@ namespace TowerDefense.Data.Models.Towers
                
             }
 
+            // TODO replace this virus with the one found by targeting.
+            Virus replacableVirus = new TestVirus();
+            if (replacableVirus.Health <= 0)
+                map.OnVirusDeath(replacableVirus);
             return null;
             
         }
