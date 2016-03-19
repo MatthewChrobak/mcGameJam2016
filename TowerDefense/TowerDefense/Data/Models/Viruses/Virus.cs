@@ -12,5 +12,19 @@ namespace TowerDefense.Data.Models.Viruses
         public int Health { get; set; }
         public int Level { get; set; }
         public float MovementSpeed { get; set; }
+
+
+        private int LastMove;
+
+        public void Move() {
+
+            // Check to see if we can move again.
+            if (LastMove + Speed < Environment.TickCount) {
+                // Logic involving moving viruses here.
+
+                // Set the current tickcount as our last move time.
+                LastMove = Environment.TickCount;
+            }
+        }
     }
 }

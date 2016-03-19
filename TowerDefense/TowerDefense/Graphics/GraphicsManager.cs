@@ -7,6 +7,7 @@
         public static readonly string GuiPath = GraphicsManager.SurfacePath + "gui\\";
         public static readonly string FontPath = Game.DataPath + "fonts\\";
         public static readonly string TowerPath = SurfacePath + "towers\\";
+        public static readonly string MapPath = SurfacePath + "maps\\";
 
         // The class object containing the graphics system.
         public static IGraphics Graphics { private set; get; }

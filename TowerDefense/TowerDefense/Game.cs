@@ -50,6 +50,9 @@ namespace TowerDefense
                     GraphicsManager.Graphics?.Draw();
                     tick16 = tick + 16;
                 }
+
+                // Update the map logic.
+                DataManager.Map.UpdateLogic();
             }
 
             // The game will only be destroyed when the flag is set to closing.

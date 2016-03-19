@@ -16,6 +16,15 @@ namespace TowerDefense.Data.Models.Maps
         public Tower[] Towers;
         public Virus[] Viruses;
         public Position SpawnLocation;
+        public string SurfaceName; 
 
+
+        public void UpdateLogic() {
+
+            // Loop through all viruses, and try and move them.
+            foreach (var virus in Viruses) {
+                virus.Move();
+            }
+        }
     }
 }

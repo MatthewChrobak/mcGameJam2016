@@ -4,6 +4,7 @@ using SFML.Window;
 using System.Collections.Generic;
 using System.IO;
 using SFML.System;
+using TowerDefense.Data;
 
 namespace TowerDefense.Graphics.Sfml
 {
@@ -103,6 +104,10 @@ namespace TowerDefense.Graphics.Sfml
             // From this point onward, load graphics into their respective collections.
             foreach (string file in Directory.GetFiles(GraphicsManager.TowerPath, "*.png")) {
                 this._surface[(int)SurfaceTypes.Tower].Add(new GraphicalSurface(file));
+            }
+
+            foreach (string file in Directory.GetFiles(GraphicsManager.MapPath, "*.png")) {
+                this._surface[(int)SurfaceTypes.Map].Add(new GraphicalSurface(file));
             }
         }
 
@@ -226,6 +231,15 @@ namespace TowerDefense.Graphics.Sfml
 
         private void DrawGame() {
             // All logic pertaining to drawing the game goes here.
+
+            if (Game.State == GameState.Game) {
+                // Draw the base map.
+                var map = DataManager.Map;
+                var mapSurface = GetSurface(map.SurfaceName, SurfaceTypes.Map);
+                mapSurface.Position = new Vector2f(0, 0);
+                mapSurface.Scale = new Vector2f(960 / mapSurface.Texture.Size.X, 640 / mapSurface.Texture.Size.Y);
+                DrawObject(mapSurface);
+            }
         }
     }
 }

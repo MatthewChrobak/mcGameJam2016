@@ -19,6 +19,7 @@ namespace TowerDefense.IO
                 GraphicsManager.GuiPath,
                 GraphicsManager.FontPath,
                 GraphicsManager.TowerPath,
+                GraphicsManager.MapPath,
 
                 // Directories needed for music.
                 AudioManager.AudioDir,
