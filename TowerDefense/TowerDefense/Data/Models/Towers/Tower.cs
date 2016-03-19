@@ -5,7 +5,7 @@ using TowerDefense.Data.Models.Viruses;
 
 namespace TowerDefense.Data.Models.Towers
 {
-    public abstract class Tower: Entity
+    public abstract class Tower : Entity
     {
         //variables
         public TowerType Type { get; set; }
@@ -26,24 +26,26 @@ namespace TowerDefense.Data.Models.Towers
         {
             map = DataManager.Map;
         }
-        
-        public void shootATtTarget() {
 
-            for (int y = 0; y < this.Range; y++) {
-                for (int x = 0; x < this.Range; x++) {
-                    
-                }
-            if(CurrentTarget != null)
+        public void shootATtTarget()
+        {
+
+            for (int y = 0; y < this.Range; y++)
             {
-               
-            }
+                for (int x = 0; x < this.Range; x++)
+                {
 
-            // TODO replace this virus with the one found by targeting.
-            Virus replacableVirus = new TestVirus();
-            if (replacableVirus.Health <= 0)
-                map.OnVirusDeath(replacableVirus);
-            return null;
-            
+                }
+                if (CurrentTarget != null)
+                {
+
+                }
+
+                // TODO replace this virus with the one found by targeting.
+                Virus replacableVirus = new TestVirus();
+                if (replacableVirus.Health <= 0)
+                    map.OnVirusDeath(replacableVirus);
+                return null;
 
             }
         }
