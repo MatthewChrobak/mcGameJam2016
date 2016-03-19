@@ -44,6 +44,8 @@ namespace TowerDefense.Data.Models.Towers
                 map.OnVirusDeath(replacableVirus);
             return null;
             
+
+            }
         }
     }
 }
