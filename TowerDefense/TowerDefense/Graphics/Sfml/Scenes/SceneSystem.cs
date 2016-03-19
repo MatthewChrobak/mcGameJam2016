@@ -266,7 +266,7 @@ namespace TowerDefense.Graphics.Sfml.Scenes
             var background = new Image() {
                 Name = "imgBackground",
                 Width = 1260,
-                Height = 640,
+                Height = 649,
                 Surface = GetSurface("background")
             };
             scene.Add(background);
@@ -305,7 +305,7 @@ namespace TowerDefense.Graphics.Sfml.Scenes
             var background = new Image() {
                 Name = "imgBackground",
                 Width = 1260,
-                Height = 640,
+                Height = 649,
                 Surface = GetSurface("background")
             };
             scene.Add(background);
@@ -377,7 +377,7 @@ namespace TowerDefense.Graphics.Sfml.Scenes
             var imgStoreBackground = new Image() {
                 Surface = GetSurface("sidemenu"),
                 Left = 960,
-                Height = 640,
+                Height = 649,
                 Width = 300
             };
             scene.Add(imgStoreBackground);
