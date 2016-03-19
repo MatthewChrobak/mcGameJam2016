@@ -1,4 +1,6 @@
 ﻿using TowerDefense.Data.Models.Maps;
+﻿using System.Collections.Generic;
+using TowerDefense.Data.Models.Maps;
 using TowerDefense.Data.Models.Viruses;
 
 namespace TowerDefense.Data.Models.Towers
@@ -15,6 +17,7 @@ namespace TowerDefense.Data.Models.Towers
         public VirusType VirusType { get; set; } // Whether a ground or flying unit
         public int Level { get; set; } // 1-5 
         public int UpgradeCost { get; set; }
+        public Virus CurrentTarget { get; set; }
         public Map map;
         public string SurfaceName { get; set; }
 
@@ -26,14 +29,19 @@ namespace TowerDefense.Data.Models.Towers
         }
 
         public Virus Targeting() {
+        public void shootATtTarget() {
 
             for (int y = 0; y < this.Range; y++) {
                 for (int x = 0; x < this.Range; x++) {
                     
                 }
+            if(CurrentTarget != null)
+            {
+               
             }
 
             return null;
+            
         }
     }
 }
