@@ -8,7 +8,7 @@
         public string HoverSurfaceName;
 
         public override void Draw() {
-            if (this.HasFocus) {
+            if (this.HasMouse) {
 
                 // Draw the title
                 var lblTitle = new Label() {
@@ -16,7 +16,9 @@
                     Top = 500,
                     Left = 960,
                     Width = 300,
-                    Height = 50
+                    Height = 50,
+                    FontSize = 36,
+                    TextColor = SFML.Graphics.Color.White
                 };
                 lblTitle.Draw();
 
@@ -26,7 +28,8 @@
                     Top = 530,
                     Left = 960,
                     Width = 300,
-                    Height = 50
+                    Height = 50,
+                    TextColor = SFML.Graphics.Color.White
                 };
                 lblDescription.Draw();
             }

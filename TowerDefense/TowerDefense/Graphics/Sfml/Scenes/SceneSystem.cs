@@ -70,6 +70,9 @@ namespace TowerDefense.Graphics.Sfml.Scenes
                     for (int z = ZOrder.GetHighZ(); z >= 0; z--) {
                         // Loop through every scene object we have in our current state.
                         foreach (var obj in this._UIObject[(int)Game.State]) {
+
+                            obj.HasMouse = false;
+
                             // Does the object's ZIndex match the ZOrder?
                             if (obj.Z == z) {
                                 // Is the object visible?
@@ -384,7 +387,7 @@ namespace TowerDefense.Graphics.Sfml.Scenes
 
             // Store items
             var tower1 = new ShopItem() {
-                ItemName = "Tower One",
+                ItemName = "One Shot Tower",
                 Description = "What did you expect?",
                 Surface = GetSurface("icon1"),
                 HoverSurfaceName = "tower1",
@@ -396,8 +399,8 @@ namespace TowerDefense.Graphics.Sfml.Scenes
             scene.Add(tower1);
 
             var tower2 = new ShopItem() {
-                ItemName = "Tower Two",
-                Description = "This is the second tower",
+                ItemName = "Syndra Tower",
+                Description = "Syndra jungle is the current meta",
                 Surface = GetSurface("icon2"),
                 HoverSurfaceName = "tower2",
                 Left = 1070,
