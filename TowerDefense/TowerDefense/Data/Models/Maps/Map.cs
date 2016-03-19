@@ -14,17 +14,19 @@ namespace TowerDefense.Data.Models.Maps
         public const int HEIGHT = 11;
 
         public Home Home;
-        public Tower[] Towers;
+        public List<Tower> Towers;
         public List<Virus> Viruses;
         public Position SpawnLocation;
         public string SurfaceName;
         public PathFinding path;
         public Directions[] dirs;
 
-        public Map()
+        public Map(int mapNumber)
         {
             path = new PathFinding();
-            dirs = path.getPath(1);
+            dirs = path.getPath(mapNumber);
+            Towers = new List<Tower>();
+            Viruses = new List<Virus>();
         }
 
         public void UpdateLogic() {
@@ -33,6 +35,12 @@ namespace TowerDefense.Data.Models.Maps
             foreach (var virus in Viruses) {
                 virus.Move((Directions)dirs.GetValue(virus.Step));
                 virus.Step++;
+            }
+
+            // Loop through all towers, and try to target enemy
+            foreach (var tower in Towers)
+            {
+                tower.Targeting();
             }
         }
     }
