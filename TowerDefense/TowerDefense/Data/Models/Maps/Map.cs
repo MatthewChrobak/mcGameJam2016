@@ -13,8 +13,8 @@ namespace TowerDefense.Data.Models.Maps
         public const int TILE_WIDTH = 64;
         public const int TILE_HEIGHT = 64;
 
-        public const int WIDTH = 16;
-        public const int HEIGHT = 11;
+        public const int WIDTH = 16; // 0-Based
+        public const int HEIGHT = 10; // 0-Based
 
         public Home Home;
         public List<Tower> Towers;
@@ -24,12 +24,23 @@ namespace TowerDefense.Data.Models.Maps
         public PathFinding path;
         public Directions[] dirs;
 
+        // Tower radius markers
+        int xMin;
+        int xMax;
+        int yMin;
+        int yMax;
+
+        Position pos;
+
         public Map(int mapNumber)
         {
             path = new PathFinding();
             dirs = path.getPath(mapNumber);
             Towers = new List<Tower>();
             Viruses = new List<Virus>();
+            Position pos = new Position();
+
+            
         }
 
         public void UpdateLogic() {
@@ -43,7 +54,42 @@ namespace TowerDefense.Data.Models.Maps
             // Loop through all towers, and try to target enemy
             foreach (var tower in Towers)
             {
-                tower.Targeting();
+                // Assign tower coordinates
+                pos.X = tower.X;
+                pos.Y = tower.Y;
+
+                // Make sure range check does not exceed upper bound
+                if (pos.Y - tower.Range < 0)
+                    yMin = 0;
+                else
+                    yMin = pos.Y - tower.Range;
+
+                // Make sure range check does not exceed lower bound
+                if (pos.Y + tower.Range > WIDTH)
+                    yMax = WIDTH;
+                else
+                    yMax = pos.Y + tower.Range;
+
+                // Make sure range check does not exceed left bound
+                if (pos.X - tower.Range < 0)
+                    xMin = 0;
+                else
+                    xMin = pos.X - tower.Range;
+
+                // Make sure range check does not exceed right bound
+                if (pos.X + tower.Range > HEIGHT)
+                    xMax = HEIGHT;
+                else
+                    xMax = pos.X + tower.Range;
+
+
+                for (int y = yMin; y < yMax; y++)
+                {
+                    for (int x = xMin; x < xMax; x++)
+                    {
+                        
+                    }
+                }
             }
         }
     }

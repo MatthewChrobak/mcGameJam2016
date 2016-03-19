@@ -19,9 +19,9 @@ namespace TowerDefense.Data.Models.Towers
 
         abstract public void upgrade();
 
-        public Tower(Map map)
+        public Tower()
         {
-            this.map = map;
+            map = DataManager.Map;
         }
 
         public Virus Targeting() {
