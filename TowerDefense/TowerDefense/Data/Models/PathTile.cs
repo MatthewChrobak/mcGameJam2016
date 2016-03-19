@@ -9,7 +9,7 @@ namespace TowerDefense.Data.Models
     public class PathTile: Tile
     {
         public int Type { get; set; } // 0 for path, 1 teleporter
-        public List<Viruses.Virus> viruses;
+        public List<Viruses.Virus> viruses { get; set; }
 
         public PathTile(int x, int y, int type)
         {
