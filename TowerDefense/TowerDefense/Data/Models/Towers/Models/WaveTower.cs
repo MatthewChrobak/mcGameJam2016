@@ -5,6 +5,10 @@ namespace TowerDefense.Data.Models.Towers.Models
     public class WaveTower : Tower
     {
         public const int TowerCost = 60;
+        public const string TowerName = "Syndra Tower";
+        public const string TowerDescription = "Syndra is the current Jungle meta.";
+        public const string ShopIcon = "icon2";
+        public const string SurfaceName = "tower2";
 
         public WaveTower() {
             this.Type = TowerType.WAVE;
@@ -15,7 +19,7 @@ namespace TowerDefense.Data.Models.Towers.Models
             this.VirusType = Viruses.VirusType.GROUND;
             this.Level = 1;
             this.UpgradeCost = 95;
-            this.SurfaceName = "tower2";
+            this.Surface = SurfaceName;
         }
 
         public override void upgrade() {

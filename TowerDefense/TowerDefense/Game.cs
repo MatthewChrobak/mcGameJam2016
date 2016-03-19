@@ -31,10 +31,6 @@ namespace TowerDefense
             // Initialize the game graphics.
             GraphicsManager.Initialize();
 
-            DelayInvoke(10000, () => {
-                System.Console.WriteLine("Hello world!");
-            });
-
             // Start the game-loop.
             Game.GameLoop();
         }

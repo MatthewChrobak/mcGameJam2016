@@ -18,7 +18,7 @@ namespace TowerDefense.Data.Models.Towers
         public int UpgradeCost { get; set; }
         public Virus CurrentTarget { get; set; }
         public Map map;
-        public string SurfaceName { get; set; }
+        public string Surface { get; set; }
 
         abstract public void upgrade();
 

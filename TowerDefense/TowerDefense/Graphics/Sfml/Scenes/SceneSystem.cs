@@ -399,10 +399,10 @@ namespace TowerDefense.Graphics.Sfml.Scenes
             // Store items
             var tower1 = new ShopItem() {
                 Name = "twr1",
-                ItemName = "One Shot Tower",
-                Description = "What did you expect?",
-                Surface = GetSurface("icon1"),
-                HoverSurfaceName = "tower1",
+                ItemName = TeslaTower.TowerName,
+                Description = TeslaTower.TowerDescription,
+                Surface = GetSurface(TeslaTower.ShopIcon),
+                HoverSurfaceName = TeslaTower.SurfaceName,
                 Left = 970,
                 Top = 150,
                 Width = 100,
@@ -413,10 +413,10 @@ namespace TowerDefense.Graphics.Sfml.Scenes
 
             var tower2 = new ShopItem() {
                 Name = "twr2",
-                ItemName = "Syndra Tower",
-                Description = "Syndra jungle is the current meta",
-                Surface = GetSurface("icon2"),
-                HoverSurfaceName = "tower2",
+                ItemName = WaveTower.TowerName,
+                Description = WaveTower.TowerDescription,
+                Surface = GetSurface(WaveTower.ShopIcon),
+                HoverSurfaceName = WaveTower.SurfaceName,
                 Left = 1070,
                 Top = 150,
                 Width = 100,
