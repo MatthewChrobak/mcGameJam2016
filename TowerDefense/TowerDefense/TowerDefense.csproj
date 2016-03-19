@@ -75,13 +75,17 @@
     <Compile Include="Data\Models\Home.cs" />
     <Compile Include="Data\Models\Maps\Map.cs" />
     <Compile Include="Data\Models\Maps\Map1.cs" />
+    <Compile Include="Data\Models\NonPathTile.cs" />
+    <Compile Include="Data\Models\PathTile.cs" />
     <Compile Include="Data\Models\Position.cs" />
+    <Compile Include="Data\Models\Tile.cs" />
     <Compile Include="Data\Models\Towers\Models\TeslaTower.cs" />
     <Compile Include="Data\Models\Towers\Models\WaveTower.cs" />
     <Compile Include="Data\Models\Towers\Tower.cs" />
     <Compile Include="Data\Models\Towers\TowerDamageType.cs" />
     <Compile Include="Data\Models\Towers\TowerType.cs" />
     <Compile Include="Data\Models\Viruses\PathFinding.cs" />
+    <Compile Include="Data\Models\Viruses\TestVirus.cs" />
     <Compile Include="Data\Models\Viruses\Virus.cs" />
     <Compile Include="Data\Models\Viruses\VirusMotionType.cs" />
     <Compile Include="Data\Models\Viruses\VirusType.cs" />
