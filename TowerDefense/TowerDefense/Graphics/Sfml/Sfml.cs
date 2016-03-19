@@ -237,7 +237,7 @@ namespace TowerDefense.Graphics.Sfml
                 var map = DataManager.Map;
                 var mapSurface = GetSurface(map.SurfaceName, SurfaceTypes.Map);
                 mapSurface.Position = new Vector2f(0, 0);
-                mapSurface.Scale = new Vector2f(960 / mapSurface.Texture.Size.X, 640 / mapSurface.Texture.Size.Y);
+                mapSurface.Scale = new Vector2f((float)960 / mapSurface.Texture.Size.X, (float)640 / mapSurface.Texture.Size.Y);
                 DrawObject(mapSurface);
             }
         }
