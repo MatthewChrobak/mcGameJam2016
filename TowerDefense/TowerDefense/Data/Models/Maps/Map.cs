@@ -70,15 +70,17 @@ namespace TowerDefense.Data.Models.Maps
                     if ( tile == 0)
                     {
                         mapArray[x, y] = new NonPathTile(x, y);
-                            index++;
+                        index++;
                     }
                     else if(tile == 1)
                     {
                         mapArray[x, y] = new PathTile(x, y, 1);
+                        index++;
                     }
                     else if(tile == 2)
                     {
                         mapArray[x, y] = new PathTile(x, y, 2);
+                        index++;
                     }
                 }
             }
