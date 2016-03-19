@@ -30,7 +30,7 @@ namespace TowerDefense.Graphics.Sfml
             this.LoadFont();
 
             // Create a new renderwindow that we can render graphics onto.
-            this.DrawingSurface = new RenderWindow(new VideoMode(1260, 640), "Title", Styles.Close);
+            this.DrawingSurface = new RenderWindow(new VideoMode(1260, 649), "Title", Styles.Close);
 
             // Set the default background color for the drawing surface.
             this._backgroundColor = new Color(25, 25, 25);
@@ -117,6 +117,10 @@ namespace TowerDefense.Graphics.Sfml
 
             foreach (string file in Directory.GetFiles(GraphicsManager.MapPath, "*.png")) {
                 this._surface[(int)SurfaceTypes.Map].Add(new GraphicalSurface(file));
+            }
+
+            foreach (string file in Directory.GetFiles(GraphicsManager.VirusPath, "*.png")) {
+                this._surface[(int)SurfaceTypes.Virus].Add(new GraphicalSurface(file));
             }
         }
 
@@ -216,28 +220,6 @@ namespace TowerDefense.Graphics.Sfml
         }
         #endregion
 
-
-        private void RenderSample_DO_NOT_USE_THIS() {
-            // Load a surface of a certain type.
-            var surface = GetSurface("generic", SurfaceTypes.Tower);
-
-            // Set the position on the screen.
-            surface.Position = new Vector2f(100, 100);
-
-            // Resize the surface.
-            surface.Scale = new Vector2f(1, 1);
-
-            // Rotate the surface.
-            surface.Rotation = 1.0f;
-
-            // Set a color overlay on the surface.
-            surface.Color = Color.Green;
-
-            // Draw the surface.
-            DrawObject(surface);
-        }
-
-
         private void DrawGame() {
             // All logic pertaining to drawing the game goes here.
 
@@ -246,20 +228,22 @@ namespace TowerDefense.Graphics.Sfml
                 var map = DataManager.Map;
                 var mapSurface = GetSurface(map.SurfaceName, SurfaceTypes.Map);
                 mapSurface.Position = new Vector2f(0, 0);
-                mapSurface.Scale = new Vector2f((float)960 / mapSurface.Texture.Size.X, (float)640 / mapSurface.Texture.Size.Y);
+                mapSurface.Scale = new Vector2f((float)960 / mapSurface.Texture.Size.X, (float)649 / mapSurface.Texture.Size.Y);
                 DrawObject(mapSurface);
 
-
+                var tile = GetSurface("tile", SurfaceTypes.Map);
 
                 // Draw the placing icon.
                 var towerSurface = GetSurface(this.HoverSurfaceName, SurfaceTypes.Tower);
-                var tile = GetSurface("tile", SurfaceTypes.Map);
+                //var tile = GetSurface("tile", SurfaceTypes.Map);
                 if (towerSurface != null) {
-                    towerSurface.Color = new Color(255, 255, 255, 100);
-                    towerSurface.Position = new Vector2f(this.MouseX - 32, this.MouseY - 41);
-                    tile.Position = new Vector2f((this.MouseX / 58) * 58, (this.MouseY / 60) * 60);
-                    DrawObject(tile);
-                    DrawObject(towerSurface);
+                    if (this.MouseX < 960) {
+                        towerSurface.Color = new Color(255, 255, 255, 200);
+                        towerSurface.Position = new Vector2f(this.MouseX - 32, this.MouseY - 41);
+                        tile.Position = new Vector2f((this.MouseX / 60) * 60, (this.MouseY / 59) * 59);
+                        DrawObject(tile);
+                        DrawObject(towerSurface);
+                    }
                 }
             }
         }

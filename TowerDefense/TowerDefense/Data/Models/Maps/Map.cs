@@ -6,19 +6,19 @@ namespace TowerDefense.Data.Models.Maps
 {
     public class Map
     {
-        public object[,] mapArray = new Position[16, 10];
+        public Tile[,] mapArray = new Tile[16, 11];
         public int[] simpleMapArray;
         // Map constants
         public const int TILE_WIDTH = 64;
         public const int TILE_HEIGHT = 64;
 
         public const int WIDTH = 16;
-        public const int HEIGHT = 10;
+        public const int HEIGHT = 11;
 
         public Home Home;
         public List<Tower> Towers;
         public List<Virus> Viruses;
-        public Position SpawnLocation;
+        public Position SpawnLocation{ get; set;}
         public string SurfaceName;
         public PathFinding path;
         public Directions[] dirs;
@@ -96,17 +96,17 @@ namespace TowerDefense.Data.Models.Maps
 
         public void populateMap()
         {
-            simpleMapArray = new int[] {0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,
-                                        0,2,0,0,1,1,1,0,0,0,2,1,1,0,0,0,0,
-                                        0,1,1,0,0,0,1,0,0,0,0,0,1,1,1,1,0,
-                                        0,0,1,0,0,0,1,1,1,0,0,0,0,0,0,1,0, // 2nd last 1 is the diagonal
-                                        0,0,1,1,0,0,0,0,1,0,0,0,0,0,0,1,0,
-                                        0,0,0,1,0,0,0,0,1,1,0,0,0,0,1,1,0,
-                                        0,1,1,1,0,0,0,0,0,1,0,0,0,0,1,0,0,
-                                        0,1,0,0,0,1,1,1,1,1,0,0,0,0,1,1,0,
-                                        0,1,0,0,0,1,0,0,0,0,0,0,2,0,0,1,0,
-                                        0,2,0,0,0,1,1,1,0,0,0,0,1,0,0,1,0,
-                                        0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,1,0,};
+            simpleMapArray = new int[] {0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,
+                                        0,2,0,0,1,1,1,0,0,0,2,1,1,0,0,0,
+                                        0,1,1,0,0,0,1,0,0,0,0,0,1,1,1,1,
+                                        0,0,1,0,0,0,1,1,1,0,0,0,0,0,0,1, // 2nd last 1 is the diagonal
+                                        0,0,1,1,0,0,0,0,1,0,0,0,0,0,0,1,
+                                        0,0,0,1,0,0,0,0,1,1,0,0,0,0,1,1,
+                                        0,1,1,1,0,0,0,0,0,1,0,0,0,0,1,0,
+                                        0,1,0,0,0,1,1,1,1,1,0,0,0,0,1,1,
+                                        0,1,0,0,0,1,0,0,0,0,0,0,2,0,0,1,
+                                        0,2,0,0,0,1,1,1,0,0,0,0,1,0,0,1,
+                                        0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,1,};
             int index = 0;
             for (int x = 0; x < 16; x++)
             {

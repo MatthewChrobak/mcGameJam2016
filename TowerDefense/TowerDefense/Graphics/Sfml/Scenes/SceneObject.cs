@@ -115,6 +115,7 @@ namespace TowerDefense.Graphics.Sfml.Scenes
         }
 
         public virtual void MouseMove(int x, int y) {
+            this.HasMouse = true;
             OnMouseMove?.Invoke(x, y);
         }
 
