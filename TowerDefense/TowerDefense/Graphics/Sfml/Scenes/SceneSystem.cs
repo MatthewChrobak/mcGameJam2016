@@ -211,6 +211,10 @@ namespace TowerDefense.Graphics.Sfml.Scenes
                     }
                 }
             }
+
+            // Updating logic.
+            UpdateScore();
+            UpdateMoney();
         }
 
         private GraphicalSurface GetSurface(string tagName) {
@@ -233,7 +237,7 @@ namespace TowerDefense.Graphics.Sfml.Scenes
                     // Loop through all the scene objects in our current state.
                     foreach (var obj in this._UIObject[(int)Game.State]) {
                         // If the object has the same name as the one specified, return it.
-                        if (obj.Name == name.ToLower()) {
+                        if (obj.Name.ToLower() == name.ToLower()) {
                             return obj;
                         }
                     }
@@ -246,11 +250,12 @@ namespace TowerDefense.Graphics.Sfml.Scenes
         #endregion
 
         private void LoadSceneObjects() {
-            LoadMainMenu();
-            LoadStageSelect();
+            LoadMainMenuUI();
+            LoadStageSelectUI();
+            LoadGameUI();
         }
 
-        private void LoadMainMenu() {
+        private void LoadMainMenuUI() {
             _UIObject[(int)GameState.MainMenu] = new List<SceneObject>();
             var scene = _UIObject[(int)GameState.MainMenu];
 
@@ -270,7 +275,8 @@ namespace TowerDefense.Graphics.Sfml.Scenes
                 Width = 960,
                 Height = 100,
                 Caption = "Mc Tower Defense",
-                FontSize = 36
+                FontSize = 36,
+                TextColor = SFML.Graphics.Color.White
             };
             scene.Add(logo);
 
@@ -280,15 +286,16 @@ namespace TowerDefense.Graphics.Sfml.Scenes
                 Caption = "Stage Select",
                 Left = (960 / 2) - 50,
                 Top = 200,
-                Width = 100,
+                Width = 120,
                 Height = 50,
-                Surface = GetSurface("button")
+                Surface = GetSurface("button"),
+                TextColor = SFML.Graphics.Color.White
             };
             stageSelect.OnMouseDown += stageSelect.cmdStageSelect_MouseDown;
             scene.Add(stageSelect);
         }
 
-        private void LoadStageSelect() {
+        private void LoadStageSelectUI() {
             _UIObject[(int)GameState.StageSelect] = new List<SceneObject>();
             var scene = _UIObject[(int)GameState.StageSelect];
 
@@ -305,11 +312,12 @@ namespace TowerDefense.Graphics.Sfml.Scenes
             var backButton = new Button() {
                 Name = "cmdBackButton",
                 Caption = "Return to Main Menu",
-                Left = (960 / 2) - 50,
+                Left = (960 / 2) - 100,
                 Top = 500,
-                Width = 100,
+                Width = 200,
                 Height = 50,
-                Surface = GetSurface("button")
+                Surface = GetSurface("button"),
+                TextColor = SFML.Graphics.Color.White
             };
             backButton.OnMouseDown += backButton.cmdBackButton_MouseDown;
             scene.Add(backButton);
@@ -333,9 +341,54 @@ namespace TowerDefense.Graphics.Sfml.Scenes
                 Width = 200,
                 Top = 310,
                 Caption = "Stage One",
-                FontSize = 24
+                FontSize = 24,
+                TextColor = SFML.Graphics.Color.White
             };
             scene.Add(stage1Label);
+        }
+
+        private void LoadGameUI() {
+            _UIObject[(int)GameState.Game] = new List<SceneObject>();
+            var scene = _UIObject[(int)GameState.Game];
+
+            var score = new Label() {
+                Name = "lblScore",
+                FontSize = 36,
+                Width = 200,
+                Left = 960 - 200,
+                Top = 30,
+                TextColor = SFML.Graphics.Color.White
+            };
+            scene.Add(score);
+
+            var money = new Label() {
+                Name = "lblMoney",
+                FontSize = 36,
+                Width = 200,
+                Left = 960 - 200,
+                Top = 70,
+                TextColor = SFML.Graphics.Color.White
+            };
+            scene.Add(money);
+        }
+
+
+        private void UpdateScore() {
+            // Update the UI label if it's not null.
+            var label = GetUIObject("lblScore");
+            if (label != null) {
+                int score = Data.DataManager.Board.Score;
+                ((Label)label).Caption = "Score: " + score;
+            }
+        }
+
+        private void UpdateMoney() {
+            // Update the UI label if it's not null.
+            var label = GetUIObject("lblMoney");
+            if (label != null) {
+                int money = Data.DataManager.Board.Money;
+                ((Label)label).Caption = "Money: " + money;
+            }
         }
     }
 }
