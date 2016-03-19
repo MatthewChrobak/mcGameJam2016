@@ -6,6 +6,7 @@ using System.IO;
 using SFML.System;
 using TowerDefense.Data;
 using TowerDefense.Data.Models;
+using TowerDefense.Data.Models.Viruses;
 using TowerDefense.Data.Models.Towers.Models;
 
 namespace TowerDefense.Graphics.Sfml
@@ -291,7 +292,15 @@ namespace TowerDefense.Graphics.Sfml
                     }
                 }
 
-
+                // Draw TindRider
+                /*List<Virus> viruses = map.Viruses;
+                foreach (Virus v in viruses)
+                {
+                    var tindRiderSurface = GetSurface("tindRider", SurfaceTypes.Virus);
+                    tindRiderSurface.Position = new Vector2f(v.Position.X * 60 - (tindRiderSurface.Texture.Size.X - 60) / 2, v.
+                        .Y * 59 - (tindRiderSurface.Texture.Size.Y - 59));
+                    DrawObject(tindRiderSurface);
+                }*/
 
                 var tile = GetSurface("tile", SurfaceTypes.Map);
 
