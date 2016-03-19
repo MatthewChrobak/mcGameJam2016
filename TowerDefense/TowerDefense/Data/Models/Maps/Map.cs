@@ -14,7 +14,7 @@ namespace TowerDefense.Data.Models.Maps
 
         public Home Home;
         public Tower[] Towers;
-        public Virus[] Viruses;
+        public Virus[] Viruses = new Virus[0];
         public Position SpawnLocation;
         public string SurfaceName; 
 

@@ -52,7 +52,9 @@ namespace TowerDefense
                 }
 
                 // Update the map logic.
-                DataManager.Map.UpdateLogic();
+                if (Game.State == GameState.Game) {
+                    DataManager.Map.UpdateLogic();
+                }
             }
 
             // The game will only be destroyed when the flag is set to closing.
