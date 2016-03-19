@@ -6,6 +6,8 @@ namespace TowerDefense.Data.Models.Maps
 {
     public class Map
     {
+        //Position[,] mapArray = new Position [16,11] { {new Tile(0 ,0 ,0), new Tile(0 ,1 ,0), new Tile(0 ,2 ,0), new Tile(0 ,3 ,0), new Tile(0, 4, 1), new Tile(0, 5, 0), new Tile(0, 6, 0), new Tile(0, 2, 0) }   }
+
         // Map constants
         public const int TILE_WIDTH = 64;
         public const int TILE_HEIGHT = 64;

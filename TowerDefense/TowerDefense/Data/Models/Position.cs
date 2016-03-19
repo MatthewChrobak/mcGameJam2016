@@ -2,8 +2,8 @@
 {
     public class Position
     {
-        public int X { private set; get; } 
-        public int Y { private set; get; }
+        public int X { set; get; } 
+        public int Y { set; get; }
 
         public Position() {
             this.X = 0;
