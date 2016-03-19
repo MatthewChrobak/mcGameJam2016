@@ -96,11 +96,15 @@ namespace TowerDefense.Graphics.Sfml
                         if (tile != null && tile.Tower == null) {
                             switch (this.HoverSurfaceName) {
                                 case "tower1":
+                                    if (DataManager.Board.Money >= TeslaTower.TowerCost) {
                                         tile.Tower = new TeslaTower();
+                                        DataManager.Board.RemoveMoney(TeslaTower.TowerCost);
                                     }
                                     break;
                                 case "tower2":
+                                    if (DataManager.Board.Money >= WaveTower.TowerCost) {
                                         tile.Tower = new WaveTower();
+                                        DataManager.Board.RemoveMoney(WaveTower.TowerCost);
                                     }
                                     break;
                             }
