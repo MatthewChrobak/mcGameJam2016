@@ -2,19 +2,18 @@
 using TowerDefense.Data.Models.Towers;
 using TowerDefense.Data.Models.Viruses;
 
-
 namespace TowerDefense.Data.Models.Maps
 {
     public class Map
     {
-        //Position[,] mapArray = new Position [16,11] { {new Tile(0 ,0 ,0), new Tile(0 ,1 ,0), new Tile(0 ,2 ,0), new Tile(0 ,3 ,0), new Tile(0, 4, 1), new Tile(0, 5, 0), new Tile(0, 6, 0), new Tile(0, 2, 0) }   }
-
+        public object[,] mapArray = new Position[16, 10];
+        public int[] simpleMapArray;
         // Map constants
         public const int TILE_WIDTH = 64;
         public const int TILE_HEIGHT = 64;
 
-        public const int WIDTH = 16; // 0-Based
-        public const int HEIGHT = 10; // 0-Based
+        public const int WIDTH = 16;
+        public const int HEIGHT = 10;
 
         public Home Home;
         public List<Tower> Towers;
@@ -24,22 +23,15 @@ namespace TowerDefense.Data.Models.Maps
         public PathFinding path;
         public Directions[] dirs;
 
-<<<<<<< HEAD
-=======
-        //Pat
+        //Tower Position
         Position pos;
 
->>>>>>> origin/master
         // Tower radius markers
         int xMin;
         int xMax;
         int yMin;
         int yMax;
 
-<<<<<<< HEAD
-        Position pos;
-=======
->>>>>>> origin/master
 
         public Map(int mapNumber)
         {
@@ -47,20 +39,15 @@ namespace TowerDefense.Data.Models.Maps
             dirs = path.getPath(mapNumber);
             Towers = new List<Tower>();
             Viruses = new List<Virus>();
-<<<<<<< HEAD
-            Position pos = new Position();
-=======
             pos = new Position();
         }
->>>>>>> origin/master
 
-            
-        }
-
-        public void UpdateLogic() {
+        public void UpdateLogic()
+        {
 
             // Loop through all viruses, and try and move them.
-            foreach (var virus in Viruses) {
+            foreach (var virus in Viruses)
+            {
                 virus.Move((Directions)dirs.GetValue(virus.Step));
                 virus.Step++;
             }
@@ -98,8 +85,6 @@ namespace TowerDefense.Data.Models.Maps
 
 
                 for (int y = yMin; y < yMax; y++)
-<<<<<<< HEAD
-=======
                 {
                     for (int x = xMin; x < xMax; x++)
                     {
@@ -114,7 +99,7 @@ namespace TowerDefense.Data.Models.Maps
             simpleMapArray = new int[] {0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,
                                         0,2,0,0,1,1,1,0,0,0,2,1,1,0,0,0,0,
                                         0,1,1,0,0,0,1,0,0,0,0,0,1,1,1,1,0,
-                                        0,0,1,0,0,0,1,1,1,0,0,0,0,0,0,1,0, // 2ns last 1 is the diagonal
+                                        0,0,1,0,0,0,1,1,1,0,0,0,0,0,0,1,0, // 2nd last 1 is the diagonal
                                         0,0,1,1,0,0,0,0,1,0,0,0,0,0,0,1,0,
                                         0,0,0,1,0,0,0,0,1,1,0,0,0,0,1,1,0,
                                         0,1,1,1,0,0,0,0,0,1,0,0,0,0,1,0,0,
@@ -126,11 +111,22 @@ namespace TowerDefense.Data.Models.Maps
             for (int x = 0; x < 16; x++)
             {
                 for (int y = 0; y < 11; y++)
->>>>>>> origin/master
                 {
-                    for (int x = xMin; x < xMax; x++)
+                    int tile = simpleMapArray[index];
+                    if (tile == 0)
                     {
-                        
+                        mapArray[x, y] = new NonPathTile(x, y);
+                        index++;
+                    }
+                    else if (tile == 1)
+                    {
+                        mapArray[x, y] = new PathTile(x, y, 1);
+                        index++;
+                    }
+                    else if (tile == 2)
+                    {
+                        mapArray[x, y] = new PathTile(x, y, 2);
+                        index++;
                     }
                 }
             }
