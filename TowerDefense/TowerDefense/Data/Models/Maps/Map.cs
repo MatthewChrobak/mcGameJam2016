@@ -1,4 +1,5 @@
-﻿using TowerDefense.Data.Models.Towers;
+﻿using System.Collections.Generic;
+using TowerDefense.Data.Models.Towers;
 using TowerDefense.Data.Models.Viruses;
 
 namespace TowerDefense.Data.Models.Maps
@@ -14,16 +15,24 @@ namespace TowerDefense.Data.Models.Maps
 
         public Home Home;
         public Tower[] Towers;
-        public Virus[] Viruses = new Virus[0];
+        public List<Virus> Viruses;
         public Position SpawnLocation;
-        public string SurfaceName; 
+        public string SurfaceName;
+        public PathFinding path;
+        public Directions[] dirs;
 
+        public Map()
+        {
+            path = new PathFinding();
+            dirs = path.getPath(1);
+        }
 
         public void UpdateLogic() {
 
             // Loop through all viruses, and try and move them.
             foreach (var virus in Viruses) {
-                virus.Move();
+                virus.Move((Directions)dirs.GetValue(virus.Step));
+                virus.Step++;
             }
         }
     }

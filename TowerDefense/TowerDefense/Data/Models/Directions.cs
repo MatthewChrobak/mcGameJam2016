@@ -2,9 +2,13 @@
 {
     public enum Directions
     {
-        UP,
-        DOWN,
-        LEFT,
-        RIGHT
+        NORTH,
+        SOUTH,
+        WEST,
+        EAST,
+        NORTHEAST,
+        NORTHWEST,
+        SOUTHEAST,
+        SOUTHWEST
     }
 }
