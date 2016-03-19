@@ -134,6 +134,8 @@ namespace TowerDefense.Graphics.Sfml.Scenes
                     break;
             }
 
+            ((Sfml)GraphicsManager.Graphics).HoverSurfaceName = "";
+
             // Make sure that the scene system has actually been initialized.
             if (this._UIObject != null) {
                 // Make sure that we actually have scene objects in our current state.
@@ -263,7 +265,7 @@ namespace TowerDefense.Graphics.Sfml.Scenes
             // The main menu background.
             var background = new Image() {
                 Name = "imgBackground",
-                Width = 960,
+                Width = 1260,
                 Height = 640,
                 Surface = GetSurface("background")
             };
@@ -272,7 +274,7 @@ namespace TowerDefense.Graphics.Sfml.Scenes
             // The logo for the game
             var logo = new Label() {
                 Name = "lblLogo",
-                Width = 960,
+                Width = 1260,
                 Height = 100,
                 Caption = "Mc Tower Defense",
                 FontSize = 36,
@@ -284,7 +286,7 @@ namespace TowerDefense.Graphics.Sfml.Scenes
             var stageSelect = new Button() {
                 Name = "cmdStageSelect",
                 Caption = "Stage Select",
-                Left = (960 / 2) - 50,
+                Left = (1260 / 2) - 50,
                 Top = 200,
                 Width = 120,
                 Height = 50,
@@ -302,7 +304,7 @@ namespace TowerDefense.Graphics.Sfml.Scenes
             // The main menu background.
             var background = new Image() {
                 Name = "imgBackground",
-                Width = 960,
+                Width = 1260,
                 Height = 640,
                 Surface = GetSurface("background")
             };
@@ -312,7 +314,7 @@ namespace TowerDefense.Graphics.Sfml.Scenes
             var backButton = new Button() {
                 Name = "cmdBackButton",
                 Caption = "Return to Main Menu",
-                Left = (960 / 2) - 100,
+                Left = (1260 / 2) - 100,
                 Top = 500,
                 Width = 200,
                 Height = 50,
@@ -370,6 +372,40 @@ namespace TowerDefense.Graphics.Sfml.Scenes
                 TextColor = SFML.Graphics.Color.White
             };
             scene.Add(money);
+
+            // The Store
+            var imgStoreBackground = new Image() {
+                Surface = GetSurface("sidemenu"),
+                Left = 960,
+                Height = 640,
+                Width = 300
+            };
+            scene.Add(imgStoreBackground);
+
+            // Store items
+            var tower1 = new ShopItem() {
+                ItemName = "Tower One",
+                Description = "What did you expect?",
+                Surface = GetSurface("icon1"),
+                HoverSurfaceName = "tower1",
+                Left = 970,
+                Top = 10,
+                Width = 100,
+                Height = 100
+            };
+            scene.Add(tower1);
+
+            var tower2 = new ShopItem() {
+                ItemName = "Tower Two",
+                Description = "This is the second tower",
+                Surface = GetSurface("icon2"),
+                HoverSurfaceName = "tower2",
+                Left = 1070,
+                Top = 10,
+                Width = 100,
+                Height = 100
+            };
+            scene.Add(tower2);
         }
 
 

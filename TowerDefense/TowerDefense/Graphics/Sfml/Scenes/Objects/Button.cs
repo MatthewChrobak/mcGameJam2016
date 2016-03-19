@@ -21,6 +21,10 @@ namespace TowerDefense.Graphics.Sfml.Scenes.Objects
             Game.SetGameState(GameState.StageSelect);
         }
 
+        internal void cmdBuy_MouseDown(int arg1, int arg2) {
+            throw new NotImplementedException();
+        }
+
         internal void cmdBackButton_MouseDown(int arg1, int arg2) {
             Game.SetGameState(GameState.MainMenu);
         }
