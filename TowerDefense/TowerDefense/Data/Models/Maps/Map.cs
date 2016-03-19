@@ -18,7 +18,7 @@ namespace TowerDefense.Data.Models.Maps
         public Home Home;
         public List<Tower> Towers;
         public List<Virus> Viruses;
-        public Position SpawnLocation;
+        public Position SpawnLocation{ get; set;}
         public string SurfaceName;
         public PathFinding path;
         public Directions[] dirs;
