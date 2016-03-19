@@ -32,6 +32,10 @@ namespace TowerDefense.Data.Models.Towers
                 }
             }
 
+            // TODO replace this virus with the one found by targeting.
+            Virus replacableVirus = new TestVirus();
+            if (replacableVirus.Health <= 0)
+                map.OnVirusDeath(replacableVirus);
             return null;
         }
     }
