@@ -35,6 +35,10 @@ namespace TowerDefense.Graphics.Sfml
             // Create a new renderwindow that we can render graphics onto.
             this.DrawingSurface = new RenderWindow(new VideoMode(1260, 649), "Title", Styles.Close);
 
+            // Center it.
+            var screen = VideoMode.DesktopMode;
+            DrawingSurface.Position = new Vector2i(((int)screen.Width / 2) - 630, ((int)screen.Height / 2) - 355);
+
             // Set the default background color for the drawing surface.
             this._backgroundColor = new Color(25, 25, 25);
 
