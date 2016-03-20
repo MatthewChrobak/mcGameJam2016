@@ -73,5 +73,16 @@ namespace TowerDefense.Data.Models.Towers.Models
 
             return this.AnimationState;
         }
+
+
+        private SyndraBall.Ball Ball;
+        public override void CustomDraw() {
+
+            if (this.Ball == null) {
+                this.Ball = new SyndraBall.Ball(this.X, this.Y);
+            }
+            Ball.Update();
+            Ball.Draw();
+        }
     }
 }

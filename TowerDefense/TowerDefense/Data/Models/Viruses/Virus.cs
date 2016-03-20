@@ -14,6 +14,7 @@ namespace TowerDefense.Data.Models.Viruses
         public int MovementSpeed { get; set; }
         public int Step { get; private set; }
         public string Surface { get; set; }
+        public Directions Direction = Directions.DOWN;
 
         public int xOffset { get; private set; }
         public int yOffset { get; private set; }
@@ -53,6 +54,8 @@ namespace TowerDefense.Data.Models.Viruses
                         this.Position = new Position(this.Position.X - 1, this.Position.Y);
                         break;
                 }
+
+                this.Direction = dir;
 
 
                 this.Step++;

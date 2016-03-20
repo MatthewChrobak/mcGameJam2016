@@ -22,7 +22,7 @@ namespace TowerDefense.Data.Models.Towers.Models
             this.UpgradeCost = 75;
             this.Surface = SurfaceName;
 
-            this.AnimationStepTick = 450;
+            this.AnimationStepTick = 350;
             this.AnimationState = -1;
         }
 
@@ -38,12 +38,16 @@ namespace TowerDefense.Data.Models.Towers.Models
             this.UpgradeCost += 75;
         }
 
+        public override void CustomDraw() {
+
+        }
+
         public override sbyte GetAnimation() {
 
             if (LastAnimation + AnimationStepTick < Environment.TickCount) {
                 switch (AnimationState) {
                     case -1:
-                        AnimationState = 1;
+                        AnimationState = 0;
                         break;
                     case 0:
                         AnimationState = 1;

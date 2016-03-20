@@ -245,7 +245,7 @@ namespace TowerDefense.Graphics.Sfml
             return key.ToLower();
         }
 
-        private Sprite GetSurface(string tagName, SurfaceTypes type) {
+        public Sprite GetSurface(string tagName, SurfaceTypes type) {
             // Loop through the collection of the specified type.
             for (int i = 0; i < this._surface[(int)type].Count; i++) {
                 // If the surface tag name is equal to the tag name specified, return the surface.
@@ -292,7 +292,8 @@ namespace TowerDefense.Graphics.Sfml
                         foreach (var virus in map.Viruses) {
                             if (virus.Position.X == x && virus.Position.Y == y) {
                                 var virusSurface = GetSurface(virus.Surface, SurfaceTypes.Virus);
-                                virusSurface.Scale = new Vector2f((float)60 / virusSurface.Texture.Size.X, (float)125 / virusSurface.Texture.Size.Y);
+                                virusSurface.Scale = new Vector2f((float)60 / 256, (float)125 / virusSurface.Texture.Size.Y);
+                                virusSurface.TextureRect = new IntRect((int)virus.Direction * 256, 0, 256, 512);
                                 virusSurface.Position = new Vector2f(virus.Position.X * 60 + virus.xOffset, (virus.Position.Y * 59) - 60 + virus.yOffset);
                                 DrawObject(virusSurface);
                             }
@@ -308,6 +309,8 @@ namespace TowerDefense.Graphics.Sfml
                                 towerSurface.Position = new Vector2f(x * 60, y * 59 - (towerSurface.Texture.Size.Y / 2 - 59));
                                 towerSurface.Color = new Color(255, 255, 255, 255);
                                 DrawObject(towerSurface);
+
+                                tower.CustomDraw();
                                 break;
                             }
                         }
@@ -345,7 +348,7 @@ namespace TowerDefense.Graphics.Sfml
 
                         hoverTowerSurface.Color = new Color(255, 255, 255, 200);
                         hoverTowerSurface.Scale = new Vector2f(0.5f, 0.5f);
-                        hoverTowerSurface.TextureRect = new IntRect(128, 0, 128, 167);
+                        hoverTowerSurface.TextureRect = new IntRect(256, 0, 128, 167);
                         hoverTowerSurface.Position = new Vector2f(this.MouseX - 32, this.MouseY - 41);
                         tile.Position = new Vector2f(x * 60, y * 59);
                         DrawObject(tile);

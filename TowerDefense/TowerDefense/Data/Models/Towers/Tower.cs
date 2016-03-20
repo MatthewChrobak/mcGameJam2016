@@ -27,6 +27,7 @@ namespace TowerDefense.Data.Models.Towers
 
         public abstract void upgrade();
         public abstract sbyte GetAnimation();
+        public abstract void CustomDraw();
 
         public Tower()
         {
