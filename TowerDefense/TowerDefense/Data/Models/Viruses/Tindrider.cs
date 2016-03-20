@@ -11,7 +11,7 @@ namespace TowerDefense.Data.Models.Viruses
         public Tindrider()
         {
             this.Name = "TinRider";
-            this.Speed = 500;
+            this.Speed = 200;
             this.Type = VirusType.TINRIDER;
             this.Health = 150;
             this.Level = 1;

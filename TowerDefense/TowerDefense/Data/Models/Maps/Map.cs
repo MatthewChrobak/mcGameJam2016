@@ -8,7 +8,7 @@ namespace TowerDefense.Data.Models.Maps
 {
     public class Map
     {
-        public delegate void virusDeathDel(Virus virus);
+        public delegate void virusDeathDel(Virus virus, bool isLifeLost);
         public event virusDeathDel virusDeath;
         public Tile[,] mapArray = new Tile[16, 11];
         // Map constants
@@ -41,14 +41,24 @@ namespace TowerDefense.Data.Models.Maps
 
 
         public Map() {
+            Home = new Home();
             // add handler for virus deaths
-            //virusDeath += (virus) => {
-            //    if (Viruses.Count <= 0) {
-            //        Viruses.Remove(virus);
-            //        // TODO should determine virus type by wave number
-            //        SpawnManager.spawnWave(10, new TinRider());
-            //    }
-            //};
+            virusDeath += (virus, isLifeLost) =>
+            {
+                if(isLifeLost == true)
+                {
+                    if(Home.takeDamage())
+                    {
+                        Console.WriteLine("GAME OVER!!!!!!");
+                    }
+                }
+                Viruses.Remove(virus);
+                if (Viruses.Count <= 0)
+                {                  
+                    // TODO should determine virus type by wave number
+                    SpawnManager.spawnWave(3, new Tindrider());
+                }
+            };
             // Spawn one wave on creation of the map
             SpawnManager.spawnWave(10, new Tindrider());
         }
@@ -59,9 +69,10 @@ namespace TowerDefense.Data.Models.Maps
                 if (virus != null) {
                     // They got to the end
                     if (virus.Step >= dirs.Length) {
-                        break;
+                        OnVirusDeath(virus, true);
+                        //break;
                     }
-                    virus.Move((Directions)dirs.GetValue(virus.Step));
+                   else  virus.Move((Directions)dirs.GetValue(virus.Step));
                 }
 
                 //// Loop through all towers, and try to target enemy
@@ -122,9 +133,9 @@ namespace TowerDefense.Data.Models.Maps
         }
 
         // Remove the virus from the list and spawn a new wave if none are left.
-        public void OnVirusDeath(Virus virus) {
+        public void OnVirusDeath(Virus virus, bool lifeLost = false) {
             if (virusDeath != null)
-                virusDeath(virus);
+                virusDeath(virus, lifeLost);
         }
     }
 }

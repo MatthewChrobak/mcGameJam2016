@@ -2,15 +2,15 @@
 {
     public class Home
     {
-        public int Health {
-            set { this.Health = value; }
-            get { return this.Health; }
-        }
-
+        //public int Health {
+        //    set { this.Health = value; }
+        //    get { return this.Health; }
+        //}
+        public int Health; 
         public Home()
         {
             // Default health value
-            Health = 100;
+            Health = 10;
         }
 
         // Invoked by the Map class to inform the Base that it has taken damage.
