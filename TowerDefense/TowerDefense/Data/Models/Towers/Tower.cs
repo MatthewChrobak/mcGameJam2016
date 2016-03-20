@@ -1,12 +1,7 @@
 ﻿using TowerDefense.Data.Models.Maps;
-<<<<<<< HEAD
-using System.Collections.Generic;
-using TowerDefense.Data.Models.Maps;
-=======
 ﻿using System.Collections.Generic;
->>>>>>> origin/master
+using TowerDefense.Data.Models.Maps;
 using TowerDefense.Data.Models.Viruses;
-using System;
 
 namespace TowerDefense.Data.Models.Towers
 {
@@ -41,8 +36,6 @@ namespace TowerDefense.Data.Models.Towers
             }
             if(CurrentTarget != null)
             {
-                Console.WriteLine(CurrentTarget.Name);
-
                 //Check if enemy killed
                 if (CurrentTarget.Health <= 0)
                 {

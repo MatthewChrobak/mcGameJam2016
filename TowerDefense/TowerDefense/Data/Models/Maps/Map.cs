@@ -104,7 +104,11 @@ namespace TowerDefense.Data.Models.Maps
                 // Assign tower coordinates and refresh enemies in range list
                 pos.X = tower.X;
                 pos.Y = tower.Y;
-                EnemiesInRange.Clear();
+                if(EnemiesInRange != null)
+                {
+                    EnemiesInRange.Clear();
+                }
+                
 
                 // Make sure range check does not exceed upper bound
                 if (pos.Y - tower.Range < 0)
@@ -142,6 +146,7 @@ namespace TowerDefense.Data.Models.Maps
 
                             // Determines highest priority and sets to fire
                             tower.CurrentTarget = prioritizeVirus(EnemiesInRange);
+                            tower.shootAtTarget();
                         }
                     }
                 }
