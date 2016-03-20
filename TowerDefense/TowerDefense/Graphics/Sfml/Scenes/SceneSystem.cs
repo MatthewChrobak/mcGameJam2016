@@ -397,16 +397,6 @@ namespace TowerDefense.Graphics.Sfml.Scenes
             };
             scene.Add(money);
 
-            var lblWave = new Label() {
-                Name = "lblWave",
-                FontSize = 24,
-                Width = 200,
-                Left = 970,
-                Top = 110,
-                TextColor = SFML.Graphics.Color.White
-            };
-            scene.Add(lblWave);
-
             // Store items
             var tower1 = new ShopItem() {
                 Name = "twr1",
@@ -520,7 +510,6 @@ namespace TowerDefense.Graphics.Sfml.Scenes
         private void UpdateLogic() {
             UpdateScore();
             UpdateMoney();
-            UpdateWave();
             UpdateHealth();
         }
 
@@ -557,15 +546,6 @@ namespace TowerDefense.Graphics.Sfml.Scenes
             if (label != null) {
                 int money = Data.DataManager.Board.Money;
                 ((Label)label).Caption = "Money: " + money;
-            }
-        }
-
-        private void UpdateWave() {
-            // Update the UI label if it's not null.
-            var label = GetUIObject("lblWave");
-            if (label != null) {
-                int wave = Data.DataManager.Board.Wave;
-                ((Label)label).Caption = "Wave: " + wave;
             }
         }
 

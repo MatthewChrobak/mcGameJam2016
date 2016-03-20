@@ -116,13 +116,12 @@ namespace TowerDefense.Data.Models.Maps
                     if (virus.Step >= dirs.Length) {
                         OnVirusDeath(virus, true);
                         //break;
+                    } else {
+                        virus.Move((Directions)dirs.GetValue(virus.Step));
                     }
-                    
-                    // TODO: virus.Step out of range exception
-                    else virus.Move((Directions)dirs.GetValue(virus.Step));
 
-                    foreach (var tower in Towers) {
-
+                    for (int j = 0; j < DataManager.Map.Towers.Count; j++) {
+                        var tower = DataManager.Map.Towers[j];
 
                         // Check for attack speed or something. Connor seems to know.
                         if (tower.lastAttack + tower.AttackSpeed < Environment.TickCount)

@@ -15,7 +15,7 @@ namespace TowerDefense.Data.Models.Towers.Models
 
         public const int TowerCost = 120;
         public const string TowerName = "Syndra Tower";
-        public const string TowerDescription = "Syndra is the current Jungle meta.";
+        public const string TowerDescription = "Fires balls of energy.";
         public const string ShopIcon = "icon2";
         public const string SurfaceName = "tower2";
 

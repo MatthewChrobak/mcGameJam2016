@@ -87,34 +87,31 @@ namespace TowerDefense.Graphics.Sfml
                         int y = e.Y / 59;
 
                         // Figure out if it's out of bounds.
-                        if (x < 0 || x > 15) {
-                            return;
-                        }
-
-                        if (y < 0 || y > 10) {
-                            return;
-                        }
-
-                        foreach (var tower in DataManager.Map.Towers) {
-                            if (tower.X == x && tower.Y == y) {
-                                return;
-                            }
-                        }
-
-                        if (DataManager.Map.mapArray[x, y].Placable) {
-                            switch (this.HoverSurfaceName) {
-                                case "tower1":
-                                    if (DataManager.Board.Money >= TeslaTower.TowerCost) {
-                                        DataManager.Map.Towers.Add(new TeslaTower(x, y));
-                                        DataManager.Board.RemoveMoney(TeslaTower.TowerCost);
+                        if (x >= 0 && x <= 15) {
+                            if (y >= 0 && y <= 10) {
+                                for (int i = 0; i < DataManager.Map.Towers.Count; i++) {
+                                    var tower = DataManager.Map.Towers[i];
+                                    if (tower.X == x && tower.Y == y) {
+                                        return;
                                     }
-                                    break;
-                                case "tower2":
-                                    if (DataManager.Board.Money >= SyndraTower.TowerCost) {
-                                        DataManager.Map.Towers.Add(new SyndraTower(x, y));
-                                        DataManager.Board.RemoveMoney(SyndraTower.TowerCost);
+                                }
+
+                                if (DataManager.Map.mapArray[x, y].Placable) {
+                                    switch (this.HoverSurfaceName) {
+                                        case "tower1":
+                                            if (DataManager.Board.Money >= TeslaTower.TowerCost) {
+                                                DataManager.Map.Towers.Add(new TeslaTower(x, y));
+                                                DataManager.Board.RemoveMoney(TeslaTower.TowerCost);
+                                            }
+                                            break;
+                                        case "tower2":
+                                            if (DataManager.Board.Money >= SyndraTower.TowerCost) {
+                                                DataManager.Map.Towers.Add(new SyndraTower(x, y));
+                                                DataManager.Board.RemoveMoney(SyndraTower.TowerCost);
+                                            }
+                                            break;
                                     }
-                                    break;
+                                }
                             }
                         }
                     }
@@ -181,7 +178,7 @@ namespace TowerDefense.Graphics.Sfml
         }
 
         private void LoadFont() {
-            string fontFile = GraphicsManager.FontPath + "tahoma.ttf";
+            string fontFile = GraphicsManager.FontPath + "Kemco Pixel Bold.ttf";
 
             // Make sure that the ttf file exists.
             if (File.Exists(fontFile)) {
