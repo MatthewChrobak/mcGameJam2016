@@ -291,7 +291,7 @@ namespace TowerDefense.Graphics.Sfml
                         // Render enemies
                         for (int i = 0; i < map.Viruses.Count; i++) {
                             var virus = map.Viruses[i];
-                            if (virus.Position.X == x && virus.Position.Y == y) {
+                            if (virus?.Position.X == x && virus?.Position.Y == y) {
                                 var virusSurface = GetSurface(virus.Surface, SurfaceTypes.Virus);
                                 virusSurface.Scale = new Vector2f((float)60 / 256, (float)125 / virusSurface.Texture.Size.Y);
                                 virusSurface.TextureRect = new IntRect((int)virus.Direction * 256, 0, 256, 512);

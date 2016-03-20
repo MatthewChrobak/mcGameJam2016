@@ -15,6 +15,8 @@ namespace TowerDefense.Data.Models.Towers.Models.SyndraBall
         private int AnimStepTick = 50;
         private const int yBuffer = 45;
         private const int xBuffer = 20;
+        private const int MaxStep = 10;
+        private int CurStep = 0;
 
         private bool FollowingTarget = false;
         private Viruses.Virus Victim;
@@ -38,7 +40,7 @@ namespace TowerDefense.Data.Models.Towers.Models.SyndraBall
             }
 
             if (LastUpdate + AnimAttackTick < Environment.TickCount) {
-                if (FollowingTarget) {
+                if (FollowingTarget && !GotVictim) {
 
                     int vicX = Victim.Position.X * 60 + Victim.xOffset;
                     int vicY = Victim.Position.Y * 59 + Victim.yOffset;
@@ -58,11 +60,17 @@ namespace TowerDefense.Data.Models.Towers.Models.SyndraBall
                         this.Y -= speed;
                     }
 
-                    if (Math.Abs(this.X - vicX) < 10) {
-                        if (Math.Abs(this.Y - vicY) < 10) {
+                    CurStep++;
+
+                    if (Math.Abs(this.X - vicX) < 15) {
+                        if (Math.Abs(this.Y - vicY) < 15) {
                             Victim.takeDamage(75);
                             GotVictim = true;
                         }
+                    }
+
+                    if (CurStep >= MaxStep) {
+                        GotVictim = true;
                     }
                 }
 
