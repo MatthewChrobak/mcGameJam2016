@@ -21,6 +21,11 @@
             this.Surface = SurfaceName;
         }
 
+        public TeslaTower(int x, int y) : this() {
+            this.X = x;
+            this.Y = y;
+        }
+
         public override void upgrade()
         {
             this.DamageDealt += 5;

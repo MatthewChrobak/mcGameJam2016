@@ -26,6 +26,11 @@ namespace TowerDefense.Data.Models.Towers
         {
             map = DataManager.Map;
         }
+
+        public Tower(int x, int y) {
+            this.X = x;
+            this.Y = y;
+        }
         
         public void shootATtTarget() {
 

@@ -22,6 +22,11 @@ namespace TowerDefense.Data.Models.Towers.Models
             this.Surface = SurfaceName;
         }
 
+        public WaveTower(int x, int y) : this() {
+            this.X = x;
+            this.Y = y;
+        }
+
         public override void upgrade() {
             
         }
