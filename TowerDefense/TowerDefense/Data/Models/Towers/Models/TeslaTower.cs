@@ -75,7 +75,7 @@ namespace TowerDefense.Data.Models.Towers.Models
         }
 
         public override void AttackTarget(Virus victim) {
-            
+            victim.takeDamage(DamageDealt);
         }
     }
 }

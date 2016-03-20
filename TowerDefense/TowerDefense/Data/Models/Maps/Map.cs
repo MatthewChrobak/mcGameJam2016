@@ -80,6 +80,8 @@ namespace TowerDefense.Data.Models.Maps
                         if (Math.Abs(virus.Position.X - tower.X) <= tower.Range) {
                             if (Math.Abs(virus.Position.Y - tower.Y) <= tower.Range) {
 
+                                // Attack the virus
+                                tower.AttackTarget(virus);
                                 
 
                                 // Update whatever we check above.

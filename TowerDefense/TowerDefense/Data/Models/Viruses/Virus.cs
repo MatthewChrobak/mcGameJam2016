@@ -31,6 +31,17 @@ namespace TowerDefense.Data.Models.Viruses
 
         private int LastMove;
 
+        // Make the virus take damage and check if it died.
+        public void takeDamage(int dmg)
+        {
+            Health = Health - dmg;
+
+            if(Health <= 0)
+            {
+                DataManager.Map.OnVirusDeath(this);
+            }
+        }
+
         public void Move(Directions dir) {
 
             this.Direction = dir;

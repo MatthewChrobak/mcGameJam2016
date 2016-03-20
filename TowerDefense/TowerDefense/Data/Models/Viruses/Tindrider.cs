@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TowerDefense.Data.Models.Viruses
-{
+{ 
     class Tindrider:Virus
     {
         public Tindrider()
