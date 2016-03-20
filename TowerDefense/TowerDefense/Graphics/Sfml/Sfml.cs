@@ -174,6 +174,10 @@ namespace TowerDefense.Graphics.Sfml
             foreach (string file in Directory.GetFiles(GraphicsManager.VirusPath, "*.png")) {
                 this._surface[(int)SurfaceTypes.Virus].Add(new GraphicalSurface(file));
             }
+
+            foreach (string file in Directory.GetFiles(GraphicsManager.AnimationPath, "*.png")) {
+                this._surface[(int)SurfaceTypes.Animation].Add(new GraphicalSurface(file));
+            }
         }
 
         private void LoadFont() {
@@ -283,6 +287,8 @@ namespace TowerDefense.Graphics.Sfml
                 mapSurface.Scale = new Vector2f((float)960 / mapSurface.Texture.Size.X, (float)649 / mapSurface.Texture.Size.Y);
                 DrawObject(mapSurface);
 
+                map.UpdateAnimations();
+
                 // Draw the contents of the map
                 for (int x = 0; x < 16; x++) {
                     for (int y = 0; y < 11; y++) {
@@ -341,6 +347,10 @@ namespace TowerDefense.Graphics.Sfml
 
                         int x = this.MouseX / 60;
                         int y = this.MouseY / 59;
+
+                        if (y < 0 || y >= 11) {
+                            return;
+                        }
 
                         var mapTile = DataManager.Map.mapArray[x, y];
 

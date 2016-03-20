@@ -9,6 +9,7 @@
         public static readonly string TowerPath = SurfacePath + "towers\\";
         public static readonly string MapPath = SurfacePath + "maps\\";
         public static readonly string VirusPath = SurfacePath + "viruses\\";
+        public static readonly string AnimationPath = SurfacePath + "anim\\";
 
         // The class object containing the graphics system.
         public static IGraphics Graphics { private set; get; }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using TowerDefense.Data.Models.Towers;
 using TowerDefense.Data.Models.Viruses;
+using TowerDefense.Graphics;
+using TowerDefense.Graphics.Sfml;
 
 namespace TowerDefense.Data.Models.Maps
 {
@@ -32,11 +34,7 @@ namespace TowerDefense.Data.Models.Maps
         //Tower Position
         Position pos = new Position();
 
-        // Tower radius markers
-        int xMin;
-        int xMax;
-        int yMin;
-        int yMax;
+        public List<Anim.Animation> MapAnimations = new List<Anim.Animation>();
 
 
         public Map() {
@@ -102,6 +100,26 @@ namespace TowerDefense.Data.Models.Maps
                         }*/
                         
                     }
+                }
+            }
+        }
+
+        public void UpdateAnimations() {
+            for (int i = 0; i < MapAnimations.Count; i++) {
+                var anim = MapAnimations[i];
+
+                anim.Update();
+
+                if (anim.Disposable) {
+                    MapAnimations.RemoveAt(i);
+                    i--;
+                }
+
+                var surface = ((Sfml)GraphicsManager.Graphics).GetSurface(anim.Surface, SurfaceTypes.Animation);
+                if (surface != null) {
+                    surface.Position = new SFML.System.Vector2f(anim.Position.X, anim.Position.Y);
+                    surface.TextureRect = new SFML.Graphics.IntRect(anim.State * anim.FrameWidth, 0, anim.FrameWidth, anim.FrameHeight);
+                    GraphicsManager.Graphics.DrawObject(surface);
                 }
             }
         }

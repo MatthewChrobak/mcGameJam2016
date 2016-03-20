@@ -65,6 +65,7 @@ namespace TowerDefense.Data.Models.Towers.Models.SyndraBall
                     if (Math.Abs(this.X - vicX) < 15) {
                         if (Math.Abs(this.Y - vicY) < 15) {
                             Victim.takeDamage(75);
+                            AddAnimation();
                             GotVictim = true;
                         }
                     }
@@ -98,6 +99,17 @@ namespace TowerDefense.Data.Models.Towers.Models.SyndraBall
                 this.Y = Y * 59;
                 FollowingTarget = true;
             }
+        }
+
+        private void AddAnimation() {
+            DataManager.Map.MapAnimations.Add(new Anim.Animation() {
+                MaxState = 4,
+                Position = new Position(this.X, this.Y),
+                Surface = "explosion",
+                UpdateTick = 100,
+                FrameWidth = 64,
+                FrameHeight = 64
+            });
         }
     }
 }

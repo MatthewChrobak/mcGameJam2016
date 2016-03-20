@@ -69,6 +69,7 @@
     <Compile Include="Audio\Sfml\PlayingMusic.cs" />
     <Compile Include="Audio\Sfml\PlayingSound.cs" />
     <Compile Include="Data\DataManager.cs" />
+    <Compile Include="Data\Models\Anim\Animation.cs" />
     <Compile Include="Data\Models\Board.cs" />
     <Compile Include="Data\Models\Directions.cs" />
     <Compile Include="Data\Models\Entity.cs" />
