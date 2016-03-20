@@ -1,6 +1,5 @@
 ﻿using TowerDefense.Data.Models.Maps;
 ﻿using System.Collections.Generic;
-using TowerDefense.Data.Models.Maps;
 using TowerDefense.Data.Models.Viruses;
 
 namespace TowerDefense.Data.Models.Towers
