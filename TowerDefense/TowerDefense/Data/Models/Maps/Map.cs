@@ -50,16 +50,18 @@ namespace TowerDefense.Data.Models.Maps
             //    }
             //};
             // Spawn one wave on creation of the map
-            //SpawnManager.spawnWave(10, new TinRider());
+            SpawnManager.spawnWave(10, new Tindrider());
         }
 
         public void UpdateLogic() {
-            foreach (var virus in Viruses) {
+            for (int i =0; i < Viruses.Count;i++ ) {
+                var virus = Viruses[i];
                 if (virus != null) {
                     // They got to the end
                     if (virus.Step >= dirs.Length) {
                         break;
                     }
+                    virus.Move((Directions)dirs.GetValue(virus.Step));
                 }
 
                 //// Loop through all towers, and try to target enemy
