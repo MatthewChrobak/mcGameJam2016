@@ -74,20 +74,56 @@ namespace TowerDefense.Data.Models.Towers.Models
             return this.AnimationState;
         }
 
-        private void AddAnimation() {
+        private void AddAnimation(float rotation, Position pos) {
             DataManager.Map.MapAnimations.Add(new Anim.Animation() {
                 Surface = "lazer",
                 FrameHeight = 192,
-                FrameWidth = 157,
-                MaxState = 10,
-                Position = new Position(this.X * 70 - 192 / 2 - 45, this.Y * 49 - 40),
-                UpdateTick = 100
+                FrameWidth = 64,
+                MaxState = 8,
+                Position = pos,
+                UpdateTick = 25,
+                Overlay = true,
+                Rotation = rotation
             });
         }
 
         public override void AttackTarget(Virus victim) {
             victim.takeDamage(DamageDealt);
-            //AddAnimation();
+
+            var pos = new Position(this.X * 60, this.Y * 59);
+
+
+            if (victim.Position.X < this.X) {
+                if (victim.Position.Y < this.Y) {
+                    // Top Left
+                    AddAnimation(135f, new Position(pos.X + 96, pos.Y + 16));
+                } else if (victim.Position.Y > this.Y) {
+                    // Bottom Left
+                    AddAnimation(45f, new Position(pos.X + 56, pos.Y - 72));
+                } else {
+                    // Absolute Left
+                    AddAnimation(90f, new Position(pos.X + 96, pos.Y - 32));
+                }
+            } else if (victim.Position.X > this.X) {
+                if (victim.Position.Y < this.Y) {
+                    // Top Right
+                    AddAnimation(225f, new Position(pos.X + 8, pos.Y + 64));
+                } else if (victim.Position.Y > this.Y) {
+                    // Bottom Right
+                    AddAnimation(315f, new Position(pos.X - 32 , pos.Y - 24));
+                } else {
+                    // Absolute Right
+                    AddAnimation(270f, new Position(pos.X - 32, pos.Y + 32));
+                }
+            } else {
+                if (victim.Position.Y < this.Y) {
+                    // Absolute Top
+                    AddAnimation(180f, new Position(pos.X + 64, pos.Y + 64));
+                } else if (victim.Position.Y > this.Y) {
+                    // Absolute Bottom
+                    AddAnimation(0f, new Position(pos.X, pos.Y - 64));
+                }
+            }
         }
     }
 }

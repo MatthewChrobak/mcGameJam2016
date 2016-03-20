@@ -134,23 +134,26 @@ namespace TowerDefense.Data.Models.Maps
             }
         }
 
-        public void UpdateAnimations() {
+        public void UpdateAnimations(bool overlay = false) {
             for (int i = 0; i < MapAnimations.Count; i++) {
                 var anim = MapAnimations[i];
 
-                anim.Update();
+                if (anim.Overlay == overlay) {
+                    anim.Update();
 
-                if (anim.Disposable) {
-                    MapAnimations.RemoveAt(i);
-                    i--;
-                }
+                    if (anim.Disposable) {
+                        MapAnimations.RemoveAt(i);
+                        i--;
+                    }
 
-                var surface = ((Sfml)GraphicsManager.Graphics).GetSurface(anim.Surface, SurfaceTypes.Animation);
-                if (surface != null) {
-                    surface.Position = new SFML.System.Vector2f(anim.Position.X, anim.Position.Y);
-                    surface.TextureRect = new SFML.Graphics.IntRect(anim.State * anim.FrameWidth, 0, anim.FrameWidth, anim.FrameHeight);
-                    GraphicsManager.Graphics.DrawObject(surface);
-                }
+                    var surface = ((Sfml)GraphicsManager.Graphics).GetSurface(anim.Surface, SurfaceTypes.Animation);
+                    if (surface != null) {
+                        surface.Rotation = anim.Rotation;
+                        surface.Position = new SFML.System.Vector2f(anim.Position.X, anim.Position.Y);
+                        surface.TextureRect = new SFML.Graphics.IntRect(anim.State * anim.FrameWidth, 0, anim.FrameWidth, anim.FrameHeight);
+                        GraphicsManager.Graphics.DrawObject(surface);
+                    }
+                }   
             }
         }
 

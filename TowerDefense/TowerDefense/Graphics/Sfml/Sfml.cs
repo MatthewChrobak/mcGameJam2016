@@ -287,7 +287,7 @@ namespace TowerDefense.Graphics.Sfml
                 mapSurface.Scale = new Vector2f((float)960 / mapSurface.Texture.Size.X, (float)649 / mapSurface.Texture.Size.Y);
                 DrawObject(mapSurface);
 
-                map.UpdateAnimations();
+                map.UpdateAnimations(false);
 
                 // Draw the contents of the map
                 for (int x = 0; x < 16; x++) {
@@ -336,6 +336,8 @@ namespace TowerDefense.Graphics.Sfml
                         }
                     }
                 }
+
+                map.UpdateAnimations(true);
 
                 var tile = GetSurface("tile", SurfaceTypes.Map);
 

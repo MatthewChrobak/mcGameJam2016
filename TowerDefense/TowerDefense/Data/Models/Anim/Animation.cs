@@ -13,6 +13,8 @@ namespace TowerDefense.Data.Models.Anim
         private int LastUpdate;
         public bool Disposable = false;
         public Position Position;
+        public bool Overlay = false;
+        public float Rotation;
 
         public void Update() {
             if (LastUpdate + UpdateTick < Environment.TickCount) {
