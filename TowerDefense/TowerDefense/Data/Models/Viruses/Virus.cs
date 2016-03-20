@@ -10,6 +10,7 @@ namespace TowerDefense.Data.Models.Viruses
         public int Speed { get; set; }
         public int Money { get; set; }
         public int Health { get; set; }
+        public int MaxHealth;
         public int Level { get; set; }
         public int MovementSpeed { get; set; }
         public int Step { get; private set; }

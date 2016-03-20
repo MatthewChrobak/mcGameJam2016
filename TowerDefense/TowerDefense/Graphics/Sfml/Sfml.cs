@@ -297,6 +297,18 @@ namespace TowerDefense.Graphics.Sfml
                                 virusSurface.TextureRect = new IntRect((int)virus.Direction * 256, 0, 256, 512);
                                 virusSurface.Position = new Vector2f(virus.Position.X * 60 + virus.xOffset, (virus.Position.Y * 59) - 60 + virus.yOffset);
                                 DrawObject(virusSurface);
+
+                                var redbar = GetSurface("redbar", SurfaceTypes.Virus);
+                                var greenbar = GetSurface("greenbar", SurfaceTypes.Virus);
+                                var scale = new Vector2f(64f / greenbar.Texture.Size.X, 1);
+                                greenbar.TextureRect = new IntRect(0, 0, (100 * virus.Health) / virus.MaxHealth, 10);
+                                redbar.Position = new Vector2f(virusSurface.Position.X, virusSurface.Position.Y - 50);
+                                greenbar.Scale = scale;
+                                redbar.Scale = scale;
+                                greenbar.Position = redbar.Position;
+
+                                DrawObject(redbar);
+                                DrawObject(greenbar);
                             }
                         }
 
@@ -318,16 +330,6 @@ namespace TowerDefense.Graphics.Sfml
                         }
                     }
                 }
-
-                // Draw TindRider
-                /*List<Virus> viruses = map.Viruses;
-                foreach (Virus v in viruses)
-                {
-                    var tindRiderSurface = GetSurface("tindRider", SurfaceTypes.Virus);
-                    tindRiderSurface.Position = new Vector2f(v.Position.X * 60 - (tindRiderSurface.Texture.Size.X - 60) / 2, v.
-                        .Y * 59 - (tindRiderSurface.Texture.Size.Y - 59));
-                    DrawObject(tindRiderSurface);
-                }*/
 
                 var tile = GetSurface("tile", SurfaceTypes.Map);
 
