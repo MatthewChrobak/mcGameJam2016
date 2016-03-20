@@ -33,7 +33,7 @@ namespace TowerDefense.Graphics.Sfml
             this.LoadFont();
 
             // Create a new renderwindow that we can render graphics onto.
-            this.DrawingSurface = new RenderWindow(new VideoMode(1260, 649), "Title", Styles.Close);
+            this.DrawingSurface = new RenderWindow(new VideoMode(1260, 649), "Bit Defender", Styles.Close);
 
             // Center it.
             var screen = VideoMode.DesktopMode;
@@ -111,8 +111,6 @@ namespace TowerDefense.Graphics.Sfml
                                             }
                                             break;
                                     }
-
-                                    Audio.AudioManager.Player.PlaySound("placement.flac");
                                 }
                             }
                         }

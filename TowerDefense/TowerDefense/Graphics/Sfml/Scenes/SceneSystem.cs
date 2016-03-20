@@ -275,27 +275,14 @@ namespace TowerDefense.Graphics.Sfml.Scenes
             };
             scene.Add(background);
 
-            // The logo for the game
-            var logo = new Label() {
-                Name = "lblLogo",
-                Width = 1260,
-                Height = 100,
-                Caption = "Mc Tower Defense",
-                FontSize = 36,
-                TextColor = SFML.Graphics.Color.White
-            };
-            scene.Add(logo);
-
             // The button for picking a stage.
             var stageSelect = new Button() {
                 Name = "cmdStageSelect",
-                Caption = "Stage Select",
-                Left = (1260 / 2) - 50,
-                Top = 200,
-                Width = 120,
-                Height = 50,
-                Surface = GetSurface("button"),
-                TextColor = SFML.Graphics.Color.White
+                Left = 425,
+                Top = 315,
+                Width = 240,
+                Height = 100,
+                Surface = GetSurface("buttonStart")
             };
             stageSelect.OnMouseDown += stageSelect.cmdStageSelect_MouseDown;
             scene.Add(stageSelect);
@@ -310,7 +297,7 @@ namespace TowerDefense.Graphics.Sfml.Scenes
                 Name = "imgBackground",
                 Width = 1260,
                 Height = 649,
-                Surface = GetSurface("background")
+                Surface = GetSurface("stageselect")
             };
             scene.Add(background);
 
@@ -331,26 +318,13 @@ namespace TowerDefense.Graphics.Sfml.Scenes
             // Stage one
             var stage1 = new Image() {
                 Name = "stg1",
-                Surface = GetSurface("stage1"),
                 Width = 200,
                 Height = 200,
                 Left = 150,
-                Top = 100
+                Top = 200
             };
             stage1.OnMouseDown += stage1.cmdStage1_MouseDown;
             scene.Add(stage1);
-
-            // Stage one text
-            var stage1Label = new Label() {
-                Name = "lblStage1",
-                Left = 150,
-                Width = 200,
-                Top = 310,
-                Caption = "Stage One",
-                FontSize = 24,
-                TextColor = SFML.Graphics.Color.White
-            };
-            scene.Add(stage1Label);
         }
 
         private void LoadGameUI() {
@@ -425,20 +399,6 @@ namespace TowerDefense.Graphics.Sfml.Scenes
                 ItemCost = SyndraTower.TowerCost
             };
             scene.Add(tower2);
-
-            var temp = new Button() {
-                Name = "cmdTemp",
-                Caption = "Load Game Over",
-                Left = 0,
-                Top = 0,
-                Width = 100,
-                Height = 50,
-                Surface = GetSurface("button")
-            };
-            temp.OnMouseDown += (x, y) => {
-                Game.SetGameState(GameState.GameOver);
-            };
-            scene.Add(temp);
         }
 
         private void LoadGameOverUI() {
@@ -450,30 +410,18 @@ namespace TowerDefense.Graphics.Sfml.Scenes
                 Name = "imgBackground",
                 Width = 1260,
                 Height = 649,
-                Surface = GetSurface("background")
+                Surface = GetSurface("gameover")
             };
             scene.Add(background);
 
-            var gameOver = new Label() {
-                Name = "lblGameOver",
-                Width = 1260,
-                Height = 50,
-                Caption = "Game Over!",
-                FontSize = 82,
-                TextColor = SFML.Graphics.Color.White,
-                Top = 200,
-                Left = 0
-            };
-            scene.Add(gameOver);
-
             var yourScore = new Label() {
                 Name = "lblYourScore",
-                Width = 1260,
+                Width = 630,
                 Height = 50,
                 Caption = "Your score was ",
                 FontSize = 24,
                 TextColor = SFML.Graphics.Color.White,
-                Top = 275,
+                Top = 350,
                 Left = 0
             };
             scene.Add(yourScore);
@@ -481,12 +429,12 @@ namespace TowerDefense.Graphics.Sfml.Scenes
             var highScore = new Label()
             {
                 Name = "lblHighScore",
-                Width = 1260,
+                Width = 630,
                 Height = 50,
                 Caption = "Highscore ",
                 FontSize = 24,
                 TextColor = SFML.Graphics.Color.White,
-                Top = 300,
+                Top = 400,
                 Left = 0
             };
             scene.Add(highScore);
@@ -498,7 +446,7 @@ namespace TowerDefense.Graphics.Sfml.Scenes
                 Caption = "Main Menu",
                 TextColor = SFML.Graphics.Color.White,
                 Top = 500,
-                Left = 1260 / 2 - 100,
+                Left = 630 / 2 - 100,
                 Surface = GetSurface("button")
             };
             cmdBack.OnMouseDown += cmdBack.cmdBackButton_MouseDown;

@@ -92,8 +92,6 @@ namespace TowerDefense.Data.Models.Towers.Models
 
             var pos = new Position(this.X * 60, this.Y * 59);
 
-            Audio.AudioManager.Player.PlaySound("beam.flac");
-
 
             if (victim.Position.X < this.X) {
                 if (victim.Position.Y < this.Y) {

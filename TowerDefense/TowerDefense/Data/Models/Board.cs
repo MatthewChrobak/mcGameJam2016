@@ -13,6 +13,7 @@
             // amount of money, and a score of 0.
             this.Score = 0;
             this.Money = STARTING_MONEY;
+            DataManager.Map.Home.Health = 10;
         }
 
         public void AddMoney(int amount) {

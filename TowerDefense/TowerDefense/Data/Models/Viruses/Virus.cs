@@ -113,7 +113,6 @@ namespace TowerDefense.Data.Models.Viruses
                         UpdateTick = 32,
                         Overlay = false
                     });
-                    Audio.AudioManager.Player.PlaySound("teleport.flac");
                 }
                 if(Step == 40)
                 {
@@ -138,7 +137,6 @@ namespace TowerDefense.Data.Models.Viruses
                         Rotation = 270f,
                         Overlay = false
                     });
-                    Audio.AudioManager.Player.PlaySound("teleport.flac");
                 }
                 
             } else {
