@@ -20,7 +20,13 @@ namespace TowerDefense.Data.Models.Towers
         public Map map;
         public string Surface { get; set; }
 
-        abstract public void upgrade();
+        protected sbyte AnimationState;
+        protected int LastAnimation;
+        protected int AnimationStepTick;
+        protected sbyte NextStep;
+
+        public abstract void upgrade();
+        public abstract sbyte GetAnimation();
 
         public Tower()
         {

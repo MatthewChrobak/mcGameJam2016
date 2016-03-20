@@ -19,19 +19,19 @@ namespace TowerDefense.Data.Models.Maps
         public const int HEIGHT = 11;
 
         public Home Home;
-        public List<Tower> Towers;
-        public List<Virus> Viruses;
+        public List<Tower> Towers = new List<Tower>();
+        public List<Virus> Viruses = new List<Virus>();
         public List<Virus> EnemiesInRange;
         public Position SpawnLocation { get; set; }
         public string SurfaceName;
-        public PathFinding path;
+        public PathFinding path = new PathFinding();
         public Directions[] dirs;
         public int MobCount;
         public int SpawnRate;
         private int LastSpawn;
 
         //Tower Position
-        Position pos;
+        Position pos = new Position();
 
         // Tower radius markers
         int xMin;
@@ -41,26 +41,18 @@ namespace TowerDefense.Data.Models.Maps
 
 
         public Map() {
-            path = new PathFinding();
-            dirs = path.getPath(1);
-            Towers = new List<Tower>();
-            Viruses = new List<Virus>();
-            pos = new Position();
-            PopulateMap();
-            this.SpawnLocation = new Position(0, 4);
-           // add handler for virus deaths
-           //virusDeath += (virus) =>
-           //{
-           //    if (Viruses.Count <= 0)
-           //    {
-           //        Viruses.Remove(virus);
-           //         // TODO should determine virus type by wave number
-           //         SpawnManager.spawnWave(10, new TinRider());
-           //    }
-           //};
-          //  Spawn one wave on creation of the map
-
-           SpawnManager.spawnWave(5, new Tindrider());
+            // add handler for virus deaths
+            //virusDeath += (virus) =>
+            //{
+            //    if (Viruses.Count <= 0)
+            //    {
+            //        Viruses.Remove(virus);
+            //         // TODO should determine virus type by wave number
+            //         SpawnManager.spawnWave(10, new TinRider());
+            //    }
+            //};
+            //  Spawn one wave on creation of the map
+            SpawnManager.spawnWave(5, new Tindrider());
         }
 
         public void UpdateLogic() {

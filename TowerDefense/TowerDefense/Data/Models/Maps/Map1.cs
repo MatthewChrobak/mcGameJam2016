@@ -2,7 +2,7 @@
 {
     public class Map1 : Map
     {
-        public Map1() {
+        public Map1() : base() {
             this.SurfaceName = "stage1";
             this.SpawnLocation = new Position(4, 0);
             this.dirs = path.getPath(1);
