@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using TowerDefense.Data.Models.Towers;
 using TowerDefense.Data.Models.Viruses;
@@ -23,6 +24,9 @@ namespace TowerDefense.Data.Models.Maps
         public string SurfaceName;
         public PathFinding path;
         public Directions[] dirs;
+        public int MobCount;
+        public int SpawnRate;
+        private int LastSpawn;
 
         //Tower Position
         Position pos;
@@ -37,27 +41,50 @@ namespace TowerDefense.Data.Models.Maps
         public Map()
         {
             path = new PathFinding();
-            dirs = path.getPath(1);
             Towers = new List<Tower>();
             Viruses = new List<Virus>();
             EnemiesInRange = new List<Virus>();
             pos = new Position();
-            populateMap();
         }
 
         public void UpdateLogic()
         {
-
             // Loop through all viruses, and try and move them.
-            foreach (var virus in Viruses)
-            {
-                virus.Move((Directions)dirs.GetValue(virus.Step));
-                virus.Step++;
+            for (int x = 0; x < 16; x++) {
+                for (int y = 0; y < 11; y++) {
+                    var tile = mapArray[x, y] as PathTile;
+                    if (tile != null) {
+                        foreach (var virus in tile.viruses) {
+                            if (virus.Step >= dirs.Length) {
+                                break;
+                            }
+                            virus.Move((Directions)dirs.GetValue(virus.Step));
+                        }
+                    }
+                }
             }
 
+            // Have we killed all the mobs?
+            if (MobCount == 0) {
+                DataManager.Board.Wave += 1;
+                this.MobCount = DataManager.Board.Wave;
+            } else if (MobCount > 0) {
+                // Can we spawn a mob?
+                if (LastSpawn + SpawnRate < Environment.TickCount) {
+
+                    // Get the spawn location, and add a new virus to it.
+                    var spawn = mapArray[SpawnLocation.X, SpawnLocation.Y] as PathTile;
+
+                    if (spawn != null) {
+                        spawn.viruses.Add(new TestVirus(SpawnLocation.X, SpawnLocation.Y));
+                        MobCount = -1;
+                        LastSpawn = Environment.TickCount;
+                    }
+                }
+            } 
+
             // Loop through all towers, and try to target enemy
-            foreach (var tower in Towers)
-            {
+            foreach (var tower in Towers) {
                 // Assign tower coordinates and refresh enemies in range list
                 pos.X = tower.X;
                 pos.Y = tower.Y;
@@ -105,34 +132,8 @@ namespace TowerDefense.Data.Models.Maps
             }
         }
 
-        public void populateMap()
-        {
-            int[,] simpleMapArray = new int[,] { 
-                { 0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0 },
-                { 0,2,0,0,1,1,1,0,0,2,1,1,0,0,0,0 },
-                { 0,1,1,0,0,0,1,0,0,0,0,1,1,1,1,0 },
-                { 0,0,1,0,0,0,1,1,1,0,0,0,0,0,1,0 },
-                { 0,0,1,1,0,0,0,0,1,0,0,0,0,0,1,0 },
-                { 0,0,0,1,0,0,0,0,1,1,0,0,0,1,1,0 },
-                { 0,1,1,1,0,0,0,0,0,1,0,0,0,1,0,0 },
-                { 0,1,0,0,0,1,1,1,1,1,0,0,0,1,1,0 },
-                { 0,1,0,0,0,1,0,0,0,0,0,0,2,0,1,0 },
-                { 0,2,0,0,0,1,1,1,0,0,0,0,1,0,1,0 },
-                { 0,0,0,0,0,0,0,1,1,1,1,1,1,0,1,0 }
-            };
-            
-            for (int x = 0; x < 16; x++) {
-                for (int y = 0; y < 11; y++) {
-                    int tile = simpleMapArray[y, x];
-                    if (tile == 0) {
-                        mapArray[x, y] = new NonPathTile(x, y);
-                    } else if (tile == 1) {
-                        mapArray[x, y] = new PathTile(x, y, 1);
-                    } else if (tile == 2) {
-                        mapArray[x, y] = new PathTile(x, y, 2);
-                    }
-                }
-            }
+        public virtual void PopulateMap() {
+
         }
 
         public Virus prioritizeVirus(List<Virus> unsortedList)

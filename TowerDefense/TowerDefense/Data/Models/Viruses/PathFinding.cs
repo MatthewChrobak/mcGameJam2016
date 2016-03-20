@@ -5,15 +5,15 @@
         public Directions[] getPath(int mapNumber) {
             switch (mapNumber) {
                 case 1:
-                    return new Directions[] { Directions.SOUTH, Directions.EAST, Directions.EAST, Directions.SOUTH,
-            Directions.SOUTH, Directions.EAST, Directions.EAST, Directions.SOUTH, Directions.SOUTH, Directions.EAST,
-            Directions.SOUTH, Directions.SOUTH, Directions.WEST, Directions.WEST, Directions.WEST, Directions.WEST, Directions.SOUTH,
-            Directions.SOUTH, Directions.EAST, Directions.EAST, Directions.SOUTH, Directions.EAST, Directions.EAST, Directions.EAST,
-            Directions.EAST, Directions.EAST, Directions.NORTH, Directions.NORTH, Directions.SOUTH, Directions.EAST, Directions.SOUTH,
-            Directions.SOUTH, Directions.EAST, Directions.SOUTH, Directions.SOUTH, Directions.WEST, Directions.WEST, Directions.SOUTH,
-            Directions.SOUTH, Directions.SOUTH, Directions.EAST, Directions.EAST, Directions.SOUTH, Directions.EAST, Directions.EAST,
-            Directions.EAST, Directions.SOUTH, Directions.SOUTH, Directions.SOUTH, Directions.WEST, Directions.SOUTH, Directions.SOUTH,
-            Directions.EAST, Directions.SOUTH, Directions.SOUTH, Directions.SOUTH };
+                    return new Directions[] { Directions.DOWN, Directions.RIGHT, Directions.RIGHT, Directions.DOWN,
+            Directions.DOWN, Directions.RIGHT, Directions.RIGHT, Directions.DOWN, Directions.DOWN, Directions.RIGHT,
+            Directions.DOWN, Directions.DOWN, Directions.LEFT, Directions.LEFT, Directions.LEFT, Directions.LEFT, Directions.DOWN,
+            Directions.DOWN, Directions.RIGHT, Directions.RIGHT, Directions.DOWN, Directions.RIGHT, Directions.RIGHT, Directions.RIGHT,
+            Directions.RIGHT, Directions.RIGHT, Directions.UP, Directions.UP, Directions.DOWN, Directions.RIGHT, Directions.DOWN,
+            Directions.DOWN, Directions.RIGHT, Directions.DOWN, Directions.DOWN, Directions.LEFT, Directions.LEFT, Directions.DOWN,
+            Directions.DOWN, Directions.DOWN, Directions.RIGHT, Directions.RIGHT, Directions.DOWN, Directions.RIGHT, Directions.RIGHT,
+            Directions.RIGHT, Directions.DOWN, Directions.DOWN, Directions.DOWN, Directions.LEFT, Directions.DOWN, Directions.DOWN,
+            Directions.RIGHT, Directions.DOWN, Directions.DOWN, Directions.DOWN };
             }
 
             return null;

@@ -293,6 +293,17 @@ namespace TowerDefense.Graphics.Sfml
                             towerSurface.Position = new Vector2f(x * 60 - (towerSurface.Texture.Size.X - 60) / 2, y * 59 - (towerSurface.Texture.Size.Y - 59));
                             DrawObject(towerSurface);
                         }
+
+                        if (pt != null) {
+                            if (pt.viruses?.Count != 0) {
+                                foreach (var virus in pt.viruses) {
+                                    var virusSurface = GetSurface(virus.Surface, SurfaceTypes.Virus);
+                                    virusSurface.Scale = new Vector2f((float)60 / virusSurface.Texture.Size.X , (float)125 / virusSurface.Texture.Size.Y);
+                                    virusSurface.Position = new Vector2f(virus.Position.X * 60, (virus.Position.Y * 59) - 60);
+                                    DrawObject(virusSurface);
+                                }
+                            }
+                        }
                     }
                 }
 

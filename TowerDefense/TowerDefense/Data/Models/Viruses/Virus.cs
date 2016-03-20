@@ -11,8 +11,21 @@ namespace TowerDefense.Data.Models.Viruses
         public int Money { get; set; }
         public int Health { get; set; }
         public int Level { get; set; }
-        public float MovementSpeed { get; set; }
-        public int Step { get; set; }
+        public int MovementSpeed { get; set; }
+        public int Step { get; private set; }
+        public string Surface { get; set; }
+
+        public int xOffset { get; private set; }
+        public int yOffset { get; private set; }
+
+        public Virus() {
+            this.Position = new Position();
+            this.Speed = 500;
+        }
+
+        public Virus(int x, int y) {
+            this.Position = new Position(x, y);
+        }
 
 
         private int LastMove;
@@ -23,27 +36,28 @@ namespace TowerDefense.Data.Models.Viruses
             if (LastMove + Speed < Environment.TickCount) {
                 switch (dir)
                 {
-                    case Directions.NORTH:
+                    case Directions.UP:
+                        this.Position = new Position(this.Position.X, this.Position.Y - 1);
                         break;
-                    case Directions.SOUTH:
+                    case Directions.DOWN:
+                        this.Position = new Position(this.Position.X, this.Position.Y + 1);
                         break;
-                    case Directions.EAST:
+                    case Directions.RIGHT:
+                        this.Position = new Position(this.Position.X + 1, this.Position.Y);
                         break;
-                    case Directions.WEST:
-                        break;
-                    case Directions.NORTHEAST:
-                        break;
-                    case Directions.NORTHWEST:
-                        break;
-                    case Directions.SOUTHEAST:
-                        break;
-                    case Directions.SOUTHWEST:
+                    case Directions.LEFT:
+                        this.Position = new Position(this.Position.X - 1, this.Position.Y);
                         break;
                 }
 
 
+                this.Step++;
+
                 // Set the current tickcount as our last move time.
                 LastMove = Environment.TickCount;
+            } else {
+                int timeSince = Environment.TickCount - LastMove;
+
             }
         }
     }

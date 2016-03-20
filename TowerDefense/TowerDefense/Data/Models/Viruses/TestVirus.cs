@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TowerDefense.Data.Models.Viruses
+﻿namespace TowerDefense.Data.Models.Viruses
 {
-    class TestVirus : Virus
+    public class TestVirus : Virus
     {
-
+        public TestVirus(int x, int y) {
+            this.Position = new Position(x, y);
+            this.Surface = "1";
+        }
     }
 }
