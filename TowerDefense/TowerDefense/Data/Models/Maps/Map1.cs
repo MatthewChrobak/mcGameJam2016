@@ -27,12 +27,12 @@
             for (int x = 0; x < 16; x++) {
                 for (int y = 0; y < 11; y++) {
                     int tile = simpleMapArray[y, x];
+                    mapArray[x, y] = new Tile();
+                    mapArray[x, y].Placable = false;
+
+                    // Can we place something on the tile?
                     if (tile == 0) {
-                        mapArray[x, y] = new NonPathTile(x, y);
-                    } else if (tile == 1) {
-                        mapArray[x, y] = new PathTile(x, y, 1);
-                    } else if (tile == 2) {
-                        mapArray[x, y] = new PathTile(x, y, 2);
+                        mapArray[x, y].Placable = true;
                     }
                 }
             }

@@ -95,20 +95,23 @@ namespace TowerDefense.Graphics.Sfml
                             return;
                         }
 
-                        var pos = DataManager.Map.mapArray[x, y];
-                        var tile = pos as NonPathTile;
+                        foreach (var tower in DataManager.Map.Towers) {
+                            if (tower.X == x && tower.Y == y) {
+                                return;
+                            }
+                        }
 
-                        if (tile != null && tile.Tower == null) {
+                        if (DataManager.Map.mapArray[x, y].Placable) {
                             switch (this.HoverSurfaceName) {
                                 case "tower1":
                                     if (DataManager.Board.Money >= TeslaTower.TowerCost) {
-                                        tile.Tower = new TeslaTower();
+                                        DataManager.Map.Towers.Add(new TeslaTower(x, y));
                                         DataManager.Board.RemoveMoney(TeslaTower.TowerCost);
                                     }
                                     break;
                                 case "tower2":
                                     if (DataManager.Board.Money >= WaveTower.TowerCost) {
-                                        tile.Tower = new WaveTower();
+                                        DataManager.Map.Towers.Add(new WaveTower(x, y));
                                         DataManager.Board.RemoveMoney(WaveTower.TowerCost);
                                     }
                                     break;
@@ -284,24 +287,24 @@ namespace TowerDefense.Graphics.Sfml
                 for (int x = 0; x < 16; x++) {
                     for (int y = 0; y < 11; y++) {
                         var mapTile = map.mapArray[x, y];
-
-                        var pt = mapTile as PathTile;
-                        var npt = mapTile as NonPathTile;
-
-                        if (npt?.Tower != null) {
-                            var towerSurface = GetSurface(npt.Tower.Surface, SurfaceTypes.Tower);
-                            towerSurface.Position = new Vector2f(x * 60 - (towerSurface.Texture.Size.X - 60) / 2, y * 59 - (towerSurface.Texture.Size.Y - 59));
-                            DrawObject(towerSurface);
+                        
+                        // Render enemies
+                        foreach (var virus in map.Viruses) {
+                            if (virus.Position.X == x && virus.Position.Y == y) {
+                                var virusSurface = GetSurface(virus.Surface, SurfaceTypes.Virus);
+                                virusSurface.Scale = new Vector2f((float)60 / virusSurface.Texture.Size.X, (float)125 / virusSurface.Texture.Size.Y);
+                                virusSurface.Position = new Vector2f(virus.Position.X * 60 + virus.xOffset, (virus.Position.Y * 59) - 60 + virus.yOffset);
+                                DrawObject(virusSurface);
+                            }
                         }
 
-                        if (pt != null) {
-                            if (pt.viruses?.Count != 0) {
-                                foreach (var virus in pt.viruses) {
-                                    var virusSurface = GetSurface(virus.Surface, SurfaceTypes.Virus);
-                                    virusSurface.Scale = new Vector2f((float)60 / virusSurface.Texture.Size.X , (float)125 / virusSurface.Texture.Size.Y);
-                                    virusSurface.Position = new Vector2f(virus.Position.X * 60 + virus.xOffset, (virus.Position.Y * 59) - 60 + virus.yOffset);
-                                    DrawObject(virusSurface);
-                                }
+                        // Render towers
+                        foreach (var tower in map.Towers) {
+                            if (tower.X == x && tower.Y == y) {
+                                var towerSurface = GetSurface(tower.Surface, SurfaceTypes.Tower);
+                                towerSurface.Position = new Vector2f(x * 60 - (towerSurface.Texture.Size.X - 60) / 2, y * 59 - (towerSurface.Texture.Size.Y - 59));
+                                DrawObject(towerSurface);
+                                break;
                             }
                         }
                     }
@@ -328,12 +331,12 @@ namespace TowerDefense.Graphics.Sfml
                         int x = this.MouseX / 60;
                         int y = this.MouseY / 59;
 
-                        var mapTile = DataManager.Map.mapArray[x, y] as NonPathTile;
+                        var mapTile = DataManager.Map.mapArray[x, y];
 
-                        if (mapTile == null) {
-                            tile.Color = SFML.Graphics.Color.Red;
-                        } else {
+                        if (mapTile.Placable) {
                             tile.Color = SFML.Graphics.Color.Green;
+                        } else {
+                            tile.Color = SFML.Graphics.Color.Red;
                         }
 
                         hoverTowerSurface.Color = new Color(255, 255, 255, 200);
