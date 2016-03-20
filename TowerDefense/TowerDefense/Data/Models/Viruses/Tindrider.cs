@@ -10,7 +10,7 @@
             this.Health = 150;
             this.MaxHealth = 150;
             this.Level = 1;
-            this.Money = 40;
+            this.Money = 20;
             this.Score = 10;
             this.MovementSpeed = 1;
             this.Surface = "tindrider";

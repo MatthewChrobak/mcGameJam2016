@@ -11,7 +11,6 @@ namespace TowerDefense.Data.Models
 {
     public static class SpawnManager
     {
-
         // Spawns a wave of the given virus.
         public static void spawnWave(int waveSize, Virus virus)
         {
@@ -20,8 +19,9 @@ namespace TowerDefense.Data.Models
                 Object[,] map = DataManager.Map.mapArray;
                 List<Virus> viruses = DataManager.Map.Viruses;
                 virus.Position = DataManager.Map.SpawnLocation;
+                Random rnd = new Random();
                 // Viruses will spawn one second at a time
-                Timer spawnTimer = new Timer(5000);
+                Timer spawnTimer = new Timer(5000 + rnd.Next(500,3000));
                 spawnTimer.Start();
                 spawnTimer.Elapsed += (sender, args) =>
                 {
