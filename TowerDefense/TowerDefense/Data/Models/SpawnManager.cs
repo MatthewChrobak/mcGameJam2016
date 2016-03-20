@@ -47,9 +47,11 @@ namespace TowerDefense.Data.Models
                         if (increase) {
                             health = (int)(health * 1.1);
                             increase = false;
+                            
                         }
                        
                         t.Health = health;
+                        t.MaxHealth = health;
                         Console.WriteLine(health);
 
                         viruses.Add(t);
