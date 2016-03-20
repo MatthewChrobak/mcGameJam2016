@@ -40,7 +40,7 @@ namespace TowerDefense.Audio.Sfml
                 // Loop through every playing sound in the collection.
                 for (int i = _sounds.Count - 1; i >= 0; i--) {
                     // Is the playing sound marked to be disposed of?
-                    if (_sounds[i].Disposable()) {
+                    if (_sounds[i]?.Disposable() == true) {
                         // Dispose of the playing sound and remove it from the collection.
                         _sounds[i].Dispose();
                         _sounds.RemoveAt(i);

@@ -26,14 +26,10 @@ namespace TowerDefense
 
             // Initialize the audio system.
             AudioManager.Initialize();
-            //AudioManager.Player.PlayMusic("McGameJam.flac", true);
+            AudioManager.Player.PlayMusic("McGameJam.flac", true);
 
             // Initialize the game graphics.
             GraphicsManager.Initialize();
-
-            DelayInvoke(10000, () => {
-                System.Console.WriteLine("Hello world!");
-            });
 
             // Start the game-loop.
             Game.GameLoop();

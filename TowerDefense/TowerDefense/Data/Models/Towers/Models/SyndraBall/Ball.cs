@@ -66,6 +66,7 @@ namespace TowerDefense.Data.Models.Towers.Models.SyndraBall
                         if (Math.Abs(this.Y - vicY) < 15) {
                             Victim.takeDamage(50); //Syndra tower dmg
                             AddAnimation();
+                            Audio.AudioManager.Player.PlaySound("bubble.flac");
                             GotVictim = true;
                         }
                     }
