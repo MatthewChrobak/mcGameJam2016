@@ -79,7 +79,7 @@
     <Compile Include="Data\Models\SpawnManager.cs" />
     <Compile Include="Data\Models\Tile.cs" />
     <Compile Include="Data\Models\Towers\Models\TeslaTower.cs" />
-    <Compile Include="Data\Models\Towers\Models\WaveTower.cs" />
+    <Compile Include="Data\Models\Towers\Models\SyndraTower.cs" />
     <Compile Include="Data\Models\Towers\Tower.cs" />
     <Compile Include="Data\Models\Towers\TowerDamageType.cs" />
     <Compile Include="Data\Models\Towers\TowerType.cs" />

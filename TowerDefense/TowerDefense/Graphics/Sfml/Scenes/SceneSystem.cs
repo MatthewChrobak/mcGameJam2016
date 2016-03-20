@@ -413,15 +413,15 @@ namespace TowerDefense.Graphics.Sfml.Scenes
 
             var tower2 = new ShopItem() {
                 Name = "twr2",
-                ItemName = WaveTower.TowerName,
-                Description = WaveTower.TowerDescription,
-                Surface = GetSurface(WaveTower.ShopIcon),
-                HoverSurfaceName = WaveTower.SurfaceName,
+                ItemName = SyndraTower.TowerName,
+                Description = SyndraTower.TowerDescription,
+                Surface = GetSurface(SyndraTower.ShopIcon),
+                HoverSurfaceName = SyndraTower.SurfaceName,
                 Left = 1070,
                 Top = 150,
                 Width = 100,
                 Height = 100,
-                ItemCost = WaveTower.TowerCost
+                ItemCost = SyndraTower.TowerCost
             };
             scene.Add(tower2);
         }

@@ -110,9 +110,9 @@ namespace TowerDefense.Graphics.Sfml
                                     }
                                     break;
                                 case "tower2":
-                                    if (DataManager.Board.Money >= WaveTower.TowerCost) {
-                                        DataManager.Map.Towers.Add(new WaveTower(x, y));
-                                        DataManager.Board.RemoveMoney(WaveTower.TowerCost);
+                                    if (DataManager.Board.Money >= SyndraTower.TowerCost) {
+                                        DataManager.Map.Towers.Add(new SyndraTower(x, y));
+                                        DataManager.Board.RemoveMoney(SyndraTower.TowerCost);
                                     }
                                     break;
                             }
@@ -303,8 +303,10 @@ namespace TowerDefense.Graphics.Sfml
                             if (tower.X == x && tower.Y == y) {
                                 var towerSurface = GetSurface(tower.Surface, SurfaceTypes.Tower);
                                 sbyte step = tower.GetAnimation();
-                                towerSurface.TextureRect = new IntRect(step * 64, 0, 64, 82);
-                                towerSurface.Position = new Vector2f(x * 60, y * 59 - (towerSurface.Texture.Size.Y - 59));
+                                towerSurface.Scale = new Vector2f(0.5f, 0.5f);
+                                towerSurface.TextureRect = new IntRect(step * 128, 0, 128, 167);
+                                towerSurface.Position = new Vector2f(x * 60, y * 59 - (towerSurface.Texture.Size.Y / 2 - 59));
+                                towerSurface.Color = new Color(255, 255, 255, 255);
                                 DrawObject(towerSurface);
                                 break;
                             }
@@ -342,7 +344,8 @@ namespace TowerDefense.Graphics.Sfml
                         }
 
                         hoverTowerSurface.Color = new Color(255, 255, 255, 200);
-                        hoverTowerSurface.TextureRect = new IntRect(64, 0, 64, 82);
+                        hoverTowerSurface.Scale = new Vector2f(0.5f, 0.5f);
+                        hoverTowerSurface.TextureRect = new IntRect(128, 0, 128, 167);
                         hoverTowerSurface.Position = new Vector2f(this.MouseX - 32, this.MouseY - 41);
                         tile.Position = new Vector2f(x * 60, y * 59);
                         DrawObject(tile);

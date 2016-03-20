@@ -61,129 +61,52 @@ namespace TowerDefense.Data.Models.Maps
                         break;
                     }
                 }
-                
 
-<<<<<<< HEAD
-            // Have we killed all the mobs?
-            if (MobCount == 0) {
-                DataManager.Board.Wave += 1;
-                this.MobCount = DataManager.Board.Wave;
-            } else if (MobCount > 0) {
-                // Can we spawn a mob?
-                if (LastSpawn + SpawnRate < Environment.TickCount) {
+                //// Loop through all towers, and try to target enemy
+                //foreach (var tower in Towers) {
+                //    // Assign tower coordinates and refresh enemies in range list
+                //    pos.X = tower.X;
+                //    pos.Y = tower.Y;
+                //    EnemiesInRange.Clear();
 
-                    // Get the spawn location, and add a new virus to it.
-                    var spawn = mapArray[SpawnLocation.X, SpawnLocation.Y] as PathTile;
+                //    // Make sure range check does not exceed upper bound
+                //    if (pos.Y - tower.Range < 0)
+                //        yMin = 0;
+                //    else
+                //        yMin = pos.Y - tower.Range;
 
-                    if (spawn != null) {
-                        spawn.viruses.Add(new TestVirus(SpawnLocation.X, SpawnLocation.Y));
-                        MobCount = -1;
-                        LastSpawn = Environment.TickCount;
-                    }
-                }
-            } 
+                //    // Make sure range check does not exceed lower bound
+                //    if (pos.Y + tower.Range > WIDTH)
+                //        yMax = WIDTH;
+                //    else
+                //        yMax = pos.Y + tower.Range;
 
-            // Loop through all towers, and try to target enemy
-            foreach (var tower in Towers) {
-                // Assign tower coordinates and refresh enemies in range list
-                pos.X = tower.X;
-                pos.Y = tower.Y;
-                if(EnemiesInRange != null)
-                {
-                    EnemiesInRange.Clear();
-                }
-                
+                //    // Make sure range check does not exceed left bound
+                //    if (pos.X - tower.Range < 0)
+                //        xMin = 0;
+                //    else
+                //        xMin = pos.X - tower.Range;
 
-                // Make sure range check does not exceed upper bound
-                if (pos.Y - tower.Range < 0)
-                    yMin = 0;
-                else
-                    yMin = pos.Y - tower.Range;
-
-                // Make sure range check does not exceed lower bound
-                if (pos.Y + tower.Range > WIDTH)
-                    yMax = WIDTH;
-                else
-                    yMax = pos.Y + tower.Range;
-
-                // Make sure range check does not exceed left bound
-                if (pos.X - tower.Range < 0)
-                    xMin = 0;
-                else
-                    xMin = pos.X - tower.Range;
-
-                // Make sure range check does not exceed right bound
-                if (pos.X + tower.Range > HEIGHT)
-                    xMax = HEIGHT;
-                else
-                    xMax = pos.X + tower.Range;
+                //    // Make sure range check does not exceed right bound
+                //    if (pos.X + tower.Range > HEIGHT)
+                //        xMax = HEIGHT;
+                //    else
+                //        xMax = pos.X + tower.Range;
 
 
-                for (int y = yMin; y < yMax; y++)
-                {
-                    for (int x = xMin; x < xMax; x++)
-                    {
-                        if(mapArray[x,y].GetType() == typeof(PathTile))
-                        {
-                            PathTile tempPathTile = (PathTile)mapArray[x, y];
-                            EnemiesInRange.AddRange(tempPathTile.viruses);
+                //    for (int y = yMin; y < yMax; y++) {
+                //        for (int x = xMin; x < xMax; x++) {
+                //            if (mapArray[x, y].GetType() == typeof(PathTile)) {
+                //                PathTile tempPathTile = (PathTile)mapArray[x, y];
+                //                EnemiesInRange.AddRange(tempPathTile.viruses);
 
-                            // Determines highest priority and sets to fire
-                            tower.CurrentTarget = prioritizeVirus(EnemiesInRange);
-                            tower.shootAtTarget();
-                        }
-                    }
-                }
-=======
-                // They didn't get to the end.
-                virus?.Move((Directions)dirs.GetValue(virus.Step));
->>>>>>> origin/master
+                //                // Determines highest priority and sets to fire
+                //                tower.CurrentTarget = prioritizeVirus(EnemiesInRange);
+                //            }
+                //        }
+                //    }
+                //}
             }
-
-            //// Loop through all towers, and try to target enemy
-            //foreach (var tower in Towers) {
-            //    // Assign tower coordinates and refresh enemies in range list
-            //    pos.X = tower.X;
-            //    pos.Y = tower.Y;
-            //    EnemiesInRange.Clear();
-
-            //    // Make sure range check does not exceed upper bound
-            //    if (pos.Y - tower.Range < 0)
-            //        yMin = 0;
-            //    else
-            //        yMin = pos.Y - tower.Range;
-
-            //    // Make sure range check does not exceed lower bound
-            //    if (pos.Y + tower.Range > WIDTH)
-            //        yMax = WIDTH;
-            //    else
-            //        yMax = pos.Y + tower.Range;
-
-            //    // Make sure range check does not exceed left bound
-            //    if (pos.X - tower.Range < 0)
-            //        xMin = 0;
-            //    else
-            //        xMin = pos.X - tower.Range;
-
-            //    // Make sure range check does not exceed right bound
-            //    if (pos.X + tower.Range > HEIGHT)
-            //        xMax = HEIGHT;
-            //    else
-            //        xMax = pos.X + tower.Range;
-
-
-            //    for (int y = yMin; y < yMax; y++) {
-            //        for (int x = xMin; x < xMax; x++) {
-            //            if (mapArray[x, y].GetType() == typeof(PathTile)) {
-            //                PathTile tempPathTile = (PathTile)mapArray[x, y];
-            //                EnemiesInRange.AddRange(tempPathTile.viruses);
-
-            //                // Determines highest priority and sets to fire
-            //                tower.CurrentTarget = prioritizeVirus(EnemiesInRange);
-            //            }
-            //        }
-            //    }
-            //}
         }
 
         public virtual void PopulateMap() {

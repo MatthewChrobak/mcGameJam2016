@@ -2,7 +2,7 @@
 
 namespace TowerDefense.Data.Models.Towers.Models
 {
-    public class WaveTower : Tower
+    public class SyndraTower : Tower
     {
         public enum AnimationStates
         {
@@ -18,7 +18,7 @@ namespace TowerDefense.Data.Models.Towers.Models
         public const string ShopIcon = "icon2";
         public const string SurfaceName = "tower2";
 
-        public WaveTower() {
+        public SyndraTower() {
             this.Type = TowerType.WAVE;
             this.DamageDealt = 50;
             this.AttackSpeed = 1500;
@@ -33,7 +33,7 @@ namespace TowerDefense.Data.Models.Towers.Models
             this.AnimationStepTick = 350;
         }
 
-        public WaveTower(int x, int y) : this() {
+        public SyndraTower(int x, int y) : this() {
             this.X = x;
             this.Y = y;
         }
@@ -50,7 +50,8 @@ namespace TowerDefense.Data.Models.Towers.Models
                         AnimationState = 0;
                         break;
                     case 0:
-                        AnimationState = 1;
+                        AnimationState = 2;
+                        NextStep = 1;
                         break;
                     case 1:
                         NextStep = 1;
