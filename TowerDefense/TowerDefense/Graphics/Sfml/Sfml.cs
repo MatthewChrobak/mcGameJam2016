@@ -111,6 +111,8 @@ namespace TowerDefense.Graphics.Sfml
                                             }
                                             break;
                                     }
+
+                                    Audio.AudioManager.Player.PlaySound("placement.flac");
                                 }
                             }
                         }
