@@ -5,7 +5,7 @@ namespace TowerDefense.Data.Models.Towers.Models
 {
     public class TeslaTower : Tower
     {
-        public const int TowerCost = 50;
+        public const int TowerCost = 100;
         public const string TowerName = "Tesla Tower";
         public const string TowerDescription = "Fires a single shot in a single bound.";
         public const string ShopIcon = "icon1";

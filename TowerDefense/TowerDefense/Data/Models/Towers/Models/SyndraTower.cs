@@ -13,7 +13,7 @@ namespace TowerDefense.Data.Models.Towers.Models
             LookRight
         }
 
-        public const int TowerCost = 60;
+        public const int TowerCost = 120;
         public const string TowerName = "Syndra Tower";
         public const string TowerDescription = "Syndra is the current Jungle meta.";
         public const string ShopIcon = "icon2";
@@ -23,7 +23,7 @@ namespace TowerDefense.Data.Models.Towers.Models
             this.Type = TowerType.WAVE;
             this.DamageDealt = 50;
             this.AttackSpeed = 1500;
-            this.Range = 3;
+            this.Range = 2;
             this.DamageType = TowerDamageType.SPLASH;
             this.VirusType = Viruses.VirusType.TINRIDER;
             this.Level = 1;

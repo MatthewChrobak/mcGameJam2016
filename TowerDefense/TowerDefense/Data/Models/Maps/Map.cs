@@ -31,7 +31,7 @@ namespace TowerDefense.Data.Models.Maps
         public Directions[] dirs;
         public int MobCount;
         public int SpawnRate;
-        private int LastSpawn;
+
         //Tower Position
         Position pos = new Position();
 
@@ -84,7 +84,7 @@ namespace TowerDefense.Data.Models.Maps
                 Viruses.Remove(virus);
                 if (Viruses.Count <= 0) {
                     // TODO should determine virus type by wave number
-                    SpawnManager.spawnWave(3, new Tindrider());
+                    SpawnManager.spawnWave(25, new Tindrider());
                 }
             };
             // Spawn one wave on creation of the map

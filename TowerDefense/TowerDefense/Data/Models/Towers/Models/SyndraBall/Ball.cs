@@ -64,7 +64,7 @@ namespace TowerDefense.Data.Models.Towers.Models.SyndraBall
 
                     if (Math.Abs(this.X - vicX) < 15) {
                         if (Math.Abs(this.Y - vicY) < 15) {
-                            Victim.takeDamage(75);
+                            Victim.takeDamage(50); //Syndra tower dmg
                             AddAnimation();
                             GotVictim = true;
                         }
