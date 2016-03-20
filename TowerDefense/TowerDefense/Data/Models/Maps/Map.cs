@@ -67,10 +67,12 @@ namespace TowerDefense.Data.Models.Maps
                     if (virus.Step >= dirs.Length) {
                         OnVirusDeath(virus, true);
                         //break;
+                    } else {
+                        // TODO: virus.Step out of range exception
+                        virus.Move((Directions)dirs.GetValue(virus.Step));
                     }
                     
-                    // TODO: virus.Step out of range exception
-                    virus.Move((Directions)dirs.GetValue(virus.Step));
+                    
 
                     foreach (var tower in Towers) {
 

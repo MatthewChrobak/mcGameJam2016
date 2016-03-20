@@ -23,7 +23,7 @@ namespace TowerDefense.Data.Models.Towers.Models
             this.Type = TowerType.WAVE;
             this.DamageDealt = 50;
             this.AttackSpeed = 1500;
-            this.Range = 1;
+            this.Range = 3;
             this.DamageType = TowerDamageType.SPLASH;
             this.VirusType = Viruses.VirusType.TINRIDER;
             this.Level = 1;
@@ -79,15 +79,16 @@ namespace TowerDefense.Data.Models.Towers.Models
         private SyndraBall.Ball Ball;
         public override void CustomDraw() {
 
-            if (this.Ball == null) {
+            if (this.Ball == null || this.Ball.GotVictim) {
                 this.Ball = new SyndraBall.Ball(this.X, this.Y);
             }
+
             Ball.Update();
             Ball.Draw();
         }
 
         public override void AttackTarget(Virus victim) {
-            
+            Ball.FollowTarget(ref victim);
         }
     }
 }

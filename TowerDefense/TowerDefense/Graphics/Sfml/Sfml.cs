@@ -289,7 +289,8 @@ namespace TowerDefense.Graphics.Sfml
                         var mapTile = map.mapArray[x, y];
                         
                         // Render enemies
-                        foreach (var virus in map.Viruses) {
+                        for (int i = 0; i < map.Viruses.Count; i++) {
+                            var virus = map.Viruses[i];
                             if (virus.Position.X == x && virus.Position.Y == y) {
                                 var virusSurface = GetSurface(virus.Surface, SurfaceTypes.Virus);
                                 virusSurface.Scale = new Vector2f((float)60 / 256, (float)125 / virusSurface.Texture.Size.Y);
@@ -300,7 +301,8 @@ namespace TowerDefense.Graphics.Sfml
                         }
 
                         // Render towers
-                        foreach (var tower in map.Towers) {
+                        for (int i = 0; i < map.Towers.Count; i++) {
+                            var tower = map.Towers[i];
                             if (tower.X == x && tower.Y == y) {
                                 var towerSurface = GetSurface(tower.Surface, SurfaceTypes.Tower);
                                 sbyte step = tower.GetAnimation();
