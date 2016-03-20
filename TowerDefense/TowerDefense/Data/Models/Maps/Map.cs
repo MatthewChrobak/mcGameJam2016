@@ -88,18 +88,20 @@ namespace TowerDefense.Data.Models.Maps
                     Tindrider tind = new Tindrider();
                     if (score >= 500)
                     {
-                        tind.Health += 20;
+                        tind.Health += 50;
+                        tind.Money = 5;
+                        tind.Speed -= 100;
                     }
                     if(score >= 1000)
                     {
-                        tind.Speed += 100;
-                        tind.Money = 5;
+                        tind.Health = 300;
+                        
                     }
                     if(score >= 1200)
                     {
-                        tind.Health = 300;
+                        tind.Health = 400;
                     }
-                    SpawnManager.spawnWave(3, tind);
+                    SpawnManager.spawnWave(1000, tind);
                 }
             };
             // Spawn one wave on creation of the map

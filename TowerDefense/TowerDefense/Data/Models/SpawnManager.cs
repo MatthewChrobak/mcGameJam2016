@@ -31,6 +31,7 @@ namespace TowerDefense.Data.Models
                         t.Position = virus.Position;
                         t.Health = virus.Health;
                         t.Money = virus.Money;
+                        t.Speed = virus.Speed;
                         viruses.Add(t);
                         waveSize--;
                         if (waveSize <= 0)
