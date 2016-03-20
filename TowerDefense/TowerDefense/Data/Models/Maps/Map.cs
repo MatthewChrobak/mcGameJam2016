@@ -31,6 +31,7 @@ namespace TowerDefense.Data.Models.Maps
         public Directions[] dirs;
         public int MobCount;
         public int SpawnRate;
+        public int health;
 
         //Tower Position
         Position pos = new Position();
@@ -40,6 +41,7 @@ namespace TowerDefense.Data.Models.Maps
 
         public Map() {
             Home = new Home();
+            health = 150;
             // add handler for virus deaths
             virusDeath += (virus, isLifeLost) => {
                 if (isLifeLost == true) {
@@ -86,22 +88,31 @@ namespace TowerDefense.Data.Models.Maps
                     // TODO should determine virus type by wave number
                     int score = DataManager.Board.Score;
                     Tindrider tind = new Tindrider();
-                    if (score >= 500)
+
+                    //if (score >= 500)
                     {
-                        tind.Health += 50;
-                        tind.Money = 5;
-                        tind.Speed -= 100;
+                        //tind.Health = 200;
+                        //tind.Money = 5;
+                        //tind.Speed -= 100;
                     }
-                    if(score >= 1000)
+                   /* if(score >= 1000)
                     {
                         tind.Health = 300;
                         
                     }
-                    if(score >= 1200)
+                    if(score >= 1500)
                     {
                         tind.Health = 450;
                         tind.Speed -= 50;
                     }
+                    if (score >= 2000)
+                    {
+                        tind.Health = 600;
+                    }
+                    if (score >= 2000)
+                    {
+                        tind.Health = 750;
+                    }*/
                     SpawnManager.spawnWave(1000, tind);
                 }
             };
