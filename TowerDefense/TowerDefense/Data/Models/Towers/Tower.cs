@@ -19,6 +19,7 @@ namespace TowerDefense.Data.Models.Towers
         public Virus CurrentTarget { get; set; }
         public Map map;
         public string Surface { get; set; }
+        public int lastAttack;
 
         protected sbyte AnimationState;
         protected int LastAnimation;

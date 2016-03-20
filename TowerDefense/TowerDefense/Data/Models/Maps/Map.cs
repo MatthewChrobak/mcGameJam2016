@@ -29,7 +29,6 @@ namespace TowerDefense.Data.Models.Maps
         public int MobCount;
         public int SpawnRate;
         private int LastSpawn;
-
         //Tower Position
         Position pos = new Position();
 
@@ -70,23 +69,33 @@ namespace TowerDefense.Data.Models.Maps
                     }
                     
                     // TODO: virus.Step out of range exception
-                    virus.Move((Directions)dirs.GetValue(virus.Step));
+                    else virus.Move((Directions)dirs.GetValue(virus.Step));
 
                     foreach (var tower in Towers) {
 
 
                         // Check for attack speed or something. Connor seems to know.
+                        if (tower.lastAttack + tower.AttackSpeed < Environment.TickCount)
+                        {
+                            if (Math.Abs(virus.Position.X - tower.X) <= tower.Range)
+                            {
+                                if (Math.Abs(virus.Position.Y - tower.Y) <= tower.Range)
+                                {
 
-                        if (Math.Abs(virus.Position.X - tower.X) <= tower.Range) {
-                            if (Math.Abs(virus.Position.Y - tower.Y) <= tower.Range) {
+                                    // Attack the virus
+                                    Console.WriteLine("Commence attack operationss!!!");
+                                    tower.AttackTarget(virus);
 
-                                // Attack the virus
-                                tower.AttackTarget(virus);
-                                
-
-                                // Update whatever we check above.
+                                    // Update whatever we check above.
+                                    tower.lastAttack = Environment.TickCount;
+                                }
                             }
                         }
+                        /*else
+                        {
+                            tower.lastAttack = ;
+                        }*/
+                        
                     }
                 }
             }
