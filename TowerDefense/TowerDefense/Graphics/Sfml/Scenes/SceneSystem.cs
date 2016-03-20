@@ -366,12 +366,22 @@ namespace TowerDefense.Graphics.Sfml.Scenes
             };
             scene.Add(imgStoreBackground);
 
+            var health = new Label() {
+                Name = "lblHealth",
+                FontSize = 24,
+                Width = 200,
+                Left = 970,
+                Top = 20,
+                TextColor = SFML.Graphics.Color.White
+            };
+            scene.Add(health);
+
             var score = new Label() {
                 Name = "lblScore",
                 FontSize = 24,
                 Width = 200,
                 Left = 970,
-                Top = 30,
+                Top = 50,
                 TextColor = SFML.Graphics.Color.White
             };
             scene.Add(score);
@@ -381,7 +391,7 @@ namespace TowerDefense.Graphics.Sfml.Scenes
                 FontSize = 24,
                 Width = 200,
                 Left = 970,
-                Top = 60,
+                Top = 80,
                 TextColor = SFML.Graphics.Color.White
             };
             scene.Add(money);
@@ -391,7 +401,7 @@ namespace TowerDefense.Graphics.Sfml.Scenes
                 FontSize = 24,
                 Width = 200,
                 Left = 970,
-                Top = 90,
+                Top = 110,
                 TextColor = SFML.Graphics.Color.White
             };
             scene.Add(lblWave);
@@ -432,6 +442,7 @@ namespace TowerDefense.Graphics.Sfml.Scenes
             UpdateScore();
             UpdateMoney();
             UpdateWave();
+            UpdateHealth();
         }
 
         private void UpdateScore() {
@@ -458,6 +469,15 @@ namespace TowerDefense.Graphics.Sfml.Scenes
             if (label != null) {
                 int wave = Data.DataManager.Board.Wave;
                 ((Label)label).Caption = "Wave: " + wave;
+            }
+        }
+
+        private void UpdateHealth() {
+            // Update the UI lable if it's not null.
+            var label = GetUIObject("lblHealth");
+            if (label != null) {
+                int health = Data.DataManager.Map.Home.Health;
+                ((Label)label).Caption = "Health: " + health;
             }
         }
     }

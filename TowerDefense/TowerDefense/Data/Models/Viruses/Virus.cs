@@ -33,6 +33,8 @@ namespace TowerDefense.Data.Models.Viruses
 
         public void Move(Directions dir) {
 
+            this.Direction = dir;
+
             // Check to see if we can move again.
             if (LastMove + Speed < Environment.TickCount) {
 
@@ -54,8 +56,6 @@ namespace TowerDefense.Data.Models.Viruses
                         this.Position = new Position(this.Position.X - 1, this.Position.Y);
                         break;
                 }
-
-                this.Direction = dir;
 
 
                 this.Step++;
