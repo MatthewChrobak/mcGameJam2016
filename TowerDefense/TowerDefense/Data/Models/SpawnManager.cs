@@ -11,7 +11,8 @@ namespace TowerDefense.Data.Models
 {
     public static class SpawnManager
     {
-        public static int health = 150;
+        public static int health = 135;
+        public static bool increase = false;
 
         // Spawns a wave of the given virus.
         public static void spawnWave(int waveSize, Virus virus)
@@ -37,13 +38,17 @@ namespace TowerDefense.Data.Models
 
 
                         int score = DataManager.Board.Score;
-                        int r = score % 500;
 
-                        if (r == 0)
-                        {
-                            health = (int)(health * 1.1);
-                            
+                        if (score % 500 == 0)
+                        { 
+                            increase = true;
                         }
+
+                        if (increase) {
+                            health = (int)(health * 1.1);
+                            increase = false;
+                        }
+                       
                         t.Health = health;
                         Console.WriteLine(health);
 

@@ -7,10 +7,10 @@
             this.Name = "TinRider";
             this.Speed = 200;
             this.Type = VirusType.TINRIDER;
-            this.Health = 150;
+            this.Health = 135;
             this.MaxHealth = 150;
             this.Level = 1;
-            this.Money = 20;
+            this.Money = 10;
             this.Score = 20;
             this.MovementSpeed = 1;
             this.Surface = "tindrider";
