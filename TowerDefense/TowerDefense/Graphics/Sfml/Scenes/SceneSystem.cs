@@ -488,6 +488,19 @@ namespace TowerDefense.Graphics.Sfml.Scenes
             };
             scene.Add(yourScore);
 
+            var highScore = new Label()
+            {
+                Name = "lblHighScore",
+                Width = 1260,
+                Height = 50,
+                Caption = "Highscore ",
+                FontSize = 24,
+                TextColor = SFML.Graphics.Color.White,
+                Top = 300,
+                Left = 0
+            };
+            scene.Add(highScore);
+
             var cmdBack = new Button() {
                 Name = "cmdBack",
                 Width = 200,
@@ -523,6 +536,18 @@ namespace TowerDefense.Graphics.Sfml.Scenes
             if (label != null) {
                 int score = Data.DataManager.Board.Score;
                 ((Label)label).Caption = "Your score was " + score;
+            }
+
+            label = GetUIObject("lblHighScore");
+            if (label != null)
+            {
+                int score;
+                //Read the score in the file, even if it was just created.
+                using (TextReader reader = File.OpenText("highScore.txt"))
+                {
+                   score = int.Parse(reader.ReadLine());
+                }
+                ((Label)label).Caption = "Highscore " + score;
             }
         }
 
