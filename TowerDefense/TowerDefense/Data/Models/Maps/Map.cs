@@ -84,7 +84,22 @@ namespace TowerDefense.Data.Models.Maps
                 Viruses.Remove(virus);
                 if (Viruses.Count <= 0) {
                     // TODO should determine virus type by wave number
-                    SpawnManager.spawnWave(25, new Tindrider());
+                    int score = DataManager.Board.Score;
+                    Tindrider tind = new Tindrider();
+                    if (score >= 500)
+                    {
+                        tind.Health += 20;
+                    }
+                    if(score >= 1000)
+                    {
+                        tind.Speed += 100;
+                        tind.Money = 5;
+                    }
+                    if(score >= 1200)
+                    {
+                        tind.Health = 300;
+                    }
+                    SpawnManager.spawnWave(3, tind);
                 }
             };
             // Spawn one wave on creation of the map
@@ -116,7 +131,6 @@ namespace TowerDefense.Data.Models.Maps
                                 {
 
                                     // Attack the virus
-                                    Console.WriteLine("Commence attack operationss!!!");
                                     tower.AttackTarget(virus);
 
                                     // Update whatever we check above.

@@ -14,7 +14,7 @@ namespace TowerDefense.Data.Models.Towers.Models
         public TeslaTower()
         {
             this.Type = TowerType.TESLA;
-            this.DamageDealt = 75;
+            this.DamageDealt = 100;
             this.AttackSpeed = 1500;
             this.Range = 1;
             this.DamageType = TowerDamageType.SINGLE;

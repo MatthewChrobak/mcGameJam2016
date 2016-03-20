@@ -25,11 +25,22 @@ namespace TowerDefense.Data.Models
                 spawnTimer.Start();
                 spawnTimer.Elapsed += (sender, args) =>
                 {
-                    viruses.Add(new Tindrider(virus.Position.X, virus.Position.Y));
-                    waveSize--;
-                    if (waveSize <= 0)
+                    try
                     {
-                        spawnTimer.Stop();
+                        Tindrider t = new Tindrider();
+                        t.Position = virus.Position;
+                        t.Health = virus.Health;
+                        t.Money = virus.Money;
+                        viruses.Add(t);
+                        waveSize--;
+                        if (waveSize <= 0)
+                        {
+                            spawnTimer.Stop();
+                        }
+                    }
+                    catch(IndexOutOfRangeException e)
+                    {
+
                     }
                 };    
             });
