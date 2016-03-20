@@ -21,7 +21,7 @@ namespace TowerDefense.Data.Models
                 virus.Position = DataManager.Map.SpawnLocation;
                 Random rnd = new Random();
                 // Viruses will spawn one second at a time
-                Timer spawnTimer = new Timer(5000 + rnd.Next(500,3000));
+                Timer spawnTimer = new Timer(2000 + rnd.Next(500,3000));
                 spawnTimer.Start();
                 spawnTimer.Elapsed += (sender, args) =>
                 {
