@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using TowerDefense.Data.Models.Towers;
 using TowerDefense.Data.Models.Viruses;
 using TowerDefense.Graphics;
@@ -43,6 +44,35 @@ namespace TowerDefense.Data.Models.Maps
             virusDeath += (virus, isLifeLost) => {
                 if (isLifeLost == true) {
                     if (Home.takeDamage()) {
+
+                        int highestScore;
+
+                        //Check if the file exists.
+                        if (!File.Exists("highScore.txt"))
+                        {
+                            //Create the file if it doesn't exist and save 0 as the high score.
+                            using (StreamWriter sr = new StreamWriter("highScore.txt"))
+                            {
+                                sr.WriteLine("0");
+                            }
+                        }
+
+                        //Read the score in the file, even if it was just created.
+                        using (TextReader reader = File.OpenText("highScore.txt"))
+                        {
+                            highestScore = int.Parse(reader.ReadLine());
+                        }
+
+                        //Check if the user's final score is greater than the highscore saved in the file.
+                        if (DataManager.Board.Score > highestScore)
+                        {
+                            //Update the score in the file if the user's final score is higher.
+                            using (StreamWriter sr = new StreamWriter("highScore.txt"))
+                            {
+                                sr.WriteLine(DataManager.Board.Score + "");
+                            }
+                        }
+
                         Game.SetGameState(GameState.GameOver);
                     }
                 }
