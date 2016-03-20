@@ -99,7 +99,8 @@ namespace TowerDefense.Data.Models.Maps
                     }
                     if(score >= 1200)
                     {
-                        tind.Health = 400;
+                        tind.Health = 450;
+                        tind.Speed -= 50;
                     }
                     SpawnManager.spawnWave(1000, tind);
                 }
