@@ -1,4 +1,5 @@
 ﻿using System;
+using TowerDefense.Data.Models.Viruses;
 
 namespace TowerDefense.Data.Models.Towers.Models
 {
@@ -71,6 +72,10 @@ namespace TowerDefense.Data.Models.Towers.Models
 
 
             return this.AnimationState;
+        }
+
+        public override void AttackTarget(Virus victim) {
+            
         }
     }
 }
