@@ -1,6 +1,10 @@
 ﻿using TowerDefense.Data.Models.Maps;
+<<<<<<< HEAD
 using System.Collections.Generic;
 using TowerDefense.Data.Models.Maps;
+=======
+﻿using System.Collections.Generic;
+>>>>>>> origin/master
 using TowerDefense.Data.Models.Viruses;
 using System;
 

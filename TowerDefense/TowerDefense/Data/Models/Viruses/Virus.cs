@@ -34,6 +34,10 @@ namespace TowerDefense.Data.Models.Viruses
 
             // Check to see if we can move again.
             if (LastMove + Speed < Environment.TickCount) {
+
+                this.xOffset = 0;
+                this.yOffset = 0;
+
                 switch (dir)
                 {
                     case Directions.UP:
@@ -55,9 +59,40 @@ namespace TowerDefense.Data.Models.Viruses
 
                 // Set the current tickcount as our last move time.
                 LastMove = Environment.TickCount;
+
+                // Check if the virus is standing on a teleporter. Hardcoded for now
+                if(Step == 28)
+                {
+                    this.Position = new Position(1, 1);
+                }
+                if(Step == 40)
+                {
+                    this.Position = new Position(9, 1);
+                }
+                
             } else {
                 int timeSince = Environment.TickCount - LastMove;
+                int x = (int)(((float)timeSince / Speed) * 60);
+                int y = (int)(((float)timeSince / Speed) * 59);
 
+                switch (dir) {
+                    case Directions.UP:
+                        this.yOffset = -y;
+                        this.xOffset = 0;
+                        break;
+                    case Directions.DOWN:
+                        this.yOffset = y;
+                        this.xOffset = 0;
+                        break;
+                    case Directions.LEFT:
+                        this.xOffset = -x;
+                        this.yOffset = 0;
+                        break;
+                    case Directions.RIGHT:
+                        this.xOffset = x;
+                        this.yOffset = 0;
+                        break;
+                }
             }
         }
     }
