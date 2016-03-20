@@ -4,6 +4,14 @@ namespace TowerDefense.Data.Models.Towers.Models
 {
     public class WaveTower : Tower
     {
+        public enum AnimationStates
+        {
+            Falling,
+            Normal,
+            LookLeft,
+            LookRight
+        }
+
         public const int TowerCost = 60;
         public const string TowerName = "Syndra Tower";
         public const string TowerDescription = "Syndra is the current Jungle meta.";
@@ -20,6 +28,9 @@ namespace TowerDefense.Data.Models.Towers.Models
             this.Level = 1;
             this.UpgradeCost = 95;
             this.Surface = SurfaceName;
+
+            this.AnimationState = -1;
+            this.AnimationStepTick = 350;
         }
 
         public WaveTower(int x, int y) : this() {
@@ -29,6 +40,37 @@ namespace TowerDefense.Data.Models.Towers.Models
 
         public override void upgrade() {
             
+        }
+
+        public override sbyte GetAnimation() {
+
+            if (LastAnimation + AnimationStepTick < Environment.TickCount) {
+                switch (AnimationState) {
+                    case -1:
+                        AnimationState = 0;
+                        break;
+                    case 0:
+                        AnimationState = 1;
+                        break;
+                    case 1:
+                        NextStep = 1;
+                        AnimationState += NextStep;
+                        break;
+                    case 2:
+                        AnimationState += NextStep;
+                        break;
+                    case 3:
+                        NextStep = -1;
+                        AnimationState += NextStep;
+                        break;
+                }
+
+                LastAnimation = Environment.TickCount;
+            }
+
+            
+
+            return this.AnimationState;
         }
     }
 }

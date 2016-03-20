@@ -1,4 +1,6 @@
-﻿namespace TowerDefense.Data.Models.Towers.Models
+﻿using System;
+
+namespace TowerDefense.Data.Models.Towers.Models
 {
     public class TeslaTower : Tower
     {
@@ -19,6 +21,9 @@
             this.Level = 1;
             this.UpgradeCost = 75;
             this.Surface = SurfaceName;
+
+            this.AnimationStepTick = 450;
+            this.AnimationState = -1;
         }
 
         public TeslaTower(int x, int y) : this() {
@@ -31,6 +36,37 @@
             this.DamageDealt += 5;
             this.Level++;
             this.UpgradeCost += 75;
+        }
+
+        public override sbyte GetAnimation() {
+
+            if (LastAnimation + AnimationStepTick < Environment.TickCount) {
+                switch (AnimationState) {
+                    case -1:
+                        AnimationState = 1;
+                        break;
+                    case 0:
+                        AnimationState = 1;
+                        break;
+                    case 1:
+                        NextStep = 1;
+                        AnimationState += NextStep;
+                        break;
+                    case 2:
+                        AnimationState += NextStep;
+                        break;
+                    case 3:
+                        NextStep = -1;
+                        AnimationState += NextStep;
+                        break;
+                }
+
+                LastAnimation = Environment.TickCount;
+            }
+
+
+
+            return this.AnimationState;
         }
     }
 }

@@ -302,7 +302,9 @@ namespace TowerDefense.Graphics.Sfml
                         foreach (var tower in map.Towers) {
                             if (tower.X == x && tower.Y == y) {
                                 var towerSurface = GetSurface(tower.Surface, SurfaceTypes.Tower);
-                                towerSurface.Position = new Vector2f(x * 60 - (towerSurface.Texture.Size.X - 60) / 2, y * 59 - (towerSurface.Texture.Size.Y - 59));
+                                sbyte step = tower.GetAnimation();
+                                towerSurface.TextureRect = new IntRect(step * 64, 0, 64, 82);
+                                towerSurface.Position = new Vector2f(x * 60, y * 59 - (towerSurface.Texture.Size.Y - 59));
                                 DrawObject(towerSurface);
                                 break;
                             }
@@ -340,6 +342,7 @@ namespace TowerDefense.Graphics.Sfml
                         }
 
                         hoverTowerSurface.Color = new Color(255, 255, 255, 200);
+                        hoverTowerSurface.TextureRect = new IntRect(64, 0, 64, 82);
                         hoverTowerSurface.Position = new Vector2f(this.MouseX - 32, this.MouseY - 41);
                         tile.Position = new Vector2f(x * 60, y * 59);
                         DrawObject(tile);
