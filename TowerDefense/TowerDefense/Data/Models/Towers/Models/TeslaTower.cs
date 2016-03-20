@@ -11,9 +11,9 @@
         public TeslaTower()
         {
             this.Type = TowerType.TESLA;
-            this.DamageDealt = 5;
+            this.DamageDealt = 75;
             this.AttackSpeed = 1000;
-            this.Range = 10;
+            this.Range = 1;
             this.DamageType = TowerDamageType.SINGLE;
             this.VirusType = Viruses.VirusType.TINRIDER;
             this.Level = 1;

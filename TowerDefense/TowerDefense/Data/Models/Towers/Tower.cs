@@ -1,7 +1,8 @@
 ﻿using TowerDefense.Data.Models.Maps;
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using TowerDefense.Data.Models.Maps;
 using TowerDefense.Data.Models.Viruses;
+using System;
 
 namespace TowerDefense.Data.Models.Towers
 {
@@ -36,14 +37,16 @@ namespace TowerDefense.Data.Models.Towers
             }
             if(CurrentTarget != null)
             {
-               
+                Console.WriteLine(CurrentTarget.Name);
+
+                //Check if enemy killed
+                if (CurrentTarget.Health <= 0)
+                {
+                    map.OnVirusDeath(CurrentTarget);
+                }
             }
 
-            // TODO replace this virus with the one found by targeting.
-            //Virus replacableVirus = new TestVirus();
-            //if (replacableVirus.Health <= 0) {
-                //map.OnVirusDeath(replacableVirus);
-            //}
+            
             return;
 
         }

@@ -12,9 +12,9 @@ namespace TowerDefense.Data.Models.Towers.Models
 
         public WaveTower() {
             this.Type = TowerType.WAVE;
-            this.DamageDealt = 5;
+            this.DamageDealt = 50;
             this.AttackSpeed = 1500;
-            this.Range = 8;
+            this.Range = 1;
             this.DamageType = TowerDamageType.SPLASH;
             this.VirusType = Viruses.VirusType.TINRIDER;
             this.Level = 1;
