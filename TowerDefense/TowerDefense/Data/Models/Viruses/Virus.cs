@@ -16,6 +16,9 @@ namespace TowerDefense.Data.Models.Viruses
         public int Step { get; private set; }
         public string Surface { get; set; }
         public Directions Direction = Directions.DOWN;
+        public byte AnimStep;
+
+        private int LastAnimStep;
 
         public int xOffset { get; private set; }
         public int yOffset { get; private set; }
@@ -47,6 +50,20 @@ namespace TowerDefense.Data.Models.Viruses
 
             this.Direction = dir;
 
+            int AnimStepTick = this.Speed / 4;
+
+            if (AnimStepTick < 100) {
+                AnimStepTick = 100;
+            }
+
+            if (LastAnimStep + AnimStepTick < Environment.TickCount) {
+                this.AnimStep += 1;
+                this.AnimStep %= 4;
+
+                LastAnimStep = Environment.TickCount + AnimStepTick;
+            }
+            
+
             // Check to see if we can move again.
             if (LastMove + Speed < Environment.TickCount) {
 
@@ -69,7 +86,6 @@ namespace TowerDefense.Data.Models.Viruses
                         break;
                 }
 
-
                 this.Step++;
 
                 // Set the current tickcount as our last move time.
@@ -81,27 +97,46 @@ namespace TowerDefense.Data.Models.Viruses
                     DataManager.Map.MapAnimations.Add(new Anim.Animation() {
                         FrameHeight = 59,
                         FrameWidth = 60,
-                        MaxState = 17,
+                        MaxState = 8,
                         Position = new Position(Position.X * 60, Position.Y * 59),
-                        Surface = "teleport",
-                        UpdateTick = 16,
+                        Surface = "teleOut",
+                        UpdateTick = 32,
                         Overlay = false
                     });
                     this.Position = new Position(1, 1);
+                    DataManager.Map.MapAnimations.Add(new Anim.Animation() {
+                        FrameHeight = 59,
+                        FrameWidth = 60,
+                        MaxState = 8,
+                        Position = new Position(Position.X * 60, Position.Y * 59),
+                        Surface = "teleIn",
+                        UpdateTick = 32,
+                        Overlay = false
+                    });
                 }
                 if(Step == 40)
                 {
                     DataManager.Map.MapAnimations.Add(new Anim.Animation() {
                         FrameHeight = 59,
                         FrameWidth = 60,
-                        MaxState = 17,
+                        MaxState = 8,
                         Position = new Position((Position.X + 1) * 60, (Position.Y + 1) * 59),
-                        Surface = "teleport",
-                        UpdateTick = 16,
+                        Surface = "teleOut",
+                        UpdateTick = 32,
                         Rotation = 180f,
                         Overlay = false
                     });
                     this.Position = new Position(9, 1);
+                    DataManager.Map.MapAnimations.Add(new Anim.Animation() {
+                        FrameHeight = 59,
+                        FrameWidth = 60,
+                        MaxState = 8,
+                        Position = new Position((Position.X) * 60, (Position.Y + 1) * 59),
+                        Surface = "teleIn",
+                        UpdateTick = 32,
+                        Rotation = 270f,
+                        Overlay = false
+                    });
                 }
                 
             } else {
@@ -128,6 +163,10 @@ namespace TowerDefense.Data.Models.Viruses
                         break;
                 }
             }
+        }
+
+        public virtual int GetXOffset() {
+            return 0;
         }
     }
 }

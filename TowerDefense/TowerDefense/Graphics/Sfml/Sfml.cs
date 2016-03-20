@@ -296,8 +296,8 @@ namespace TowerDefense.Graphics.Sfml
                             var virus = map.Viruses[i];
                             if (virus?.Position.X == x && virus?.Position.Y == y) {
                                 var virusSurface = GetSurface(virus.Surface, SurfaceTypes.Virus);
-                                virusSurface.Scale = new Vector2f((float)60 / 256, (float)125 / virusSurface.Texture.Size.Y);
-                                virusSurface.TextureRect = new IntRect((int)virus.Direction * 256, 0, 256, 512);
+                                virusSurface.TextureRect = new IntRect(virus.GetXOffset(), 0, 128, 256);
+                                virusSurface.Scale = new Vector2f((float)60 / 128, (float)125 / virusSurface.Texture.Size.Y);
                                 virusSurface.Position = new Vector2f(virus.Position.X * 60 + virus.xOffset, (virus.Position.Y * 59) - 60 + virus.yOffset);
                                 DrawObject(virusSurface);
 
