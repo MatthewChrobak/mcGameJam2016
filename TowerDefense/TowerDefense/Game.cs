@@ -73,6 +73,11 @@ namespace TowerDefense
                 case GameState.Game:
                     Game.State = state;
                     break;
+                case GameState.GameOver:
+                    if (Game.State == GameState.Game) {
+                        Game.State = state;
+                    }
+                    break;
                 default:
                     return;
             }

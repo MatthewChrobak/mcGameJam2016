@@ -258,6 +258,7 @@ namespace TowerDefense.Graphics.Sfml.Scenes
             LoadMainMenuUI();
             LoadStageSelectUI();
             LoadGameUI();
+            LoadGameOverUI();
         }
 
         private void LoadMainMenuUI() {
@@ -434,6 +435,71 @@ namespace TowerDefense.Graphics.Sfml.Scenes
                 ItemCost = SyndraTower.TowerCost
             };
             scene.Add(tower2);
+
+            var temp = new Button() {
+                Name = "cmdTemp",
+                Caption = "Load Game Over",
+                Left = 0,
+                Top = 0,
+                Width = 100,
+                Height = 50,
+                Surface = GetSurface("button")
+            };
+            temp.OnMouseDown += (x, y) => {
+                Game.SetGameState(GameState.GameOver);
+            };
+            scene.Add(temp);
+        }
+
+        private void LoadGameOverUI() {
+            _UIObject[(int)GameState.GameOver] = new List<SceneObject>();
+            var scene = _UIObject[(int)GameState.GameOver];
+
+            // The main menu background.
+            var background = new Image() {
+                Name = "imgBackground",
+                Width = 1260,
+                Height = 649,
+                Surface = GetSurface("background")
+            };
+            scene.Add(background);
+
+            var gameOver = new Label() {
+                Name = "lblGameOver",
+                Width = 1260,
+                Height = 50,
+                Caption = "Game Over!",
+                FontSize = 82,
+                TextColor = SFML.Graphics.Color.White,
+                Top = 200,
+                Left = 0
+            };
+            scene.Add(gameOver);
+
+            var yourScore = new Label() {
+                Name = "lblYourScore",
+                Width = 1260,
+                Height = 50,
+                Caption = "Your score was ",
+                FontSize = 24,
+                TextColor = SFML.Graphics.Color.White,
+                Top = 275,
+                Left = 0
+            };
+            scene.Add(yourScore);
+
+            var cmdBack = new Button() {
+                Name = "cmdBack",
+                Width = 200,
+                Height = 50,
+                Caption = "Main Menu",
+                TextColor = SFML.Graphics.Color.White,
+                Top = 500,
+                Left = 1260 / 2 - 100,
+                Surface = GetSurface("button")
+            };
+            cmdBack.OnMouseDown += cmdBack.cmdBackButton_MouseDown;
+            scene.Add(cmdBack);
         }
 
 
@@ -451,6 +517,12 @@ namespace TowerDefense.Graphics.Sfml.Scenes
             if (label != null) {
                 int score = Data.DataManager.Board.Score;
                 ((Label)label).Caption = "Score: " + score;
+            }
+
+            label = GetUIObject("lblYourScore");
+            if (label != null) {
+                int score = Data.DataManager.Board.Score;
+                ((Label)label).Caption = "Your score was " + score;
             }
         }
 

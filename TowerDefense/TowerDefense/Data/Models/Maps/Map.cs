@@ -43,7 +43,7 @@ namespace TowerDefense.Data.Models.Maps
             virusDeath += (virus, isLifeLost) => {
                 if (isLifeLost == true) {
                     if (Home.takeDamage()) {
-                        Console.WriteLine("GAME OVER!!!!!!");
+                        Game.SetGameState(GameState.GameOver);
                     }
                 }
                 else

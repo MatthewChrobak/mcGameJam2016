@@ -5,6 +5,7 @@
         MainMenu,
         StageSelect,
         Game,
+        GameOver,
         Length
     }
 }
