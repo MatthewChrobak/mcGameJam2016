@@ -8,6 +8,8 @@ namespace TowerDefense.Data.Models.Maps
 {
     public class Map
     {
+        public delegate void virusDeathDel(Virus virus);
+        public event virusDeathDel virusDeath;
         public Tile[,] mapArray = new Tile[16, 11];
         // Map constants
         public const int TILE_WIDTH = 64;
@@ -41,10 +43,24 @@ namespace TowerDefense.Data.Models.Maps
         public Map()
         {
             path = new PathFinding();
+            dirs = path.getPath(1);
             Towers = new List<Tower>();
             Viruses = new List<Virus>();
-            EnemiesInRange = new List<Virus>();
             pos = new Position();
+            PopulateMap();
+            this.SpawnLocation = new Position(0, 4);
+            // add handler for virus deaths
+            virusDeath += (virus) =>
+            {
+                if (Viruses.Count <= 0)
+                {
+                    Viruses.Remove(virus);
+                    // TODO should determine virus type by wave number
+                    SpawnManager.spawnWave(10, new TinRider());
+                }
+            };
+            // Spawn one wave on creation of the map
+            SpawnManager.spawnWave(10, new TinRider());
         }
 
         public void UpdateLogic()
@@ -141,6 +157,13 @@ namespace TowerDefense.Data.Models.Maps
             List<Virus> sortedList = unsortedList.OrderBy(v => v.Step).ToList();
 
             return sortedList.LastOrDefault();
+        }
+
+        // Remove the virus from the list and spawn a new wave if none are left.
+        public void OnVirusDeath(Virus virus)
+        {
+            if (virusDeath != null)
+                virusDeath(virus);
         }
     }
 }

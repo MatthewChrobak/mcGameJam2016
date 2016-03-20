@@ -15,19 +15,24 @@ namespace TowerDefense.Data.Models
         public static void spawnWave(int waveSize, Virus virus)
         {
             
-            Object[,] map = DataManager.Map.mapArray;
-            List<Virus> viruses = DataManager.Map.Viruses;
-            Timer spawnTimer= new Timer(1000);
-            spawnTimer.Elapsed += (sender, args) =>
-            {
-                viruses.Add(virus);
-                waveSize--;
-                if(waveSize <= 0)
+            // Always Delay the spawn by 10 seconds
+            Game.DelayInvoke(10000, () => {
+                Object[,] map = DataManager.Map.mapArray;
+                List<Virus> viruses = DataManager.Map.Viruses;
+                // Viruses will spawn one second at a time
+                Timer spawnTimer = new Timer(1000);
+                spawnTimer.Elapsed += (sender, args) =>
                 {
-                    spawnTimer.Stop();
-                }
-            };
-            spawnTimer.Start();
+                    viruses.Add(virus);
+                    waveSize--;
+                    if (waveSize <= 0)
+                    {
+                        spawnTimer.Stop();
+                    }
+                };
+                spawnTimer.Start();
+            });
+            
         }
 
 

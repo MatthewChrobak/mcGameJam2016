@@ -2,7 +2,6 @@
 {
     public enum VirusType
     {
-        GROUND,
-        FLYING
+        TINRIDER
     }
 }

@@ -16,7 +16,7 @@ namespace TowerDefense.Data.Models.Towers.Models
             this.AttackSpeed = 1500;
             this.Range = 8;
             this.DamageType = TowerDamageType.SPLASH;
-            this.VirusType = Viruses.VirusType.GROUND;
+            this.VirusType = Viruses.VirusType.TINRIDER;
             this.Level = 1;
             this.UpgradeCost = 95;
             this.Surface = SurfaceName;

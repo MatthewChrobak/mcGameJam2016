@@ -87,6 +87,7 @@
     <Compile Include="Data\Models\Towers\TowerType.cs" />
     <Compile Include="Data\Models\Viruses\PathFinding.cs" />
     <Compile Include="Data\Models\Viruses\TestVirus.cs" />
+    <Compile Include="Data\Models\Viruses\Tinrider.cs" />
     <Compile Include="Data\Models\Viruses\Virus.cs" />
     <Compile Include="Data\Models\Viruses\VirusMotionType.cs" />
     <Compile Include="Data\Models\Viruses\VirusType.cs" />

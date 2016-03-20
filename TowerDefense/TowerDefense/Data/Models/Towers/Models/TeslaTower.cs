@@ -15,7 +15,7 @@
             this.AttackSpeed = 1000;
             this.Range = 10;
             this.DamageType = TowerDamageType.SINGLE;
-            this.VirusType = Viruses.VirusType.GROUND;
+            this.VirusType = Viruses.VirusType.TINRIDER;
             this.Level = 1;
             this.UpgradeCost = 75;
             this.Surface = SurfaceName;
