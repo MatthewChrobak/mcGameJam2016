@@ -15,8 +15,8 @@ namespace TowerDefense.Data.Models.Towers.Models
         {
             this.Type = TowerType.TESLA;
             this.DamageDealt = 75;
-            this.AttackSpeed = 10000;
-            this.Range = 2;
+            this.AttackSpeed = 1500;
+            this.Range = 1;
             this.DamageType = TowerDamageType.SINGLE;
             this.VirusType = Viruses.VirusType.TINRIDER;
             this.Level = 1;

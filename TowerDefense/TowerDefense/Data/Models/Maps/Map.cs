@@ -48,6 +48,11 @@ namespace TowerDefense.Data.Models.Maps
                         Console.WriteLine("GAME OVER!!!!!!");
                     }
                 }
+                else
+                {
+                    DataManager.Board.AddMoney(virus.Money);
+                    DataManager.Board.AddScore(virus.Score);
+                }
                 Viruses.Remove(virus);
                 if (Viruses.Count <= 0) {
                     // TODO should determine virus type by wave number
