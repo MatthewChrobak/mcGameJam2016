@@ -5,7 +5,7 @@
         public Tindrider()
         {
             this.Name = "TinRider";
-            this.Speed = 200;
+            this.Speed = 300;
             this.Type = VirusType.TINRIDER;
             this.Health = 135;
             this.MaxHealth = 150;

@@ -87,11 +87,11 @@ namespace TowerDefense.Data.Models.Maps
                     int score = DataManager.Board.Score;
                     Tindrider tind = new Tindrider();
 
-                    if (score >= 500)
+                    //if (score >= 500)
                     {
                         //tind.Health = 200;
                         //tind.Money = 5;
-                        tind.Speed -= 25;
+                       // tind.Speed -= 25;
                     }
                    /* if(score >= 1000)
                     {
