@@ -43,18 +43,14 @@ namespace TowerDefense.Data.Models.Maps
         public Map() {
             Home = new Home();
             // add handler for virus deaths
-            virusDeath += (virus, isLifeLost) =>
-            {
-                if(isLifeLost == true)
-                {
-                    if(Home.takeDamage())
-                    {
+            virusDeath += (virus, isLifeLost) => {
+                if (isLifeLost == true) {
+                    if (Home.takeDamage()) {
                         Console.WriteLine("GAME OVER!!!!!!");
                     }
                 }
                 Viruses.Remove(virus);
-                if (Viruses.Count <= 0)
-                {                  
+                if (Viruses.Count <= 0) {
                     // TODO should determine virus type by wave number
                     SpawnManager.spawnWave(3, new Tindrider());
                 }
@@ -64,7 +60,7 @@ namespace TowerDefense.Data.Models.Maps
         }
 
         public void UpdateLogic() {
-            for (int i =0; i < Viruses.Count;i++ ) {
+            for (int i = 0; i < Viruses.Count; i++) {
                 var virus = Viruses[i];
                 if (virus != null) {
                     // They got to the end
@@ -72,53 +68,25 @@ namespace TowerDefense.Data.Models.Maps
                         OnVirusDeath(virus, true);
                         //break;
                     }
-                   else  virus.Move((Directions)dirs.GetValue(virus.Step));
+                    
+                    // TODO: virus.Step out of range exception
+                    virus.Move((Directions)dirs.GetValue(virus.Step));
+
+                    foreach (var tower in Towers) {
+
+
+                        // Check for attack speed or something. Connor seems to know.
+
+                        if (Math.Abs(virus.Position.X - tower.X) <= tower.Range) {
+                            if (Math.Abs(virus.Position.Y - tower.Y) <= tower.Range) {
+
+                                
+
+                                // Update whatever we check above.
+                            }
+                        }
+                    }
                 }
-
-                //// Loop through all towers, and try to target enemy
-                //foreach (var tower in Towers) {
-                //    // Assign tower coordinates and refresh enemies in range list
-                //    pos.X = tower.X;
-                //    pos.Y = tower.Y;
-                //    EnemiesInRange.Clear();
-
-                //    // Make sure range check does not exceed upper bound
-                //    if (pos.Y - tower.Range < 0)
-                //        yMin = 0;
-                //    else
-                //        yMin = pos.Y - tower.Range;
-
-                //    // Make sure range check does not exceed lower bound
-                //    if (pos.Y + tower.Range > WIDTH)
-                //        yMax = WIDTH;
-                //    else
-                //        yMax = pos.Y + tower.Range;
-
-                //    // Make sure range check does not exceed left bound
-                //    if (pos.X - tower.Range < 0)
-                //        xMin = 0;
-                //    else
-                //        xMin = pos.X - tower.Range;
-
-                //    // Make sure range check does not exceed right bound
-                //    if (pos.X + tower.Range > HEIGHT)
-                //        xMax = HEIGHT;
-                //    else
-                //        xMax = pos.X + tower.Range;
-
-
-                //    for (int y = yMin; y < yMax; y++) {
-                //        for (int x = xMin; x < xMax; x++) {
-                //            if (mapArray[x, y].GetType() == typeof(PathTile)) {
-                //                PathTile tempPathTile = (PathTile)mapArray[x, y];
-                //                EnemiesInRange.AddRange(tempPathTile.viruses);
-
-                //                // Determines highest priority and sets to fire
-                //                tower.CurrentTarget = prioritizeVirus(EnemiesInRange);
-                //            }
-                //        }
-                //    }
-                //}
             }
         }
 

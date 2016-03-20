@@ -38,26 +38,28 @@ namespace TowerDefense.Data.Models.Towers
             this.X = x;
             this.Y = y;
         }
+
+        public abstract void AttackTarget(Virus victim);
         
-        public void shootATtTarget() {
+        //public void AttackTarget(Virus victim) {
 
-            for (int y = 0; y < this.Range; y++) {
-                for (int x = 0; x < this.Range; x++) {
+        //    for (int y = 0; y < this.Range; y++) {
+        //        for (int x = 0; x < this.Range; x++) {
 
-                }
-            }
-            if(CurrentTarget != null)
-            {
-                //Check if enemy killed
-                if (CurrentTarget.Health <= 0)
-                {
-                    map.OnVirusDeath(CurrentTarget);
-                }
-            }
+        //        }
+        //    }
+        //    if(CurrentTarget != null)
+        //    {
+        //        //Check if enemy killed
+        //        if (CurrentTarget.Health <= 0)
+        //        {
+        //            map.OnVirusDeath(CurrentTarget);
+        //        }
+        //    }
 
             
-            return;
+        //    return;
 
-        }
+        //}
     }
 }
