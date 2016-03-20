@@ -55,6 +55,17 @@ namespace TowerDefense.Data.Models.Viruses
 
                 // Set the current tickcount as our last move time.
                 LastMove = Environment.TickCount;
+
+                // Check if the virus is standing on a teleporter. Hardcoded for now
+                if(Step == 28)
+                {
+                    this.Position = new Position(1, 1);
+                }
+                if(Step == 40)
+                {
+                    this.Position = new Position(9, 1);
+                }
+                
             } else {
                 int timeSince = Environment.TickCount - LastMove;
 
