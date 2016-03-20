@@ -11,26 +11,27 @@ namespace TowerDefense.Data.Models
 {
     public static class SpawnManager
     {
+
         // Spawns a wave of the given virus.
         public static void spawnWave(int waveSize, Virus virus)
         {
-            
             // Always Delay the spawn by 10 seconds
-            Game.DelayInvoke(10000, () => {
+            Game.DelayInvoke(2000, () => {
                 Object[,] map = DataManager.Map.mapArray;
                 List<Virus> viruses = DataManager.Map.Viruses;
+                virus.Position = DataManager.Map.SpawnLocation;
                 // Viruses will spawn one second at a time
-                Timer spawnTimer = new Timer(1000);
+                Timer spawnTimer = new Timer(5000);
+                spawnTimer.Start();
                 spawnTimer.Elapsed += (sender, args) =>
                 {
-                    viruses.Add(virus);
+                    viruses.Add(new Tindrider(virus.Position.X, virus.Position.Y));
                     waveSize--;
                     if (waveSize <= 0)
                     {
                         spawnTimer.Stop();
                     }
-                };
-                spawnTimer.Start();
+                };    
             });
             
         }
