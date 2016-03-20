@@ -78,10 +78,29 @@ namespace TowerDefense.Data.Models.Viruses
                 // Check if the virus is standing on a teleporter. Hardcoded for now
                 if(Step == 28)
                 {
+                    DataManager.Map.MapAnimations.Add(new Anim.Animation() {
+                        FrameHeight = 59,
+                        FrameWidth = 60,
+                        MaxState = 17,
+                        Position = new Position(Position.X * 60, Position.Y * 59),
+                        Surface = "teleport",
+                        UpdateTick = 16,
+                        Overlay = false
+                    });
                     this.Position = new Position(1, 1);
                 }
                 if(Step == 40)
                 {
+                    DataManager.Map.MapAnimations.Add(new Anim.Animation() {
+                        FrameHeight = 59,
+                        FrameWidth = 60,
+                        MaxState = 17,
+                        Position = new Position((Position.X + 1) * 60, (Position.Y + 1) * 59),
+                        Surface = "teleport",
+                        UpdateTick = 16,
+                        Rotation = 180f,
+                        Overlay = false
+                    });
                     this.Position = new Position(9, 1);
                 }
                 

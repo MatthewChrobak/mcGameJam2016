@@ -17,7 +17,7 @@
                     Left = 960,
                     Width = 300,
                     Height = 50,
-                    FontSize = 36,
+                    FontSize = 22,
                     TextColor = SFML.Graphics.Color.White
                 };
                 lblTitle.Draw();

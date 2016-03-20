@@ -7,7 +7,7 @@ namespace TowerDefense.Data.Models.Towers.Models
     {
         public const int TowerCost = 100;
         public const string TowerName = "Ez Tower";
-        public const string TowerDescription = "Fires a single, powerful shot.";
+        public const string TowerDescription = "Fires a single, powerful shot";
         public const string ShopIcon = "icon1";
         public const string SurfaceName = "tower1";
 
