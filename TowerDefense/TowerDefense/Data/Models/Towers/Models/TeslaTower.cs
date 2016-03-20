@@ -74,8 +74,20 @@ namespace TowerDefense.Data.Models.Towers.Models
             return this.AnimationState;
         }
 
+        private void AddAnimation() {
+            DataManager.Map.MapAnimations.Add(new Anim.Animation() {
+                Surface = "lazer",
+                FrameHeight = 192,
+                FrameWidth = 157,
+                MaxState = 10,
+                Position = new Position(this.X * 70 - 192 / 2 - 45, this.Y * 49 - 40),
+                UpdateTick = 100
+            });
+        }
+
         public override void AttackTarget(Virus victim) {
             victim.takeDamage(DamageDealt);
+            //AddAnimation();
         }
     }
 }
